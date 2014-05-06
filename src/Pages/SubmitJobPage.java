@@ -180,9 +180,10 @@ public class SubmitJobPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
-    CommandExecutor.execute("arcproxy");
-//        LoginPage.profilePage.setVisible(true);
-//        CreateJobPage.submitJobPage.setVisible(false);
+       
+        LoginPage.profilePage.setVisible(true);
+        CreateJobPage.submitJobPage.setVisible(false);
+  
         
     }//GEN-LAST:event_CancelBtnActionPerformed
 
@@ -190,9 +191,37 @@ public class SubmitJobPage extends javax.swing.JFrame {
        textArea = _textArea;
     }
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitJobBtnActionPerformed
-      
+      textArea.setText("");
+        try {
+            
+            ProcessBuilder builder = new ProcessBuilder("/bin/bash","-c","xterm -e arcproxy && arcproxy -I");
+            builder.redirectErrorStream(true); // so we can ignore the error stream
+            
+            Process process = builder.start();
+            Thread.sleep(2000);
+            InputStream out = process.getInputStream();
+            OutputStream in = process.getOutputStream();
+             BufferedReader stdInput = new BufferedReader(new 
+                    InputStreamReader(process.getInputStream()));
 
-               
+            BufferedReader stdError = new BufferedReader(new 
+                    InputStreamReader(process.getErrorStream()));
+
+            String s = null;
+            while ((s = stdInput.readLine()) != null) {
+                textArea.append(s+"\n");
+            }
+
+            while ((s = stdError.readLine()) != null) {
+               textArea.append(s+"\n");
+            }
+   
+          } catch (InterruptedException ex) {
+            Logger.getLogger(SubmitJobPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SubmitJobPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 
     private void selectXRSLFileBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectXRSLFileBtn1ActionPerformed
