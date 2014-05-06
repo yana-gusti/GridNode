@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.2
+Created-By: 1.7.0_51-b00 (Oracle Corporation)
+Class-Path: lib/D lib/mysql-connector-java-5.1.24-bin.jar
+X-COMMENT: Main-Class will be added automatically by build
+Main-Class: grid_node.Main
+
