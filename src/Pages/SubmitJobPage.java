@@ -199,8 +199,6 @@ public class SubmitJobPage extends javax.swing.JFrame {
             
             Process process = builder.start();
             Thread.sleep(2000);
-            InputStream out = process.getInputStream();
-            OutputStream in = process.getOutputStream();
              BufferedReader stdInput = new BufferedReader(new 
                     InputStreamReader(process.getInputStream()));
 
