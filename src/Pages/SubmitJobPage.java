@@ -60,7 +60,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
         TopLabel = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
         VONameLb = new javax.swing.JLabel();
-        VOName = new javax.swing.JTextField();
+        cluster = new javax.swing.JTextField();
         CancelBtn = new javax.swing.JButton();
         SubmitJobBtn = new javax.swing.JButton();
         selectXRSLFileBtn1 = new javax.swing.JButton();
@@ -80,7 +80,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
 
         MainPanel.setBackground(new java.awt.Color(204, 255, 255));
 
-        VONameLb.setText("Enter name of VO");
+        VONameLb.setText("Enter address of cluster");
         VONameLb.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         CancelBtn.setBackground(new java.awt.Color(0, 204, 204));
@@ -119,12 +119,10 @@ public class SubmitJobPage extends javax.swing.JFrame {
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(CancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(VOName)
+                        .addComponent(cluster)
                         .addComponent(SubmitJobBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(selectXRSLFileBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(VONameLb)))
+                    .addComponent(VONameLb))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -134,11 +132,11 @@ public class SubmitJobPage extends javax.swing.JFrame {
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(selectXRSLFileBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(VONameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(VOName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(12, 12, 12)
+                .addComponent(cluster, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,37 +186,30 @@ public class SubmitJobPage extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelBtnActionPerformed
 
  public SubmitJobPage(final TextArea _textArea) {
-       textArea = _textArea;
+      textArea = _textArea;
     }
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitJobBtnActionPerformed
-      textArea.setText("");
-        try {
-            
-            ProcessBuilder builder = new ProcessBuilder("/bin/bash","-c","xterm -e arcproxy && arcproxy -I");
-            builder.redirectErrorStream(true); // so we can ignore the error stream
-            
-            Process process = builder.start();
-            Thread.sleep(2000);
-             BufferedReader stdInput = new BufferedReader(new 
-                    InputStreamReader(process.getInputStream()));
-
-            BufferedReader stdError = new BufferedReader(new 
-                    InputStreamReader(process.getErrorStream()));
-
-            String s = null;
+     textArea.setText("");               
+        String s = null;
+       try {
+            Process p = Runtime.getRuntime().exec("arcsub -c "+cluster.getText()+" "+XRSLFile.getName());
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            // read the output from the command
             while ((s = stdInput.readLine()) != null) {
-                textArea.append(s+"\n");
+                textArea.append(s+ "\n");
             }
-
+            // read any errors from the attempted command
+            System.out.println("Here is the standard error of the command (if any):\n");
             while ((s = stdError.readLine()) != null) {
-               textArea.append(s+"\n");
-            }
-   
-          } catch (InterruptedException ex) {
-            Logger.getLogger(SubmitJobPage.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SubmitJobPage.class.getName()).log(Level.SEVERE, null, ex);
+                textArea.append(s+ "\n");
+            }   
         }
+        catch (IOException e) {
+            System.out.println("exception happened - here's what I know: ");
+            e.printStackTrace();
+        }
+                      
        
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 
@@ -280,10 +271,10 @@ public class SubmitJobPage extends javax.swing.JFrame {
     public javax.swing.JButton SubmitJobBtn;
     private javax.swing.JLabel TopLabel;
     public javax.swing.JPanel TopPanel;
-    public javax.swing.JTextField VOName;
-    public javax.swing.JLabel VONameLb;
+    private javax.swing.JLabel VONameLb;
+    private javax.swing.JTextField cluster;
     public javax.swing.JButton selectXRSLFileBtn1;
-    public java.awt.TextArea textArea;
+    private java.awt.TextArea textArea;
     // End of variables declaration//GEN-END:variables
 
     /**

@@ -1,1 +1,0 @@
-#!/bin/bash chmod +x myprog $MPIRUN myprog

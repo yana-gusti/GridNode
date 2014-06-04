@@ -93,16 +93,13 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="CancelBtn" max="32767" attributes="0"/>
-                              <Component id="VOName" max="32767" attributes="0"/>
+                              <Component id="cluster" max="32767" attributes="0"/>
                               <Component id="SubmitJobBtn" alignment="1" max="32767" attributes="0"/>
                               <Component id="selectXRSLFileBtn1" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="VONameLb" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="VONameLb" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="textArea" min="-2" pref="404" max="-2" attributes="0"/>
@@ -115,11 +112,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                       <Component id="selectXRSLFileBtn1" min="-2" pref="39" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="VONameLb" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="VOName" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="cluster" min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="SubmitJobBtn" min="-2" pref="39" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       <Component id="CancelBtn" min="-2" pref="39" max="-2" attributes="0"/>
@@ -135,14 +132,14 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="VONameLb">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Enter name of VO"/>
+                <Property name="text" type="java.lang.String" value="Enter address of cluster"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="VOName">
+            <Component class="javax.swing.JTextField" name="cluster">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>

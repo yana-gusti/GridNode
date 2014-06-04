@@ -11,6 +11,8 @@ import grid_node.Main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.*;
 
@@ -64,6 +66,7 @@ public class ProfilePage extends javax.swing.JFrame {
         textArea = new java.awt.TextArea();
         textArea.setVisible(false);
         textArea.setText("");
+        ResultOfJobBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,15 +153,14 @@ public class ProfilePage extends javax.swing.JFrame {
         PersonDataPanelLayout.setVerticalGroup(
             PersonDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PersonDataPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(FirstNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(LastNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BirthdayLb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(EmailLb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(EmailLb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         SubmitJobBtn.setBackground(new java.awt.Color(0, 204, 204));
@@ -202,6 +204,16 @@ public class ProfilePage extends javax.swing.JFrame {
             }
         });
 
+        ResultOfJobBtn.setBackground(new java.awt.Color(0, 204, 204));
+        ResultOfJobBtn.setText("Result of Job");
+        ResultOfJobBtn.setActionCommand("Registration");
+        ResultOfJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ResultOfJobBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResultOfJobBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
         MenuPanel.setLayout(MenuPanelLayout);
         MenuPanelLayout.setHorizontalGroup(
@@ -210,17 +222,21 @@ public class ProfilePage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(JobName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ListOfJob, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PersonDataPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MenuPanelLayout.createSequentialGroup()
-                                .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(CreateJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(RemoveJobBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(StatusBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MenuPanelLayout.createSequentialGroup()
+                                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(JobName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ListOfJob, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(PersonDataPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CreateJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(RemoveJobBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(StatusBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(ResultOfJobBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
                                 .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,17 +257,19 @@ public class ProfilePage extends javax.swing.JFrame {
                     .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(MenuPanelLayout.createSequentialGroup()
                         .addComponent(PersonDataPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ListOfJob, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(JobName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(StatusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ResultOfJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(RemoveJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -317,7 +335,8 @@ public class ProfilePage extends javax.swing.JFrame {
     }//GEN-LAST:event_EditProfileBtnActionPerformed
 
     private void RemoveJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveJobBtnActionPerformed
-               String s = null;
+        textArea.setText("");
+        String s = null;
        try {
             Process p = Runtime.getRuntime().exec("ping -c 3 cisco.com");
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -359,9 +378,10 @@ public class ProfilePage extends javax.swing.JFrame {
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 
     private void StatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusBtnActionPerformed
-               String s = null;
+        textArea.setText("");               
+        String s = null;
        try {
-            Process p = Runtime.getRuntime().exec("ping -c 3 cisco.com");
+            Process p = Runtime.getRuntime().exec("arcstat "+JobName.getText()+" && arccat "+JobName.getText()+"");
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             // read the output from the command
@@ -383,9 +403,10 @@ public class ProfilePage extends javax.swing.JFrame {
     }//GEN-LAST:event_StatusBtnActionPerformed
 
     private void ListOfJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListOfJobActionPerformed
+       textArea.setText("");
        String s = null;
        try {
-            Process p = Runtime.getRuntime().exec("ping -c 3 cisco.com");
+            Process p = Runtime.getRuntime().exec("arcstat -a");
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             // read the output from the command
@@ -404,11 +425,39 @@ public class ProfilePage extends javax.swing.JFrame {
             System.out.println("exception happened - here's what I know: ");
             e.printStackTrace();
         }
+        
+                                    
+        
     }//GEN-LAST:event_ListOfJobActionPerformed
 
     private void JobNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JobNameMouseClicked
       JobName.setText("");
     }//GEN-LAST:event_JobNameMouseClicked
+
+    private void ResultOfJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResultOfJobBtnActionPerformed
+        textArea.setText("");               
+        String s = null;
+       try {
+            Process p = Runtime.getRuntime().exec("arccat "+JobName.getText()+"");
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            // read the output from the command
+            while ((s = stdInput.readLine()) != null) {
+                textArea.append(s+ "\n");
+                ResultTextPane.setText(textArea.getText());
+            }
+            // read any errors from the attempted command
+            System.out.println("Here is the standard error of the command (if any):\n");
+            while ((s = stdError.readLine()) != null) {
+                textArea.append(s+ "\n");
+                ResultTextPane.setText(textArea.getText());
+            }   
+        }
+        catch (IOException e) {
+            System.out.println("exception happened - here's what I know: ");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_ResultOfJobBtnActionPerformed
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -459,6 +508,7 @@ public static void main(String args[]) {
     private javax.swing.JPanel MenuPanel;
     private javax.swing.JPanel PersonDataPanel;
     public javax.swing.JButton RemoveJobBtn;
+    public javax.swing.JButton ResultOfJobBtn;
     public javax.swing.JTextPane ResultTextPane;
     public javax.swing.JButton StatusBtn;
     public javax.swing.JButton SubmitJobBtn;
