@@ -6,6 +6,7 @@
 
 package Pages;
 
+import grid_node.Main;
 import java.io.File;
 
 /**
@@ -47,6 +48,7 @@ public class EditProfilePage extends javax.swing.JFrame {
         passConf = new javax.swing.JTextField();
         RegistrationBtn = new javax.swing.JButton();
         CancelBtn = new javax.swing.JButton();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,7 +162,7 @@ public class EditProfilePage extends javax.swing.JFrame {
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RegistrationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout TopPanelLayout = new javax.swing.GroupLayout(TopPanel);
@@ -168,9 +170,13 @@ public class EditProfilePage extends javax.swing.JFrame {
         TopPanelLayout.setHorizontalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(TopLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TopPanelLayout.createSequentialGroup()
+            .addGroup(TopPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(TopPanelLayout.createSequentialGroup()
+                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         TopPanelLayout.setVerticalGroup(
@@ -178,7 +184,9 @@ public class EditProfilePage extends javax.swing.JFrame {
             .addGroup(TopPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(TopLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabel)
+                .addGap(3, 3, 3)
                 .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -200,76 +208,7 @@ public class EditProfilePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrationBtnActionPerformed
-        File globus = new File("/home/yana/.globus");
-        if (!globus.exists()) {
-            if (globus.mkdir()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
-                errorLabel.setText("Such directory is already exists!");
-            }
-        }
-        if(userCertFile.renameTo(new File("/home/yana/.globus/" + userCertFile.getName()))){
-            System.out.println("File is moved successful!");
-        }else{
-            errorLabel.setText("You don't select a usercert.pem file");
-            System.out.println("File is failed to move!");
-        }
-        if(userKeyFile.renameTo(new File("/home/yana/.globus/" + userKeyFile.getName()))){
-            Runtime r =Runtime.getRuntime();
-            Process changePermissions = null;
-            try {
-                changePermissions = r.exec("chmod 400 /home/yana/.globus/"+userKeyFile.getName());
-            } catch (IOException ex) {
-                Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                changePermissions.waitFor();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.println("File is moved successful!");
-        }else{
-            errorLabel.setText("You don't select a userkey.pem file");
-            System.out.println("File is failed to move!");
-        }
-
-        String _firstName = (String) firstName.getText();
-        String _lastName = (String) lastName.getText();
-        String _birthday = (String) birthday.getText();
-        String _email = (String) email.getText();
-        String _pass = (String) pass.getText();
-        String _passConf = (String) passConf.getText();
-        Users newUser = null;
-        System.out.println("q");
-
-        if (_firstName != null && _lastName != null
-            && _birthday != null && _email != null && _pass != null && _passConf != null) {
-            for (Integer i = 0; i < UserServices.getAll().size(); i++) {
-                if (UserServices.getAll().get(i).getE_mail().equals(_email)) {
-                    errorLabel.setText("Sorry, you can't registr as "+ _email);
-                    System.out.println("a");
-                    return;
-                }else{
-                    if (!_pass.equals(_passConf)) {
-                        errorLabel.setText("Password confirm failed!");
-                        System.out.println("b");
-                        return;
-                    }else{
-                        newUser = new Users(null, _firstName, _lastName, _birthday, _email, _pass);
-                        System.out.println("w");
-                        DBConnection.save(newUser);
-                        Main.loginPage.setVisible(true);
-                        LoginPage.registrationPage.setVisible(false);
-                        return;
-                    }
-                }
-            }
-        } else {
-            errorLabel.setText("Empty fields!");
-            System.out.println("d");
-            return ;
-        }
+        
     }//GEN-LAST:event_RegistrationBtnActionPerformed
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
@@ -323,6 +262,7 @@ public class EditProfilePage extends javax.swing.JFrame {
     public javax.swing.JTextField birthday;
     public javax.swing.JTextField email;
     private javax.swing.JLabel emailLb;
+    private javax.swing.JLabel errorLabel;
     public javax.swing.JTextField firstName;
     private javax.swing.JLabel firstNameLb;
     public javax.swing.JTextField lastName;

@@ -11,8 +11,9 @@ import java.util.ArrayList;
 
 
 public class DBConnection implements Interface<Users> {
+        public static String table = "user_table" ;
 
-	private final String connectionUrl = "jdbc:mysql://localhost/grid_node?user=root&password=1";
+	private final String connectionUrl = "jdbc:mysql://0.0.0.0/users?user=root&password=1";
 
 	private static Connection connection;
 
@@ -32,7 +33,7 @@ public class DBConnection implements Interface<Users> {
 		ArrayList<Users> array = new ArrayList<Users>();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM usertable";
+		String SQL = "SELECT * FROM "+table;
 
 		try {
 			stmt = connection.createStatement();
@@ -55,7 +56,7 @@ public class DBConnection implements Interface<Users> {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int id =0;
-		String insertSQL = "INSERT INTO usertable (usertable.first_name, usertable.last_name, usertable.birthday, usertable.e_mail,  usertable.pass) VALUES('"
+		String insertSQL = "INSERT INTO "+table+" ("+table+".first_name, "+table+".last_name, "+table+".birthday, "+table+".e_mail,  "+table+".pass) VALUES('"
 				+ user.getFirst_name()
 				+ "', '"
 				+ user.getLast_name()
@@ -89,7 +90,7 @@ public class DBConnection implements Interface<Users> {
 		ArrayList<Users> arrayUsers = new ArrayList<Users>();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM usertable WHERE e_mail = '"
+		String SQL = "SELECT * FROM "+table+" WHERE e_mail = '"
 				+ user.getE_mail() + "'";
 		System.out.println(SQL);
 		try {
@@ -119,7 +120,7 @@ public class DBConnection implements Interface<Users> {
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		String selectSQL = "SELECT * FROM tasktable WHERE e_mail LIKE '"+LoginPage.user.getE_mail()+"'";
+		String selectSQL = "SELECT * FROM "+table+" WHERE e_mail LIKE '"+LoginPage.user.getE_mail()+"'";
 		try {
 			
 			stmt = connection.createStatement();
@@ -146,7 +147,7 @@ public class DBConnection implements Interface<Users> {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int id =1;
-		String insertSQL = "INSERT INTO tasktable (tasktable.e_mail, tasktable.task_name, tasktable.date, tasktable.description, tasktable.condition) VALUES('"
+		String insertSQL = "INSERT INTO "+table+" ("+table+".e_mail, "+table+".task_name, "+table+".date, "+table+".description, "+table+".condition) VALUES('"
 
 				+ LoginPage.user.getE_mail()
 				+ "', '"
@@ -180,7 +181,7 @@ public class DBConnection implements Interface<Users> {
 		ArrayList<Tasks> arrayTasks = new ArrayList<Tasks>();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String selectSQL = "SELECT * FROM tasktable WHERE e_mail LIKE '"+LoginPage.user.getE_mail()+"' AND `condition`= 'active'";
+		String selectSQL = "SELECT * FROM "+table+" WHERE e_mail LIKE '"+LoginPage.user.getE_mail()+"' AND `condition`= 'active'";
 		try {
 
 
@@ -208,7 +209,7 @@ public class DBConnection implements Interface<Users> {
 		ArrayList<Tasks> arrayTasks = new ArrayList<Tasks>();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String selectSQL = "SELECT * FROM tasktable WHERE e_mail LIKE '"+LoginPage.user.getE_mail()+"' AND `condition`= 'completed'";
+		String selectSQL = "SELECT * FROM "+table+" WHERE e_mail LIKE '"+LoginPage.user.getE_mail()+"' AND `condition`= 'completed'";
 
 		try {
 
@@ -237,7 +238,7 @@ public class DBConnection implements Interface<Users> {
 
 		try {
 
-			String insertSQL = "DELETE FROM usertable WHERE e_mail = '"
+			String insertSQL = "DELETE FROM "+table+" WHERE e_mail = '"
 					+ user.getE_mail() + "';";
 			stmt = connection.prepareStatement(insertSQL,
 					Statement.RETURN_GENERATED_KEYS);
@@ -256,7 +257,7 @@ public class DBConnection implements Interface<Users> {
 
 		try {
 
-			String deleteSQL = "DELETE FROM tasktable WHERE task_name = '"
+			String deleteSQL = "DELETE FROM "+table+" WHERE task_name = '"
 					+ task.getTask_name() + "';";
 			stmt = connection.prepareStatement(deleteSQL,
 					Statement.RETURN_GENERATED_KEYS);

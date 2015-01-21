@@ -1,0 +1,3 @@
+chown 0:0 /etc/grid-security/host{cert,key}.pem
+chmod 644 /etc/grid-security/hostcert.pem
+chmod 400 /etc/grid-security/hostkey.pem

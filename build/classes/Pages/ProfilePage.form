@@ -121,6 +121,9 @@
                   <Color blue="ff" green="ff" red="cc" type="rgb"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="ProfilePage_MenuPanel"/>
+              </AuxValues>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -325,25 +328,25 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="FirstNameLb">
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="FirstNameLb.setText(LoginPage.user.getFirst_name());&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="FirstNameLb.setText(LoginPage.titleList.get(0)); "/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="LastNameLb">
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="LastNameLb.setText(LoginPage.user.getLast_name()); "/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="LastNameLb.setText(LoginPage.titleList.get(1)); "/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="EmailLb">
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="EmailLb.setText(LoginPage.user.getE_mail());&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="EmailLb.setText(LoginPage.titleList.get(3));&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="BirthdayLb">
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="BirthdayLb.setText(LoginPage.user.getBirthday());&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="BirthdayLb.setText(LoginPage.titleList.get(2)); "/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
                     </Component>

@@ -126,13 +126,13 @@ public class ProfilePage extends javax.swing.JFrame {
 
         PersonDataPanel.setBackground(new java.awt.Color(153, 255, 255));
 
-        FirstNameLb.setText(LoginPage.user.getFirst_name());
+        FirstNameLb.setText(LoginPage.titleList.get(0));
 
-        LastNameLb.setText(LoginPage.user.getLast_name());
+        LastNameLb.setText(LoginPage.titleList.get(1));
 
-        EmailLb.setText(LoginPage.user.getE_mail());
+        EmailLb.setText(LoginPage.titleList.get(3));
 
-        BirthdayLb.setText(LoginPage.user.getBirthday());
+        BirthdayLb.setText(LoginPage.titleList.get(2));
 
         javax.swing.GroupLayout PersonDataPanelLayout = new javax.swing.GroupLayout(PersonDataPanel);
         PersonDataPanel.setLayout(PersonDataPanelLayout);
@@ -310,7 +310,7 @@ public class ProfilePage extends javax.swing.JFrame {
                 .addGap(336, 336, 336))
         );
 
-        LoginPage.user.getFirst_name();
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

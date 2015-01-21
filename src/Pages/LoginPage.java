@@ -6,12 +6,19 @@
 
 package Pages;
 
+import static Server.ServerMain.name;
+import static Server.ServerMain.pass;
 import grid_node.Main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import services.DBConnection;
@@ -251,55 +258,62 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_emailActionPerformed
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
-        String e_mail = email.getText();
+ String e_mail = email.getText();
         String _pass = pass.getText();
         if (e_mail != null && pass != null) {
-	user = UserServices.findUser(e_mail, _pass);
-            if (user != null) {
-            DBConnection.getUser(user);
-                System.out.println("jfhKDJKLDFHlgf");
+
+
+            try {
+                Socket socket = new Socket("localhost", 9999);
+
+                ArrayList<String> my = new ArrayList<String>();
+                my.add(0, e_mail);
+                my.add(1, _pass);
+                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 try {
+                    objectOutput.writeObject(my);
+                    titleList = new ArrayList<String>();
             
-            ProcessBuilder builder = new ProcessBuilder("/bin/bash","-c","xterm -e voms-proxy-init -valid 12:0 -voms "+vo.getText()+" -vomses vomses/"+vo.getText()+"");
-            builder.redirectErrorStream(true); // so we can ignore the error stream
-            
-            Process process = builder.start();
-            Thread.sleep(2000);
-             BufferedReader stdInput = new BufferedReader(new 
-                    InputStreamReader(process.getInputStream()));
+                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
 
-            BufferedReader stdError = new BufferedReader(new 
-                    InputStreamReader(process.getErrorStream()));
-
-            String s = null;
-            while ((s = stdInput.readLine()) != null) {
                 
-            }
+                    Object object = objectInput.readObject();
+                    titleList = (ArrayList<String>) object;
+                    System.out.println(titleList);
+                    String result = titleList.get(4);
+                    System.out.println(result);
+                    errorLabel.setText(result);
+                    if (result.equals("success")){
+                    profilePage = new ProfilePage();
+                    profilePage.setVisible(true);
+                    Main.loginPage.setVisible(false);
+                    }else{
+                       errorLabel.setText("error"); 
+                    }
+                    
 
-            while ((s = stdError.readLine()) != null) {
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
                
+                    
+                    
+                    
+                   
+                
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-   
-          } catch (InterruptedException ex) {
-            Logger.getLogger(SubmitJobPage.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SubmitJobPage.class.getName()).log(Level.SEVERE, null, ex);
+
+
         }
-            profilePage=new ProfilePage();
-            profilePage.setVisible(true);
 
-            Main.loginPage.setVisible(false);
-            
-        
-            } else {
-		errorLabel.setText("Invalid login or password!");
-		return;
-		}
 
-            } else {
-            errorLabel.setText("Invalid login or password!");
-            return;
-	}
     }//GEN-LAST:event_LoginBtnActionPerformed
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -329,6 +343,7 @@ public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginPage().setVisible(true);
+                
             }
         });
     }
@@ -359,4 +374,7 @@ public static void main(String args[]) {
     public javax.swing.JTextField vo;
     private javax.swing.JLabel voLabel;
     // End of variables declaration//GEN-END:variables
+    public static ArrayList<String> titleList;
+    
+    
 }
