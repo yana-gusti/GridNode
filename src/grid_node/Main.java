@@ -7,6 +7,8 @@
 package grid_node;
 
 import Pages.LoginPage;
+import java.io.IOException;
+import java.net.Socket;
 
 /**
  *
@@ -14,11 +16,13 @@ import Pages.LoginPage;
  */
 public class Main {
     public static LoginPage loginPage;
+    
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        
          loginPage = new LoginPage();
          loginPage.setVisible(true);
     }

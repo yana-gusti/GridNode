@@ -6,11 +6,20 @@
 
 package Pages;
 
+import static Pages.LoginPage.profilePage;
 import grid_node.Main;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.nio.file.DirectoryIteratorException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -312,40 +321,40 @@ public File userKeyFile;
     }//GEN-LAST:event_userCertBtnActionPerformed
 
     private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrationBtnActionPerformed
-        File globus = new File("/home/yana/.globus");
-        if (!globus.exists()) {
-            if (globus.mkdir()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
-                errorLabel.setText("Such directory is already exists!");
-            }
-        }
-        if(userCertFile.renameTo(new File("/home/yana/.globus/" + userCertFile.getName()))){
-            System.out.println("File is moved successful!");
-        }else{
-            errorLabel.setText("You don't select a usercert.pem file");
-            System.out.println("File is failed to move!");
-        }
-        if(userKeyFile.renameTo(new File("/home/yana/.globus/" + userKeyFile.getName()))){
-            Runtime r =Runtime.getRuntime();
-            Process changePermissions = null;
-            try {
-                changePermissions = r.exec("chmod 400 /home/yana/.globus/"+userKeyFile.getName());
-            } catch (IOException ex) {
-                Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                changePermissions.waitFor();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.println("File is moved successful!");
-        }else{
-            errorLabel.setText("You don't select a userkey.pem file");
-            System.out.println("File is failed to move!");
-        }
-        
+//        File globus = new File("/home/yana/.globus");
+//        if (!globus.exists()) {
+//            if (globus.mkdir()) {
+//                System.out.println("Directory is created!");
+//            } else {
+//                System.out.println("Failed to create directory!");
+//                errorLabel.setText("Such directory is already exists!");
+//            }
+//        }
+//        if(userCertFile.renameTo(new File("/home/yana/.globus/" + userCertFile.getName()))){
+//            System.out.println("File is moved successful!");
+//        }else{
+//            errorLabel.setText("You don't select a usercert.pem file");
+//            System.out.println("File is failed to move!");
+//        }
+//        if(userKeyFile.renameTo(new File("/home/yana/.globus/" + userKeyFile.getName()))){
+//            Runtime r =Runtime.getRuntime();
+//            Process changePermissions = null;
+//            try {
+//                changePermissions = r.exec("chmod 400 /home/yana/.globus/"+userKeyFile.getName());
+//            } catch (IOException ex) {
+//                Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            try {
+//                changePermissions.waitFor();
+//            } catch (InterruptedException ex) {
+//                Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            System.out.println("File is moved successful!");
+//        }else{
+//            errorLabel.setText("You don't select a userkey.pem file");
+//            System.out.println("File is failed to move!");
+//        }
+//        
         String _firstName = (String) firstName.getText();
 	String _lastName = (String) lastName.getText();
 	String _birthday = (String) birthday.getText();
@@ -357,26 +366,63 @@ public File userKeyFile;
 
 	if (_firstName != null && _lastName != null
 	&& _birthday != null && _email != null && _pass != null && _passConf != null) {
-	for (Integer i = 0; i < UserServices.getAll().size(); i++) {
-	if (UserServices.getAll().get(i).getE_mail().equals(_email)) {
-	errorLabel.setText("Sorry, you can't registr as "+ _email);
-	System.out.println("a");
-	return;
-	}else{
-	if (!_pass.equals(_passConf)) {
-	errorLabel.setText("Password confirm failed!");
-	System.out.println("b");
-	return;
-	}else{
-        newUser = new Users(null, _firstName, _lastName, _birthday, _email, _pass);
-	System.out.println("w");
-	DBConnection.save(newUser);
-	Main.loginPage.setVisible(true);
-	LoginPage.registrationPage.setVisible(false);
-	return;
-	}
-	}
-	}
+            
+            try {
+                Socket socket = new Socket("localhost", 9999);
+
+                ArrayList<String> my = new ArrayList<String>();
+                my.add(0, _firstName);
+                my.add(1, _lastName);
+                my.add(2, _birthday);
+                my.add(3, _email);
+                my.add(4, _pass);
+                my.add(5, _passConf);
+                String login = "registr";
+                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
+                    toClient.println(login);
+                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+                
+                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                try {
+                    
+                    objectOutput.writeObject(my);
+                    titleList = new ArrayList<String>();
+            
+                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+
+                
+                    Object object = objectInput.readObject();
+                    titleList = (ArrayList<String>) object;
+                    System.out.println(titleList);
+                    String result = titleList.get(4);
+                    System.out.println(result);
+                    errorLabel.setText(result);
+                    if (result.equals("success")){
+                    profilePage = new ProfilePage();
+                    profilePage.setVisible(true);
+                    Main.loginPage.setVisible(false);
+                    }else{
+                       errorLabel.setText("error"); 
+                    }
+                    
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+                    
+                    
+                    
+                   
+                
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+	
 	} else {
 	errorLabel.setText("Empty fields!");
 	System.out.println("d");
@@ -449,4 +495,5 @@ public static void main(String args[]) {
     public javax.swing.JLabel userKey;
     public javax.swing.JButton userKeyBtn;
     // End of variables declaration//GEN-END:variables
+public static ArrayList<String> titleList;
 }

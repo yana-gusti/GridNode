@@ -6,8 +6,8 @@
 
 package Pages;
 
-import static Server.ServerMain.name;
-import static Server.ServerMain.pass;
+
+import static Server.ServerMain.skt;
 import grid_node.Main;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +16,7 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -258,20 +259,24 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_emailActionPerformed
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
- String e_mail = email.getText();
+        String e_mail = email.getText();
         String _pass = pass.getText();
         if (e_mail != null && pass != null) {
 
 
             try {
                 Socket socket = new Socket("localhost", 9999);
-
                 ArrayList<String> my = new ArrayList<String>();
                 my.add(0, e_mail);
                 my.add(1, _pass);
+                String login = "login";
+                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
+                    toClient.println(login);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+                
                 BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 try {
+                    
                     objectOutput.writeObject(my);
                     titleList = new ArrayList<String>();
             

@@ -9,6 +9,11 @@ package Server;
 import static Pages.LoginPage.profilePage;
 import Pages.ProfilePage;
 import grid_node.Main;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import services.DBConnection;
 import services.UserServices;
@@ -21,10 +26,50 @@ import services.Users;
 public class Login {
     public static Users user=null;
     public static String message = null;
+    public static String name;
+    public static String pass;
+    public static ArrayList<String> userData;
+    
+    public static void LoginExecute() throws IOException, ClassNotFoundException{
+        
+            ArrayList<String> titleList = new ArrayList<String>();
+            
+                ObjectInputStream objectInput = new ObjectInputStream(ServerMain.skt.getInputStream());
+
+                
+                    Object object = objectInput.readObject();
+                    titleList = (ArrayList<String>) object;
+                    name = titleList.get(0);
+                    pass = titleList.get(1);
+                    System.out.println(name);
+                    System.out.println(pass);
+                    Users user =null;
+                    Login.Login(name, pass);
+                    message = Login.message;
+                    
+                String first_name = Login.user.getFirst_name();
+                String last_name = Login.user.getLast_name();
+                String birthday = Login.user.getBirthday();
+                String email = Login.user.getE_mail();
+                System.out.println(first_name+last_name+birthday+email);
+               
+                ArrayList<String> my = new ArrayList<String>();
+                
+                my.add(0, Login.user.getFirst_name());
+                my.add(1, Login.user.getLast_name());
+                my.add(2, Login.user.getBirthday());
+                my.add(3, Login.user.getE_mail());
+                my.add(4, message);
+                ObjectOutputStream objectOutput = new ObjectOutputStream(ServerMain.skt.getOutputStream());
+                objectOutput.writeObject(my);
+                
+                
+    }
     
 
     
     public static void Login (String e_mail, String _pass){
+        
            
         if (e_mail != null && _pass != null) {
 	user = UserServices.findUser(e_mail, _pass);
