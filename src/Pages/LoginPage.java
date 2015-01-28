@@ -9,6 +9,7 @@ package Pages;
 
 import static Server.ServerMain.skt;
 import grid_node.Main;
+import static grid_node.Main.socket;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -265,7 +266,7 @@ public class LoginPage extends javax.swing.JFrame {
 
 
             try {
-                Socket socket = new Socket("localhost", 9999);
+                
                 ArrayList<String> my = new ArrayList<String>();
                 my.add(0, e_mail);
                 my.add(1, _pass);

@@ -8,6 +8,7 @@ package Pages;
 
 import static Pages.LoginPage.profilePage;
 import grid_node.Main;
+import static grid_node.Main.socket;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -368,7 +369,8 @@ public File userKeyFile;
 	&& _birthday != null && _email != null && _pass != null && _passConf != null) {
             
             try {
-                Socket socket = new Socket("localhost", 9999);
+                System.out.println("fields not empty");
+                System.out.println("connection start");
 
                 ArrayList<String> my = new ArrayList<String>();
                 my.add(0, _firstName);
@@ -378,6 +380,7 @@ public File userKeyFile;
                 my.add(4, _pass);
                 my.add(5, _passConf);
                 String login = "registr";
+                System.out.println(login);
                 PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
                     toClient.println(login);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
@@ -398,9 +401,9 @@ public File userKeyFile;
                     System.out.println(result);
                     errorLabel.setText(result);
                     if (result.equals("success")){
-                    profilePage = new ProfilePage();
-                    profilePage.setVisible(true);
-                    Main.loginPage.setVisible(false);
+                    Main.loginPage.setVisible(true);
+                    LoginPage.registrationPage.setVisible(false);
+                        errorLabel.setText("Registration is success. Please, login!");
                     }else{
                        errorLabel.setText("error"); 
                     }

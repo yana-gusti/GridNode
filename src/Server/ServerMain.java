@@ -30,23 +30,29 @@ public class ServerMain {
 
      public static void main(String[] args) throws IOException, ClassNotFoundException {
          ServerSocket myServerSocket = new ServerSocket(9999);
-            skt= myServerSocket.accept();
+
+
+             skt = myServerSocket.accept();
+
+
+
+         while (true) {
+
              BufferedReader fromClient = new BufferedReader(new InputStreamReader(skt.getInputStream()));
              String action = fromClient.readLine();
-             
+
              System.out.println(action);
-             
-             
-             
-             switch (action){
-                 case ("login"):
-                     LoginExecute(); 
-                     break;
-                 case ("registr"):
-                     Registration.RegistrationExecute();
-                     
-                      break;
+
+
+             if (action.equals("login")) {
+                 LoginExecute();
+
+             } else if (action.equals("registr")) {
+                 Registration.RegistrationExecute();
+
+
              }
+         }
                      
              
              

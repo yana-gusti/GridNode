@@ -55,7 +55,7 @@ public class DBConnection implements Interface<Users> {
 	public static int save(Users user) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		int id =0;
+		int id =1;
 		String insertSQL = "INSERT INTO "+table+" ("+table+".first_name, "+table+".last_name, "+table+".birthday, "+table+".e_mail,  "+table+".pass) VALUES('"
 				+ user.getFirst_name()
 				+ "', '"

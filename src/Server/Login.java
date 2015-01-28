@@ -15,6 +15,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+
 import services.DBConnection;
 import services.UserServices;
 import services.Users;
@@ -41,24 +42,17 @@ public class Login {
                     titleList = (ArrayList<String>) object;
                     name = titleList.get(0);
                     pass = titleList.get(1);
-                    System.out.println(name);
-                    System.out.println(pass);
-                    Users user =null;
-                    Login.Login(name, pass);
-                    message = Login.message;
+                    System.out.println(name+"   "+pass);
+                    Users user =Login(name, pass);
                     
-                String first_name = Login.user.getFirst_name();
-                String last_name = Login.user.getLast_name();
-                String birthday = Login.user.getBirthday();
-                String email = Login.user.getE_mail();
-                System.out.println(first_name+last_name+birthday+email);
+                     System.out.println("fedfdsfsdf");
                
                 ArrayList<String> my = new ArrayList<String>();
                 
-                my.add(0, Login.user.getFirst_name());
-                my.add(1, Login.user.getLast_name());
-                my.add(2, Login.user.getBirthday());
-                my.add(3, Login.user.getE_mail());
+                my.add(0, user.getFirst_name());
+                my.add(1, user.getLast_name());
+                my.add(2, user.getBirthday());
+                my.add(3, user.getE_mail());
                 my.add(4, message);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(ServerMain.skt.getOutputStream());
                 objectOutput.writeObject(my);
@@ -68,15 +62,18 @@ public class Login {
     
 
     
-    public static void Login (String e_mail, String _pass){
+    public static Users Login (String e_mail, String _pass){
         
            
         if (e_mail != null && _pass != null) {
-	user = UserServices.findUser(e_mail, _pass);
+	        user = UserServices.findUser(e_mail, _pass);
             if (user != null) {
             DBConnection.getUser(user);
-                System.out.println("jfhKDJKLDFHlgf");
                 message ="success";
+
+//                ProxyCertInfo info = new ProxyCertInfo()
+//
+//                GlobusProxyCertInfoExtension proxy = new GlobusProxyCertInfoExtension()
                
                         
 //                try {
@@ -114,13 +111,16 @@ public class Login {
         
             } else {
 		message ="Invalid login or password!";
-		return;
+
 		}
 
             } else {
             message = "Invalid login or password!";
-            return;
+
 	}
+        return user;
     }
+
+
 }
 
