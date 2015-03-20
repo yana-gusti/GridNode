@@ -1,0 +1,5 @@
+name="arcservice_javawrapper"
+kind="HED:SERVICE"
+version="0"
+priority="128"
+

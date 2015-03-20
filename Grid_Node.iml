@@ -11,7 +11,6 @@
     <orderEntry type="library" name="org.jglobus:JGlobus-Core:2.0.4" level="project" />
     <orderEntry type="library" name="org.jglobus:JGlobus-GRAM:2.0.0" level="project" />
     <orderEntry type="library" name="org.jglobus:JGlobus-GridFTP:2.0.0" level="project" />
-    <orderEntry type="library" name="arc" level="project" />
+    <orderEntry type="library" name="arc (2)" level="project" />
   </component>
 </module>
-
