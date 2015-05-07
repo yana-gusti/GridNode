@@ -2,10 +2,19 @@ package Server;
 
 import nordugrid.arc.*;
 
+import java.util.StringTokenizer;
+
 public class ProxyGridLogin
 {
     public static void main(String[] args)
     {
+
+        String property = System.getProperty("java.library.path");
+        StringTokenizer parser = new StringTokenizer(property, ";");
+        while (parser.hasMoreTokens()) {
+            System.err.println(parser.nextToken());
+        }
+
         System.loadLibrary("jarc");
 
         // Set up logging to stderr with level VERBOSE (a lot of output will be shown)

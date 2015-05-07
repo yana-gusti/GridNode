@@ -13,7 +13,9 @@ import java.util.ArrayList;
 public class DBConnection implements Interface<Users> {
         public static String table = "user_table" ;
 
-	private final String connectionUrl = "jdbc:mysql://0.0.0.0/users?user=root&password=1";
+    String url = "jdbc:mysql://localhost:3306/gridnode";
+    String user = "root";
+    String password = "1";
 
 	private static Connection connection;
 
@@ -21,7 +23,7 @@ public class DBConnection implements Interface<Users> {
 
 		try {
             Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(connectionUrl);
+            connection = DriverManager.getConnection(url, user, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

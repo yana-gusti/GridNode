@@ -279,6 +279,7 @@ public class LoginPage extends javax.swing.JFrame {
                 try {
                     
                     objectOutput.writeObject(my);
+                    objectOutput.flush();
                     titleList = new ArrayList<String>();
             
                     ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());

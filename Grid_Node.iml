@@ -12,5 +12,7 @@
     <orderEntry type="library" name="org.jglobus:JGlobus-GRAM:2.0.0" level="project" />
     <orderEntry type="library" name="org.jglobus:JGlobus-GridFTP:2.0.0" level="project" />
     <orderEntry type="library" name="arc (2)" level="project" />
+    <orderEntry type="library" name="org.apache.openwebbeans:openwebbeans-tomcat7:1.1.5" level="application" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.30-bin" level="project" />
   </component>
 </module>

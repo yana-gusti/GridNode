@@ -33,6 +33,7 @@ public class ServerMain {
 
 
              skt = myServerSocket.accept();
+            System.out.println("om here");
 
 
 
@@ -53,12 +54,6 @@ public class ServerMain {
 
              }
          }
-                     
-             
-             
-             
-            
-                
 
                
         }

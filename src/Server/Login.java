@@ -6,20 +6,15 @@
 
 package Server;
 
-import static Pages.LoginPage.profilePage;
-import Pages.ProfilePage;
-import grid_node.Main;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 
 import services.DBConnection;
 import services.UserServices;
 import services.Users;
-
 /**
  *
  * @author yana
@@ -70,6 +65,8 @@ public class Login {
             if (user != null) {
             DBConnection.getUser(user);
                 message ="success";
+
+
 
 //                ProxyCertInfo info = new ProxyCertInfo()
 //
