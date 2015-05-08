@@ -139,7 +139,7 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="passLabel" min="-2" pref="132" max="-2" attributes="0"/>
+                                          <Component id="passLabel" min="-2" pref="164" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="pass" min="-2" pref="161" max="-2" attributes="0"/>
                                       </Group>
@@ -218,7 +218,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="passLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Password"/>
+                    <Property name="text" type="java.lang.String" value="Private key password"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="RegistrBtn">

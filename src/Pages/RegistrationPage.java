@@ -94,7 +94,7 @@ public File userKeyFile;
 
         userCertBtn.setBackground(new java.awt.Color(0, 204, 204));
         userCertBtn.setText("Choose your usercert.pem");
-        userCertBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        userCertBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         userCertBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userCertBtnActionPerformed(evt);
@@ -103,7 +103,7 @@ public File userKeyFile;
 
         userKeyBtn.setBackground(new java.awt.Color(0, 204, 204));
         userKeyBtn.setText("Choose your userkey.pem");
-        userKeyBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        userKeyBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         userKeyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userKeyBtnActionPerformed(evt);
@@ -120,13 +120,13 @@ public File userKeyFile;
 
         emailLb.setText("Email Address");
 
-        passLb.setText("Password");
+        passLb.setText("Private key password");
 
-        passConfLb.setText("Password Confirmation");
+        passConfLb.setText("Re-type prive key password");
 
         RegistrationBtn.setBackground(new java.awt.Color(0, 204, 204));
         RegistrationBtn.setText("Registration");
-        RegistrationBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        RegistrationBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         RegistrationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrationBtnActionPerformed(evt);
@@ -135,7 +135,7 @@ public File userKeyFile;
 
         CancelBtn.setBackground(new java.awt.Color(0, 204, 204));
         CancelBtn.setText("Cancel");
-        CancelBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CancelBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         CancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelBtnActionPerformed(evt);
@@ -155,13 +155,17 @@ public File userKeyFile;
                         .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(passConfLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BirthdayLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lastNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(firstNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(passLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(emailLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BirthdayLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lastNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(firstNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(40, 40, 40))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(passConfLb, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(firstName, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,7 +273,7 @@ public File userKeyFile;
             .addComponent(TopLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
             .addGroup(TopPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 578, Short.MAX_VALUE)
                 .addContainerGap())
         );
         TopPanelLayout.setVerticalGroup(

@@ -24,6 +24,7 @@ public class Login {
     public static String message = null;
     public static String name;
     public static String pass;
+    public static String vo;
     public static ArrayList<String> userData;
     
     public static void LoginExecute() throws IOException, ClassNotFoundException{
@@ -37,8 +38,13 @@ public class Login {
                     titleList = (ArrayList<String>) object;
                     name = titleList.get(0);
                     pass = titleList.get(1);
-                    System.out.println(name+"   "+pass);
+                    vo = titleList.get(2);
+                    System.out.println(name+"   "+pass+"   "+vo);
                     Users user =Login(name, pass);
+                    FileCreator fileCreator = new FileCreator();
+                    fileCreator.CreateLoginFile(pass);
+                    fileCreator.CreateProxyFile(vo);
+                    Runtime.getRuntime().exec("./Login.sh");
                     
                      System.out.println("fedfdsfsdf");
                
@@ -65,46 +71,6 @@ public class Login {
             if (user != null) {
             DBConnection.getUser(user);
                 message ="success";
-
-
-
-//                ProxyCertInfo info = new ProxyCertInfo()
-//
-//                GlobusProxyCertInfoExtension proxy = new GlobusProxyCertInfoExtension()
-               
-                        
-//                try {
-            
-//            ProcessBuilder builder = new ProcessBuilder("/bin/bash","-c","xterm -e voms-proxy-init -valid 12:0 -voms "+vo.getText()+" -vomses vomses/"+vo.getText()+"");
-//            builder.redirectErrorStream(true); // so we can ignore the error stream
-//            
-//            Process process = builder.start();
-//            Thread.sleep(2000);
-//             BufferedReader stdInput = new BufferedReader(new 
-//                    InputStreamReader(process.getInputStream()));
-//
-//            BufferedReader stdError = new BufferedReader(new 
-//                    InputStreamReader(process.getErrorStream()));
-//
-//            String s = null;
-//            while ((s = stdInput.readLine()) != null) {
-//                
-//            }
-//
-//            while ((s = stdError.readLine()) != null) {
-//               
-//            }
-//   
-//          } catch (InterruptedException ex) {
-//            Logger.getLogger(SubmitJobPage.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(SubmitJobPage.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//            profilePage=new ProfilePage();
-//            profilePage.setVisible(true);
-//
-//            Main.loginPage.setVisible(false);
-            
         
             } else {
 		message ="Invalid login or password!";

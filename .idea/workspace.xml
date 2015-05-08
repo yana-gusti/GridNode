@@ -2,38 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2434f25-6275-4c11-b14f-ccb46d669fa2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_30_bin.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mysql-connector-java-5.1.30.zip" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/services/DBConnection.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/services/DBConnection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/EditProfilePage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/EditProfilePage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ForgotPassPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ForgotPassPage.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Server/FileCreator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/services/DBConnection.class" afterPath="$PROJECT_DIR$/build/classes/services/DBConnection.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/Login.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/Login.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$1.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$2.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$3.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$4.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$5.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage$6.class" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage$6.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$6.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage.class" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/grid_node/Main.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/grid_node/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/ProxyGridLogin.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/ProxyGridLogin.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/Registration.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/Registration.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$1.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$2.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$3.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$4.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$5.class" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$5.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage.class" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/ServerMain.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/ServerMain.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/DBConnection.java" afterPath="$PROJECT_DIR$/src/services/DBConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Grid_Node.iml" afterPath="$PROJECT_DIR$/Grid_Node.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/Login.java" afterPath="$PROJECT_DIR$/src/Server/Login.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage.form" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/LoginPage.form" afterPath="$PROJECT_DIR$/src/Pages/LoginPage.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/LoginPage.java" afterPath="$PROJECT_DIR$/src/Pages/LoginPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/ProxyGridLogin.java" afterPath="$PROJECT_DIR$/src/Server/ProxyGridLogin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/ServerMain.java" afterPath="$PROJECT_DIR$/src/Server/ServerMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage.form" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/RegistrationPage.form" afterPath="$PROJECT_DIR$/src/Pages/RegistrationPage.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/RegistrationPage.java" afterPath="$PROJECT_DIR$/src/Pages/RegistrationPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.properties" afterPath="$PROJECT_DIR$/nbproject/private/private.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Grid_Node.iws" />
@@ -60,95 +47,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ProxyGridLogin.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Server/ProxyGridLogin.java">
+      <file leaf-file-name="LoginPage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Pages/LoginPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9040512" vertical-offset="401" max-vertical-offset="930">
-              <caret line="57" column="5" selection-start-line="29" selection-start-column="8" selection-end-line="57" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/DBConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="4260">
-              <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="2370">
+              <caret line="272" column="33" selection-start-line="272" selection-start-column="33" selection-end-line="272" selection-end-column="33" />
               <folding>
-                <element signature="e#0#6487#0" expanded="false" />
-                <element signature="imports" expanded="false" />
+                <element signature="e#3560#3743#0" expanded="true" />
+                <element signature="e#3742#3743#0" expanded="true" />
+                <element signature="e#3779#3957#0" expanded="true" />
+                <element signature="e#3956#3957#0" expanded="true" />
+                <element signature="e#4172#4353#0" expanded="true" />
+                <element signature="e#4352#4353#0" expanded="true" />
+                <element signature="e#4504#4679#0" expanded="true" />
+                <element signature="e#4678#4679#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Users.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/Users.java">
+      <file leaf-file-name="FileCreator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Server/FileCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="885">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1020">
+              <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
               <folding>
-                <element signature="e#0#1286#0" expanded="false" />
-                <element signature="e#311#312#0" expanded="false" />
-                <element signature="e#327#328#0" expanded="false" />
-                <element signature="e#361#362#0" expanded="false" />
-                <element signature="e#380#381#0" expanded="false" />
-                <element signature="e#414#415#0" expanded="false" />
-                <element signature="e#438#439#0" expanded="false" />
-                <element signature="e#487#488#0" expanded="false" />
-                <element signature="e#522#523#0" expanded="false" />
-                <element signature="e#555#556#0" expanded="false" />
-                <element signature="e#578#579#0" expanded="false" />
-                <element signature="e#625#626#0" expanded="false" />
-                <element signature="e#658#659#0" expanded="false" />
-                <element signature="e#690#691#0" expanded="false" />
-                <element signature="e#712#713#0" expanded="false" />
-                <element signature="e#757#758#0" expanded="false" />
-                <element signature="e#788#789#0" expanded="false" />
-                <element signature="e#818#819#0" expanded="false" />
-                <element signature="e#838#839#0" expanded="false" />
-                <element signature="e#879#880#0" expanded="false" />
-                <element signature="e#906#907#0" expanded="false" />
-                <element signature="e#936#937#0" expanded="false" />
-                <element signature="e#954#955#0" expanded="false" />
-                <element signature="e#991#992#0" expanded="false" />
-                <element signature="e#1014#1015#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Interface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/Interface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="450">
-              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserServices.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/UserServices.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="600">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding>
-                <element signature="e#310#311#0" expanded="false" />
-                <element signature="e#337#338#0" expanded="false" />
-                <element signature="e#549#550#0" expanded="false" />
-                <element signature="e#577#578#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Login.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Server/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1770">
-              <caret line="39" column="56" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.46055436" vertical-offset="369" max-vertical-offset="1260">
+              <caret line="50" column="63" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -157,8 +91,8 @@
       <file leaf-file-name="ServerMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Server/ServerMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="307" max-vertical-offset="960">
-              <caret line="35" column="15" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="491" max-vertical-offset="960">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -170,45 +104,8 @@
         <entry file="file://$PROJECT_DIR$/src/grid_node/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JobActions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Server/JobActions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Pages/LoginPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3489" max-vertical-offset="4950">
-              <caret line="284" column="0" selection-start-line="284" selection-start-column="0" selection-end-line="284" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#19204#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#1196#1197#0" expanded="false" />
-                <element signature="e#1228#1229#0" expanded="false" />
-                <element signature="e#3047#3224#0" expanded="false" />
-                <element signature="e#3223#3224#0" expanded="false" />
-                <element signature="e#3584#3767#0" expanded="false" />
-                <element signature="e#3766#3767#0" expanded="false" />
-                <element signature="e#3803#3981#0" expanded="false" />
-                <element signature="e#3980#3981#0" expanded="false" />
-                <element signature="e#4564#4739#0" expanded="false" />
-                <element signature="e#4738#4739#0" expanded="false" />
-                <element signature="e#14474#14482#0" expanded="false" />
-                <element signature="e#16624#16711#0" expanded="false" />
-                <element signature="e#18071#18210#0" expanded="false" />
-                <element signature="e#18209#18210#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -226,12 +123,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Pages/LoginPage.java" />
         <option value="$PROJECT_DIR$/src/services/DBConnection.java" />
-        <option value="$PROJECT_DIR$/src/Server/Login.java" />
         <option value="$PROJECT_DIR$/src/Server/Test.java" />
         <option value="$PROJECT_DIR$/src/Server/ProxyGridLogin.java" />
         <option value="$PROJECT_DIR$/src/Server/ServerMain.java" />
+        <option value="$PROJECT_DIR$/src/services/FileWriter.java" />
+        <option value="$PROJECT_DIR$/src/services/FileCreator.java" />
+        <option value="$PROJECT_DIR$/src/Pages/RegistrationPage.java" />
+        <option value="$PROJECT_DIR$/src/Pages/LoginPage.java" />
+        <option value="$PROJECT_DIR$/src/Server/FileCreator.java" />
+        <option value="$PROJECT_DIR$/src/Server/Login.java" />
       </list>
     </option>
   </component>
@@ -275,6 +176,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -304,6 +206,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -377,7 +283,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -388,7 +293,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Завантаження/italiangrid-voms-api-java-89208d4" />
+    <property name="last_opened_file_path" value="$USER_HOME$/GridSim" />
     <property name="FullScreen" value="false" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -404,52 +309,14 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="268" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/libs" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ProxyGridLogin">
-    <configuration default="false" name="ProxyGridLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="Server.ProxyGridLogin" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Grid_Node" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="Server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="Server.Test" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Grid_Node" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration default="false" name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -472,19 +339,19 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="ServerMain (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="RegistrationPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="Server.*" />
+          <option name="PATTERN" value="Pages.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="Server.ServerMain" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="MAIN_CLASS_NAME" value="Pages.RegistrationPage" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -494,19 +361,63 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="FileCreator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="grid_node.*" />
+          <option name="PATTERN" value="services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="grid_node.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="MAIN_CLASS_NAME" value="Server.FileCreator" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Grid_Node" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="LoginPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Pages.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Pages.LoginPage" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Grid_Node" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="ServerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Server.ServerMain" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -876,19 +787,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Maven.Tomcat" />
-      <item index="1" class="java.lang.String" itemvalue="Application.ProxyGridLogin" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Test" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Main (1)" />
-      <item index="4" class="java.lang.String" itemvalue="Application.ServerMain (1)" />
-      <item index="5" class="java.lang.String" itemvalue="Application.Main (2)" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Main (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Application.RegistrationPage" />
+      <item index="3" class="java.lang.String" itemvalue="Application.FileCreator" />
+      <item index="4" class="java.lang.String" itemvalue="Application.LoginPage" />
+      <item index="5" class="java.lang.String" itemvalue="Application.ServerMain" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.ProxyGridLogin" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Main (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Application.ServerMain (1)" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Main (2)" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Test" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Main (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ServerMain" />
+        <item index="2" class="java.lang.String" itemvalue="Application.LoginPage" />
+        <item index="3" class="java.lang.String" itemvalue="Application.FileCreator" />
+        <item index="4" class="java.lang.String" itemvalue="Application.RegistrationPage" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -929,7 +840,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-4" width="1089" height="869" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293556" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -941,10 +852,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291866" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29598895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29598895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2861244" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32918397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24976076" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -957,7 +869,6 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -987,35 +898,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Pages/LoginPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="2844">
-          <caret line="284" column="0" selection-start-line="284" selection-start-column="0" selection-end-line="284" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/ProxyGridLogin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="915">
-          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/JobActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="225">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/DBConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="4260">
@@ -1219,13 +1101,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pages/RegistrationPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41304347" vertical-offset="5053" max-vertical-offset="6690">
-          <caret line="405" column="83" selection-start-line="405" selection-start-column="83" selection-end-line="405" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Pages/ProfilePage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="532" max-vertical-offset="3420">
@@ -1275,123 +1150,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/DBConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="4260">
-          <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#6487#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/Users.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#1286#0" expanded="false" />
-            <element signature="e#311#312#0" expanded="false" />
-            <element signature="e#327#328#0" expanded="false" />
-            <element signature="e#361#362#0" expanded="false" />
-            <element signature="e#380#381#0" expanded="false" />
-            <element signature="e#414#415#0" expanded="false" />
-            <element signature="e#438#439#0" expanded="false" />
-            <element signature="e#487#488#0" expanded="false" />
-            <element signature="e#522#523#0" expanded="false" />
-            <element signature="e#555#556#0" expanded="false" />
-            <element signature="e#578#579#0" expanded="false" />
-            <element signature="e#625#626#0" expanded="false" />
-            <element signature="e#658#659#0" expanded="false" />
-            <element signature="e#690#691#0" expanded="false" />
-            <element signature="e#712#713#0" expanded="false" />
-            <element signature="e#757#758#0" expanded="false" />
-            <element signature="e#788#789#0" expanded="false" />
-            <element signature="e#818#819#0" expanded="false" />
-            <element signature="e#838#839#0" expanded="false" />
-            <element signature="e#879#880#0" expanded="false" />
-            <element signature="e#906#907#0" expanded="false" />
-            <element signature="e#936#937#0" expanded="false" />
-            <element signature="e#954#955#0" expanded="false" />
-            <element signature="e#991#992#0" expanded="false" />
-            <element signature="e#1014#1015#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/Interface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/UserServices.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#310#311#0" expanded="false" />
-            <element signature="e#337#338#0" expanded="false" />
-            <element signature="e#549#550#0" expanded="false" />
-            <element signature="e#577#578#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pages/LoginPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3489" max-vertical-offset="4950">
-          <caret line="284" column="0" selection-start-line="284" selection-start-column="0" selection-end-line="284" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19204#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1196#1197#0" expanded="false" />
-            <element signature="e#1228#1229#0" expanded="false" />
-            <element signature="e#3047#3224#0" expanded="false" />
-            <element signature="e#3223#3224#0" expanded="false" />
-            <element signature="e#3584#3767#0" expanded="false" />
-            <element signature="e#3766#3767#0" expanded="false" />
-            <element signature="e#3803#3981#0" expanded="false" />
-            <element signature="e#3980#3981#0" expanded="false" />
-            <element signature="e#4564#4739#0" expanded="false" />
-            <element signature="e#4738#4739#0" expanded="false" />
-            <element signature="e#14474#14482#0" expanded="false" />
-            <element signature="e#16624#16711#0" expanded="false" />
-            <element signature="e#18071#18210#0" expanded="false" />
-            <element signature="e#18209#18210#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/ServerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="262" max-vertical-offset="960">
-          <caret line="35" column="15" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1770">
-          <caret line="39" column="56" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/grid_node/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/JobActions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
@@ -1400,10 +1158,121 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/UserServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/Interface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.746888" vertical-offset="0" max-vertical-offset="482">
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/Users.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/DBConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7356077" vertical-offset="285" max-vertical-offset="4260">
+          <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/ProxyGridLogin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9040512" vertical-offset="401" max-vertical-offset="930">
-          <caret line="57" column="5" selection-start-line="29" selection-start-column="8" selection-end-line="57" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.47761193" vertical-offset="211" max-vertical-offset="930">
+          <caret line="31" column="35" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pages/LoginPage.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pages/RegistrationPage.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pages/RegistrationPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.445629" vertical-offset="1171" max-vertical-offset="3180">
+          <caret line="364" column="25" selection-start-line="364" selection-start-column="25" selection-end-line="364" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar!/java/io/PrintWriter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3671171" vertical-offset="527" max-vertical-offset="5415">
+          <caret line="71" column="75" selection-start-line="71" selection-start-column="75" selection-end-line="71" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pages/LoginPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="2370">
+          <caret line="272" column="33" selection-start-line="272" selection-start-column="33" selection-end-line="272" selection-end-column="33" />
+          <folding>
+            <element signature="e#3560#3743#0" expanded="true" />
+            <element signature="e#3742#3743#0" expanded="true" />
+            <element signature="e#3779#3957#0" expanded="true" />
+            <element signature="e#3956#3957#0" expanded="true" />
+            <element signature="e#4172#4353#0" expanded="true" />
+            <element signature="e#4352#4353#0" expanded="true" />
+            <element signature="e#4504#4679#0" expanded="true" />
+            <element signature="e#4678#4679#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/grid_node/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/FileCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1020">
+          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="491" max-vertical-offset="960">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46055436" vertical-offset="369" max-vertical-offset="1260">
+          <caret line="50" column="63" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
           <folding />
         </state>
       </provider>
