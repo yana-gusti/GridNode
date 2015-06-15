@@ -17,10 +17,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.io.Reader;
+import java.net.Socket;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,8 +68,8 @@ public class SubmitJobPage extends javax.swing.JFrame {
         cluster = new javax.swing.JTextField();
         CancelBtn = new javax.swing.JButton();
         SubmitJobBtn = new javax.swing.JButton();
-        selectXRSLFileBtn1 = new javax.swing.JButton();
         textArea = new java.awt.TextArea();
+        SelectJobFileCB = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,12 +106,10 @@ public class SubmitJobPage extends javax.swing.JFrame {
             }
         });
 
-        selectXRSLFileBtn1.setBackground(new java.awt.Color(0, 204, 204));
-        selectXRSLFileBtn1.setText("Select your XRSL file");
-        selectXRSLFileBtn1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        selectXRSLFileBtn1.addActionListener(new java.awt.event.ActionListener() {
+        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select your XRSL file", "CeO2.scf.in", "nordu_start.xrsl" }));
+        SelectJobFileCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectXRSLFileBtn1ActionPerformed(evt);
+                SelectJobFileCBActionPerformed(evt);
             }
         });
 
@@ -120,9 +123,9 @@ public class SubmitJobPage extends javax.swing.JFrame {
                     .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(CancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cluster)
-                        .addComponent(SubmitJobBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(selectXRSLFileBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(VONameLb))
+                        .addComponent(SubmitJobBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                    .addComponent(VONameLb)
+                    .addComponent(SelectJobFileCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -130,20 +133,21 @@ public class SubmitJobPage extends javax.swing.JFrame {
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(selectXRSLFileBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(VONameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(cluster, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
-            .addGroup(MainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(textArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(SelectJobFileCB, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(VONameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(cluster, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(72, Short.MAX_VALUE))
+                    .addComponent(textArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout TopPanelLayout = new javax.swing.GroupLayout(TopPanel);
@@ -189,48 +193,150 @@ public class SubmitJobPage extends javax.swing.JFrame {
       textArea = _textArea;
     }
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitJobBtnActionPerformed
-     textArea.setText("");               
-        String s = null;
-       try {
-            Process p = Runtime.getRuntime().exec("arcsub -c "+cluster.getText()+" "+XRSLFile.getName());
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            // read the output from the command
-            while ((s = stdInput.readLine()) != null) {
-                textArea.append(s+ "\n");
+     textArea.setText("");   
+     
+//     String fileName= SelectJobFileCB.getSelectedItem().toString();
+     String fileName = "nordu_start.xrsl";
+     String clusterName = cluster.getText();
+     
+      Socket socket = null;
+        try {
+            socket = new Socket("localhost", 9999);
+        } catch (IOException ex) {
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	 if (fileName != null) {
+                ArrayList<String> my = new ArrayList<String>();
+                my.add(0, clusterName);
+                my.add(1, fileName);
+                String command = "submitJob";
+                PrintWriter toClient = null;
+            try {
+                toClient = new PrintWriter(socket.getOutputStream(), true);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-            // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
-                textArea.append(s+ "\n");
-            }   
+                    toClient.println(command);
+                ObjectOutputStream objectOutput = null;
+            try {
+                objectOutput = new ObjectOutputStream(socket.getOutputStream());
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            try {
+                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+                    
+            try {
+                objectOutput.writeObject(my);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    ArrayList<String> titleList = new ArrayList<String>();
+            
+                    ObjectInputStream objectInput = null;
+            try {
+                objectInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+                
+                    Object object = null;
+            try {
+                object = objectInput.readObject();
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            titleList = (ArrayList<String>) object;
+                    System.out.println(titleList);
+                    String result = titleList.get(0);
+                    System.out.println(result);
+                    textArea.setText(result);
+           
+        }  else{
+            textArea.setText("Job not found");
         }
-        catch (IOException e) {
-            System.out.println("exception happened - here's what I know: ");
-            e.printStackTrace();
-        }
+        
                       
        
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 
-    private void selectXRSLFileBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectXRSLFileBtn1ActionPerformed
-         JFileChooser fileChooser = new JFileChooser();
-        int returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            XRSLFile = fileChooser.getSelectedFile();
-             try {           
-                 String text = new Scanner(XRSLFile).useDelimiter("\\A").next();
-                 textArea.setText(text);
-             } catch (FileNotFoundException ex) {
-                 Logger.getLogger(SubmitJobPage.class.getName()).log(Level.SEVERE, null, ex);
-             }
-            
+    private void SelectJobFileCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectJobFileCBActionPerformed
 
-        } else {
-            System.out.println("File access cancelled by user.");
-
+        if(SelectJobFileCB.getSelectedItem().toString()!="Select your XRSL file"){
+            String fileName=SelectJobFileCB.getSelectedItem().toString();
+            Socket socket = null;
+        try {
+            socket = new Socket("localhost", 9999);
+        } catch (IOException ex) {
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_selectXRSLFileBtn1ActionPerformed
+	 if (fileName != null) {
+                ArrayList<String> my = new ArrayList<String>();
+                my.add(0, fileName);
+                String command = "findXRSLFile";
+                PrintWriter toClient = null;
+            try {
+                toClient = new PrintWriter(socket.getOutputStream(), true);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    toClient.println(command);
+                ObjectOutputStream objectOutput = null;
+            try {
+                objectOutput = new ObjectOutputStream(socket.getOutputStream());
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            try {
+                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+                    
+            try {
+                objectOutput.writeObject(my);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    ArrayList<String> titleList = new ArrayList<String>();
+            
+                    ObjectInputStream objectInput = null;
+            try {
+                objectInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+                
+                    Object object = null;
+            try {
+                object = objectInput.readObject();
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            titleList = (ArrayList<String>) object;
+                    System.out.println(titleList);
+                    String result = titleList.get(0);
+                    System.out.println(result);
+                    textArea.setText(result);
+           
+        }  else{
+            textArea.setText("");
+        }
+        }
+    }//GEN-LAST:event_SelectJobFileCBActionPerformed
 
   public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -268,13 +374,13 @@ public class SubmitJobPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton CancelBtn;
     private javax.swing.JPanel MainPanel;
+    public static javax.swing.JComboBox SelectJobFileCB;
     public javax.swing.JButton SubmitJobBtn;
     private javax.swing.JLabel TopLabel;
     public javax.swing.JPanel TopPanel;
-    private javax.swing.JLabel VONameLb;
-    private javax.swing.JTextField cluster;
-    public javax.swing.JButton selectXRSLFileBtn1;
-    private java.awt.TextArea textArea;
+    public javax.swing.JLabel VONameLb;
+    public javax.swing.JTextField cluster;
+    public java.awt.TextArea textArea;
     // End of variables declaration//GEN-END:variables
 
     /**

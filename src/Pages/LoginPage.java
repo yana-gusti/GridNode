@@ -94,11 +94,11 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
-        passLabel.setText("Private key password");
+        passLabel.setText("Password");
 
         RegistrBtn.setBackground(new java.awt.Color(0, 204, 204));
         RegistrBtn.setActionCommand("Registration");
-        RegistrBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        RegistrBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RegistrBtn.setLabel("Registration");
         RegistrBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +114,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         LoginBtn.setBackground(new java.awt.Color(0, 204, 204));
         LoginBtn.setText("Login");
-        LoginBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        LoginBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LoginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginBtnActionPerformed(evt);
@@ -145,7 +145,7 @@ public class LoginPage extends javax.swing.JFrame {
                     .addGroup(LoginPanelLayout.createSequentialGroup()
                         .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(LoginPanelLayout.createSequentialGroup()
-                                .addComponent(passLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(LoginPanelLayout.createSequentialGroup()
@@ -263,7 +263,7 @@ public class LoginPage extends javax.swing.JFrame {
         String e_mail = email.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();
-        if (e_mail != null && pass != null && vo != null) {
+        if (e_mail != null && pass != null&& vo!=null) {
 
 
             try {
@@ -281,7 +281,6 @@ public class LoginPage extends javax.swing.JFrame {
                 try {
                     
                     objectOutput.writeObject(my);
-                    objectOutput.flush();
                     titleList = new ArrayList<String>();
             
                     ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());

@@ -6,10 +6,14 @@
 
 package Pages;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import services.*;
 
 /**
  *
@@ -20,6 +24,8 @@ public class CreateJobPage extends javax.swing.JFrame {
     public File InputFile;
     public File JobFile;
     public static SubmitJobPage submitJobPage;
+     
+    
     
 
     /**
@@ -51,15 +57,18 @@ public class CreateJobPage extends javax.swing.JFrame {
         CreateBashScriptBtn = new javax.swing.JButton();
         SelectProgCB = new javax.swing.JComboBox();
         SelectProgLb = new javax.swing.JLabel();
+        SelectInputLb = new javax.swing.JLabel();
+        SelectInFile = new javax.swing.JButton();
+        inputFileLb = new javax.swing.JLabel();
+        SelectResolLb = new javax.swing.JLabel();
+        SelectResolCB = new javax.swing.JComboBox();
+        errorLabel = new javax.swing.JLabel();
         GeneralPanel = new javax.swing.JPanel();
         ExecutLb = new javax.swing.JLabel();
-        SelectFileBtn = new javax.swing.JButton();
         JobNameLb = new javax.swing.JLabel();
         JobName = new javax.swing.JTextField();
         InputFileLb = new javax.swing.JLabel();
         SelectInputFileBtn = new javax.swing.JButton();
-        OutputFileLb = new javax.swing.JLabel();
-        OutputFile = new javax.swing.JTextField();
         SelectFileLb = new javax.swing.JLabel();
         SelectInputFileLb = new javax.swing.JLabel();
         SaveBtn = new javax.swing.JButton();
@@ -67,15 +76,22 @@ public class CreateJobPage extends javax.swing.JFrame {
         stdout = new javax.swing.JTextField();
         stderrLb = new javax.swing.JLabel();
         stderr = new javax.swing.JTextField();
+        SelectSHCB = new javax.swing.JComboBox();
+        SelectInputFileLb2 = new javax.swing.JLabel();
+        SelectInputFileBtn2 = new javax.swing.JButton();
+        SelectInputFileBtn3 = new javax.swing.JButton();
+        SelectInputFileLb3 = new javax.swing.JLabel();
+        SelectInputFileBtn4 = new javax.swing.JButton();
+        SelectInputFileLb4 = new javax.swing.JLabel();
         EnvironmentPanel = new javax.swing.JPanel();
         gmlogLb = new javax.swing.JLabel();
         gmlog = new javax.swing.JTextField();
         wallTimeLb = new javax.swing.JLabel();
         wallTime = new javax.swing.JTextField();
-        memoryLb = new javax.swing.JLabel();
-        memory = new javax.swing.JTextField();
         countLb = new javax.swing.JLabel();
         count = new javax.swing.JTextField();
+        queueLb = new javax.swing.JLabel();
+        queue = new javax.swing.JTextField();
         SaveEnvBtn = new javax.swing.JButton();
         runtimeenvironmentLb = new javax.swing.JLabel();
         runtimeenvironment = new javax.swing.JTextField();
@@ -107,7 +123,7 @@ public class CreateJobPage extends javax.swing.JFrame {
         });
 
         CreateJobBtn.setBackground(new java.awt.Color(0, 204, 204));
-        CreateJobBtn.setText("Create Job");
+        CreateJobBtn.setText("Create .xrsl File");
         CreateJobBtn.setActionCommand("Registration");
         CreateJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CreateJobBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +153,7 @@ public class CreateJobPage extends javax.swing.JFrame {
         });
 
         MainTabbedPane.setBackground(new java.awt.Color(204, 255, 255));
+        MainTabbedPane.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
         BashScriptPanel.setBackground(new java.awt.Color(153, 255, 255));
 
@@ -150,7 +167,7 @@ public class CreateJobPage extends javax.swing.JFrame {
             }
         });
 
-        SelectProgCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "....................", "LAMMPS", "GROMACS", "DL_POLY Classic", "MPI" }));
+        SelectProgCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "....................", "Quantum Espresso" }));
         SelectProgCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelectProgCBActionPerformed(evt);
@@ -160,6 +177,28 @@ public class CreateJobPage extends javax.swing.JFrame {
         SelectProgLb.setText("Select Program");
         SelectProgLb.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        SelectInputLb.setText("Select Input File");
+        SelectInputLb.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        SelectInFile.setText("Select");
+        SelectInFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectInFileActionPerformed(evt);
+            }
+        });
+
+        inputFileLb.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        SelectResolLb.setText("Select Resolution");
+        SelectResolLb.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        SelectResolCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "....................", "pw.x" }));
+        SelectResolCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectResolCBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout BashScriptPanelLayout = new javax.swing.GroupLayout(BashScriptPanel);
         BashScriptPanel.setLayout(BashScriptPanelLayout);
         BashScriptPanelLayout.setHorizontalGroup(
@@ -167,52 +206,71 @@ public class CreateJobPage extends javax.swing.JFrame {
             .addGroup(BashScriptPanelLayout.createSequentialGroup()
                 .addGroup(BashScriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BashScriptPanelLayout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(SelectProgLb, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(SelectProgCB, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(BashScriptPanelLayout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(CreateBashScriptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(126, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(BashScriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(BashScriptPanelLayout.createSequentialGroup()
+                                .addComponent(SelectProgLb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SelectProgCB, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(BashScriptPanelLayout.createSequentialGroup()
+                                .addComponent(SelectResolLb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SelectResolCB, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(BashScriptPanelLayout.createSequentialGroup()
+                                .addComponent(SelectInputLb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SelectInFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(BashScriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BashScriptPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(BashScriptPanelLayout.createSequentialGroup()
+                            .addGap(209, 209, 209)
+                            .addComponent(CreateBashScriptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
         BashScriptPanelLayout.setVerticalGroup(
             BashScriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BashScriptPanelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(BashScriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SelectProgLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SelectProgCB, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(BashScriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SelectProgCB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SelectProgLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(7, 7, 7)
+                .addGroup(BashScriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputFileLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(BashScriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SelectInputLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SelectInFile)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(BashScriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SelectResolCB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SelectResolLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
                 .addComponent(CreateBashScriptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(7, 7, 7)
+                .addComponent(errorLabel)
+                .addContainerGap())
         );
 
         MainTabbedPane.addTab("Bash Script", BashScriptPanel);
 
         GeneralPanel.setBackground(new java.awt.Color(153, 255, 255));
 
-        ExecutLb.setText("Executable");
-
-        SelectFileBtn.setText("Select Bash Script");
-        SelectFileBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelectFileBtnActionPerformed(evt);
-            }
-        });
+        ExecutLb.setText("Select executable .sh");
 
         JobNameLb.setText("Job Name");
 
-        InputFileLb.setText("Input File");
+        InputFileLb.setText("Input Files");
 
-        SelectInputFileBtn.setText("Select Input File");
+        SelectInputFileBtn.setText("Select First Input File");
         SelectInputFileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelectInputFileBtnActionPerformed(evt);
             }
         });
-
-        OutputFileLb.setText("Output File");
 
         SaveBtn.setText("Save");
         SaveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -225,87 +283,140 @@ public class CreateJobPage extends javax.swing.JFrame {
 
         stderrLb.setText("stderr");
 
+        SelectSHCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...................." }));
+        SelectSHCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectSHCBActionPerformed(evt);
+            }
+        });
+
+        SelectInputFileBtn2.setText("Select Second Input File");
+        SelectInputFileBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectInputFileBtn2ActionPerformed(evt);
+            }
+        });
+
+        SelectInputFileBtn3.setText("Select Third Input File");
+        SelectInputFileBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectInputFileBtn3ActionPerformed(evt);
+            }
+        });
+
+        SelectInputFileBtn4.setText("Select Fourth Input File");
+        SelectInputFileBtn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectInputFileBtn4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout GeneralPanelLayout = new javax.swing.GroupLayout(GeneralPanel);
         GeneralPanel.setLayout(GeneralPanelLayout);
         GeneralPanelLayout.setHorizontalGroup(
             GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GeneralPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(3, 3, 3)
+                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(stdoutLb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(InputFileLb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ExecutLb, javax.swing.GroupLayout.Alignment.LEADING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(GeneralPanelLayout.createSequentialGroup()
-                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, GeneralPanelLayout.createSequentialGroup()
+                                .addComponent(SelectSHCB, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SelectFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, GeneralPanelLayout.createSequentialGroup()
+                                .addComponent(SelectInputFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SelectInputFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JobNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(GeneralPanelLayout.createSequentialGroup()
+                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(GeneralPanelLayout.createSequentialGroup()
-                                .addComponent(ExecutLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(SelectFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(GeneralPanelLayout.createSequentialGroup()
-                                .addComponent(JobNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(JobName))
-                            .addGroup(GeneralPanelLayout.createSequentialGroup()
-                                .addComponent(InputFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(SelectInputFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(GeneralPanelLayout.createSequentialGroup()
-                                .addComponent(OutputFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(OutputFile)))
-                        .addGap(35, 35, 35)
-                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SelectFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SelectInputFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(69, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GeneralPanelLayout.createSequentialGroup()
-                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(GeneralPanelLayout.createSequentialGroup()
-                                .addComponent(stdoutLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(stdout))
-                            .addGroup(GeneralPanelLayout.createSequentialGroup()
-                                .addComponent(stderrLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(stderr)))
-                        .addGap(127, 127, 127)
-                        .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))))
+                                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(GeneralPanelLayout.createSequentialGroup()
+                                        .addComponent(SelectInputFileBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(SelectInputFileLb3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(stdout, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(GeneralPanelLayout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(stderrLb, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36))
+                                    .addGroup(GeneralPanelLayout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addComponent(SelectInputFileBtn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(SelectInputFileBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
+                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JobName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                            .addComponent(SelectInputFileLb4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SelectInputFileLb2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(stderr))))
+                .addContainerGap())
+            .addGroup(GeneralPanelLayout.createSequentialGroup()
+                .addGap(326, 326, 326)
+                .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         GeneralPanelLayout.setVerticalGroup(
             GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GeneralPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(ExecutLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(SelectFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(SelectFileLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JobNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JobName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SelectInputFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SelectInputFileLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(OutputFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OutputFile, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(GeneralPanelLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(SaveBtn)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, GeneralPanelLayout.createSequentialGroup()
+                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SelectFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(SelectSHCB, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ExecutLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(JobName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JobNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(stdoutLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(stdout, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(stderrLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(stderr, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(GeneralPanelLayout.createSequentialGroup()
+                                .addComponent(SelectInputFileLb2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GeneralPanelLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(SelectInputFileLb3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GeneralPanelLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(SelectInputFileBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GeneralPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(SelectInputFileBtn2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(SelectInputFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(SelectInputFileLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(3, 3, 3)
+                                .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(SelectInputFileLb4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(GeneralPanelLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(SelectInputFileBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18)
+                        .addGroup(GeneralPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(stdout, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stderr, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stderrLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(GeneralPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(InputFileLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(stdoutLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SaveBtn)
+                .addGap(37, 37, 37))
         );
 
         MainTabbedPane.addTab("General", GeneralPanel);
@@ -316,9 +427,9 @@ public class CreateJobPage extends javax.swing.JFrame {
 
         wallTimeLb.setText("wallTime");
 
-        memoryLb.setText("memory");
-
         countLb.setText("count");
+
+        queueLb.setText("queue");
 
         SaveEnvBtn.setText("Save");
         SaveEnvBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -335,59 +446,65 @@ public class CreateJobPage extends javax.swing.JFrame {
             EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EnvironmentPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(EnvironmentPanelLayout.createSequentialGroup()
                         .addComponent(runtimeenvironmentLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(runtimeenvironment))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EnvironmentPanelLayout.createSequentialGroup()
+                    .addGroup(EnvironmentPanelLayout.createSequentialGroup()
                         .addComponent(countLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(count))
                     .addGroup(EnvironmentPanelLayout.createSequentialGroup()
-                        .addComponent(memoryLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(memory))
-                    .addGroup(EnvironmentPanelLayout.createSequentialGroup()
-                        .addComponent(wallTimeLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(wallTime))
-                    .addGroup(EnvironmentPanelLayout.createSequentialGroup()
                         .addComponent(gmlogLb, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(gmlog, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
-                .addGap(132, 132, 132)
+                        .addComponent(gmlog, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(queueLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(wallTimeLb, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(wallTime, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(queue))
+                .addGap(39, 39, 39))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EnvironmentPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SaveEnvBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addGap(352, 352, 352))
         );
         EnvironmentPanelLayout.setVerticalGroup(
             EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EnvironmentPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gmlogLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gmlog, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(wallTimeLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wallTime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(memoryLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(memory, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SaveEnvBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(countLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(count, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EnvironmentPanelLayout.createSequentialGroup()
+                        .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(gmlogLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gmlog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(wallTimeLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(countLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(count, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(queueLb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(EnvironmentPanelLayout.createSequentialGroup()
+                        .addComponent(wallTime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
                 .addGroup(EnvironmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(runtimeenvironmentLb, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(runtimeenvironment, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(SaveEnvBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         MainTabbedPane.addTab("Environment", EnvironmentPanel);
+
+        MainTabbedPane.setSelectedComponent(BashScriptPanel);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -397,7 +514,7 @@ public class CreateJobPage extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(MainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -484,24 +601,83 @@ public class CreateJobPage extends javax.swing.JFrame {
     }//GEN-LAST:event_OpenJobBtnActionPerformed
 
     private void CreateJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateJobBtnActionPerformed
-        String fileName = JOptionPane.showInputDialog("Enter file name");
-	FileWriter outFile = null;
+        Socket socket = null;
+       
         try {
-//            outFile = new FileWriter(fileName +".txt",true);
-          outFile = new FileWriter(fileName +".xrsl",true);
-	} catch (IOException e1) {
-		e1.printStackTrace();
-		}
-	try {
-            outFile.write(Result.getText());
-		} catch (IOException e1) {
-		e1.printStackTrace();
-				}
-	try {
-	outFile.close();
-        
-        } catch (IOException e1) {
-	e1.printStackTrace();
+            socket = new Socket("localhost", 9999);
+        } catch (IOException ex) {
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        fileName = JOptionPane.showInputDialog("Enter file name");
+        String resultXRSL = Result.getText();
+	 if (fileName != null && resultXRSL!= null) {
+                
+
+                
+                ArrayList<String> my = new ArrayList<String>();
+                my.add(0, fileName);
+                my.add(1, resultXRSL);
+                String command = "createXRSLFile";
+                PrintWriter toClient = null;
+            try {
+                toClient = new PrintWriter(socket.getOutputStream(), true);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    toClient.println(command);
+                ObjectOutputStream objectOutput = null;
+            try {
+                objectOutput = new ObjectOutputStream(socket.getOutputStream());
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            try {
+                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+                    
+            try {
+                objectOutput.writeObject(my);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    titleList = new ArrayList<String>();
+            
+                    ObjectInputStream objectInput = null;
+            try {
+                objectInput = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+                
+                    Object object = null;
+            try {
+                object = objectInput.readObject();
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    titleList = (ArrayList<String>) object;
+                    System.out.println(titleList);
+                    String result = titleList.get(0);
+                    System.out.println(result);
+                    errorLabel.setText(result);
+                    SubmitJobPage.SelectJobFileCB.addItem(fileName);
+                    
+             
+               
+                    
+                    
+                    
+                   
+           
+
         }
         submitJobPage = new SubmitJobPage();
         submitJobPage.setVisible(true);
@@ -513,13 +689,12 @@ public class CreateJobPage extends javax.swing.JFrame {
         SelectFileLb.setText("");
         JobName.setText("");
         SelectInputFileLb.setText("");
-        OutputFile.setText("");
         stdout.setText("");
         stderr.setText("");
         gmlog.setText("");
         wallTime.setText("");
-        memory.setText("");
         count.setText("");
+        queue.setText("");
         runtimeenvironment.setText("");
     }//GEN-LAST:event_ClearFieldsBtnActionPerformed
 
@@ -530,23 +705,63 @@ public class CreateJobPage extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     private void CreateBashScriptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateBashScriptBtnActionPerformed
-        String fileName = JOptionPane.showInputDialog("Enter file name");
-	FileWriter outFile = null;
+         Socket socket = null;
         try {
-//            outFile = new FileWriter(fileName +".txt",true);
-          outFile = new FileWriter(fileName +".sh",true);
-	} catch (IOException e1) {
-		e1.printStackTrace();
-		}
-	try {
-            outFile.write(Result.getText());
-		} catch (IOException e1) {
-		e1.printStackTrace();
-				}
-	try {
-	outFile.close();
-        } catch (IOException e1) {
-	e1.printStackTrace();
+            socket = new Socket("localhost", 9999);
+        } catch (IOException ex) {
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        fileName = JOptionPane.showInputDialog("Enter file name");
+        String resultSH = Result.getText();
+	 if (fileName != null && resultSH!= null) {
+                SelectSHCB.addItem(fileName);
+
+            try {
+                
+                ArrayList<String> my = new ArrayList<String>();
+                my.add(0, fileName);
+                my.add(1, resultSH);
+                String command = "createSHFile";
+                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
+                    toClient.println(command);
+                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+                
+                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                try {
+                    
+                    objectOutput.writeObject(my);
+                    titleList = new ArrayList<String>();
+            
+                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+
+                
+                    Object object = objectInput.readObject();
+                    titleList = (ArrayList<String>) object;
+                    System.out.println(titleList);
+                    String result = titleList.get(0);
+                    System.out.println(result);
+                    errorLabel.setText(result);
+                    
+                    
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+                    
+                    
+                    
+                   
+                
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
         }
     }//GEN-LAST:event_CreateBashScriptBtnActionPerformed
 
@@ -555,6 +770,16 @@ public class CreateJobPage extends javax.swing.JFrame {
 
            Result.setText("#!/bin/bash" + "\n"+
                    "\r\n"+"$LMP_MPIRUN <in");
+      }
+       if(SelectProgCB.getSelectedItem().toString()=="Quantum Espresso"){
+           queue.setText("mult.q");
+           gmlog.setText("gridlog");
+           runtimeenvironment.setText("Espresso-OPENMPI-12");
+           stderr.setText("espresso.err");
+           stdout.setText("espresso.out");
+
+           Result.setText("#!/bin/bash" + "\n"+
+                   "\r\n"+"$QE_MPIRUN $QE_PATH/");
       }
         if(SelectProgCB.getSelectedItem().toString()=="GROMACS"){
            Result.setText("#!/bin/bash\n" +
@@ -569,50 +794,248 @@ public class CreateJobPage extends javax.swing.JFrame {
                    "chmod +x myprog\n" +
                    "$MPIRUN myprog");
       }
+        if(SelectProgCB.getSelectedItem().toString()=="...................."){
+
+           Result.setText("");
+      }
     }//GEN-LAST:event_SelectProgCBActionPerformed
 
-    private void SelectFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectFileBtnActionPerformed
+    private void SelectInFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInFileActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        int returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            bashScript = fileChooser.getSelectedFile();
-            SelectFileLb.setText(bashScript.getName());
-
-        } else {
-            System.out.println("File access cancelled by user.");
-
-        }
-    }//GEN-LAST:event_SelectFileBtnActionPerformed
-
-    private void SelectInputFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtnActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        int returnVal = fileChooser.showOpenDialog(this);
+         int returnVal;
+        returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             InputFile = fileChooser.getSelectedFile();
-            SelectInputFileLb.setText(InputFile.getName()); 
-        } else {
-            System.out.println("File access cancelled by user.");
-
+            inputFileLb.setText(InputFile.getName());
+            SelectInputFileLb.setText(inputFileLb.getText()); 
+            try {
+                SelectFile.SelectFile(InputFile, errorLabel);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+    }//GEN-LAST:event_SelectInFileActionPerformed
 
-    }//GEN-LAST:event_SelectInputFileBtnActionPerformed
+    private void SelectResolCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectResolCBActionPerformed
+        if(SelectResolCB.getSelectedItem().toString()=="pw.x"){
+            
+            String inputFile= InputFile.getName();
+            String outputFile = inputFile.replaceAll(".in", ".out");
 
-    private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
+           Result.setText("#!/bin/bash" + "\n"+
+                   "\r\n"+"$QE_MPIRUN $QE_PATH/pw.x <"+inputFile+"> "+outputFile);
+      }
+        if(SelectResolCB.getSelectedItem().toString()=="...................."){
 
-        Result.setText("&(exectutable="+SelectFileLb.getText() +")\n(jobname="+JobName.getText()+
-	")\n(inputFiles=("+SelectInputFileLb.getText()+" \" \" ))\n(outputFiles=(\""+OutputFile.getText()+
-	" \" \"))\n(stdout="+stdout.getText()+".out)\n(stderr="+stderr.getText()+".err)");
-
-    }//GEN-LAST:event_SaveBtnActionPerformed
+           Result.setText("");
+      }
+    }//GEN-LAST:event_SelectResolCBActionPerformed
 
     private void SaveEnvBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveEnvBtnActionPerformed
 
-           Result.setText("&(exectutable="+SelectFileLb.getText() +")\n(jobname="+JobName.getText()+
-	")\n(inputFiles=("+SelectInputFileLb.getText()+" \" \" ))\n(outputFiles=(\""+OutputFile.getText()+
-	" \" \"))\n(stdout="+stdout.getText()+".out)\n(stderr="+stderr.getText()+".err)\n(gmlog="+gmlog.getText()+")\n(wallTime="+wallTime.getText()+")\n"
-        + "(memory="+memory.getText()+")\n(count="+count.getText()+")\n(runtimeenvironment=\""+runtimeenvironment.getText()+"\")");
-  
+        if (!SelectInputFileLb4.getText().isEmpty()
+                &&!SelectInputFileLb3.getText().isEmpty()
+                &&!SelectInputFileLb2.getText().isEmpty()
+                &&!SelectInputFileLb.getText().isEmpty()){
+            Result.setText("&(exectutable="+SelectFileLb.getText() +
+                ")\n(jobname="+JobName.getText()+
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb3.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb4.getText()+"\" \" \" )) "
+                + "\n(outputFiles=(\"/\" \" \"))"
+                + "\n(stdout="+stdout.getText()+")"
+                + "\n(stderr="+stderr.getText()+")"
+                + "\n(gmlog="+gmlog.getText()+")"
+                + "\n(wallTime="+wallTime.getText()+")"
+                + "\n(count="+count.getText()+")"
+                + "\n(queue="+queue.getText()+")"
+                + "\n(runtimeenvironment="+runtimeenvironment.getText()+")");
+        }else if(!SelectInputFileLb3.getText().isEmpty()
+                &&!SelectInputFileLb2.getText().isEmpty()
+                &&!SelectInputFileLb.getText().isEmpty()){
+            Result.setText("&(exectutable="+SelectFileLb.getText() +
+                ")\n(jobname="+JobName.getText()+
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb3.getText()+"\" \" \" )) "
+                + "\n(outputFiles=(\"/\" \" \"))"
+                + "\n(stdout="+stdout.getText()+")"
+                + "\n(stderr="+stderr.getText()+")"
+                + "\n(gmlog="+gmlog.getText()+")"
+                + "\n(wallTime="+wallTime.getText()+")"
+                + "\n(count="+count.getText()+")"
+                + "\n(queue="+queue.getText()+")"
+                + "\n(runtimeenvironment="+runtimeenvironment.getText()+")");
+            
+        }else if(!SelectInputFileLb2.getText().isEmpty()
+                && !SelectInputFileLb.getText().isEmpty()){
+            Result.setText("&(exectutable="+SelectFileLb.getText() +
+                ")\n(jobname="+JobName.getText()+
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
+                + "\n(outputFiles=(\"/\" \" \"))"
+                + "\n(stdout="+stdout.getText()+")"
+                + "\n(stderr="+stderr.getText()+")"
+                + "\n(gmlog="+gmlog.getText()+")"
+                + "\n(wallTime="+wallTime.getText()+")"
+                + "\n(count="+count.getText()+")"
+                + "\n(queue="+queue.getText()+")"
+                + "\n(runtimeenvironment="+runtimeenvironment.getText()+")");
+            
+        }else if(!SelectInputFileLb.getText().isEmpty()){
+            Result.setText("&(exectutable="+SelectFileLb.getText() +
+                ")\n(jobname="+JobName.getText()+
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
+                + "\n(outputFiles=(\"/\" \" \"))"
+                + "\n(stdout="+stdout.getText()+")"
+                + "\n(stderr="+stderr.getText()+")"
+                + "\n(gmlog="+gmlog.getText()+")"
+                + "\n(wallTime="+wallTime.getText()+")"
+                + "\n(count="+count.getText()+")"
+                + "\n(queue="+queue.getText()+")"
+                + "\n(runtimeenvironment="+runtimeenvironment.getText()+")");
+            
+        }
+
     }//GEN-LAST:event_SaveEnvBtnActionPerformed
+
+    private void SelectSHCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectSHCBActionPerformed
+
+        if(SelectProgCB.getSelectedItem().toString()=="...................."){
+
+            SelectFileLb.setText("");
+        }  else{
+            String SHFileName= SelectSHCB.getSelectedItem().toString();
+            SelectFileLb.setText(SHFileName+".sh");
+        }
+    }//GEN-LAST:event_SelectSHCBActionPerformed
+
+    private void SaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBtnActionPerformed
+        if (!SelectInputFileLb4.getText().isEmpty()
+                &&!SelectInputFileLb3.getText().isEmpty()
+                &&!SelectInputFileLb2.getText().isEmpty()
+                &&!SelectInputFileLb.getText().isEmpty()){
+            Result.setText("&(exectutable="+SelectFileLb.getText() +
+                ")\n(jobname="+JobName.getText()+
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb3.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb4.getText()+"\" \" \" )) "
+                + "\n(outputFiles=(\"/\" \" \"))"
+                + "\n(stdout="+stdout.getText()+")"
+                + "\n(stderr="+stderr.getText()+")");
+        }else if(!SelectInputFileLb3.getText().isEmpty()
+                &&!SelectInputFileLb2.getText().isEmpty()
+                &&!SelectInputFileLb.getText().isEmpty()){
+            Result.setText("&(exectutable="+SelectFileLb.getText() +
+                ")\n(jobname="+JobName.getText()+
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb3.getText()+"\" \" \" )) "
+                + "\n(outputFiles=(\"/\" \" \"))"
+                + "\n(stdout="+stdout.getText()+")"
+                + "\n(stderr="+stderr.getText()+")");
+            
+        }else if(!SelectInputFileLb2.getText().isEmpty()
+                && !SelectInputFileLb.getText().isEmpty()){
+            Result.setText("&(exectutable="+SelectFileLb.getText() +
+                ")\n(jobname="+JobName.getText()+
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
+                + "\n(outputFiles=(\"/\" \" \"))"
+                + "\n(stdout="+stdout.getText()+")"
+                + "\n(stderr="+stderr.getText()+")");
+            
+        }else if(!SelectInputFileLb.getText().isEmpty()){
+            Result.setText("&(exectutable="+SelectFileLb.getText() +
+                ")\n(jobname="+JobName.getText()+
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
+                + "\n(outputFiles=(\"/\" \" \"))"
+                + "\n(stdout="+stdout.getText()+")"
+                + "\n(stderr="+stderr.getText()+")");
+            
+        }
+    }//GEN-LAST:event_SaveBtnActionPerformed
+
+    private void SelectInputFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtnActionPerformed
+
+        JFileChooser fileChooser = new JFileChooser();
+         int returnVal;
+        returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            InputFile = fileChooser.getSelectedFile();
+            SelectInputFileLb.setText(InputFile.getName());
+           
+            try {
+                SelectFile.SelectFile(InputFile, errorLabel);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    
+        
+    }//GEN-LAST:event_SelectInputFileBtnActionPerformed
+
+    private void SelectInputFileBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn2ActionPerformed
+      JFileChooser fileChooser = new JFileChooser();
+         int returnVal;
+        returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            InputFile = fileChooser.getSelectedFile();
+            SelectInputFileLb2.setText(InputFile.getName());
+           
+            try {
+                SelectFile.SelectFile(InputFile, errorLabel);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_SelectInputFileBtn2ActionPerformed
+
+    private void SelectInputFileBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn3ActionPerformed
+       JFileChooser fileChooser = new JFileChooser();
+         int returnVal;
+        returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            InputFile = fileChooser.getSelectedFile();
+            SelectInputFileLb3.setText(InputFile.getName());
+           
+            try {
+                SelectFile.SelectFile(InputFile, errorLabel);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_SelectInputFileBtn3ActionPerformed
+
+    private void SelectInputFileBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn4ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+         int returnVal;
+        returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            InputFile = fileChooser.getSelectedFile();
+            SelectInputFileLb4.setText(InputFile.getName());
+           
+            try {
+                SelectFile.SelectFile(InputFile, errorLabel);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_SelectInputFileBtn4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -664,27 +1087,37 @@ public class CreateJobPage extends javax.swing.JFrame {
     private javax.swing.JPanel MainPanel;
     private javax.swing.JTabbedPane MainTabbedPane;
     public javax.swing.JButton OpenJobBtn;
-    public javax.swing.JTextField OutputFile;
-    public javax.swing.JLabel OutputFileLb;
     public javax.swing.JTextPane Result;
     public javax.swing.JScrollPane ResultScrollPane;
     public javax.swing.JButton SaveBtn;
     public javax.swing.JButton SaveEnvBtn;
-    private javax.swing.JButton SelectFileBtn;
     public javax.swing.JLabel SelectFileLb;
+    private javax.swing.JButton SelectInFile;
     private javax.swing.JButton SelectInputFileBtn;
+    public javax.swing.JButton SelectInputFileBtn2;
+    private javax.swing.JButton SelectInputFileBtn3;
+    public javax.swing.JButton SelectInputFileBtn4;
     public javax.swing.JLabel SelectInputFileLb;
+    public javax.swing.JLabel SelectInputFileLb2;
+    public javax.swing.JLabel SelectInputFileLb3;
+    public javax.swing.JLabel SelectInputFileLb4;
+    public javax.swing.JLabel SelectInputLb;
     public javax.swing.JComboBox SelectProgCB;
     public javax.swing.JLabel SelectProgLb;
+    public javax.swing.JComboBox SelectResolCB;
+    public javax.swing.JLabel SelectResolLb;
+    public javax.swing.JComboBox SelectSHCB;
     private javax.swing.JLabel TopLabel;
     public javax.swing.JPanel TopPanel;
     public javax.swing.JTextField count;
     public javax.swing.JLabel countLb;
+    private javax.swing.JLabel errorLabel;
     public javax.swing.JTextField gmlog;
     public javax.swing.JLabel gmlogLb;
+    public javax.swing.JLabel inputFileLb;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField memory;
-    public javax.swing.JLabel memoryLb;
+    public javax.swing.JTextField queue;
+    public javax.swing.JLabel queueLb;
     public javax.swing.JTextField runtimeenvironment;
     public javax.swing.JLabel runtimeenvironmentLb;
     public javax.swing.JTextField stderr;
@@ -694,4 +1127,10 @@ public class CreateJobPage extends javax.swing.JFrame {
     public javax.swing.JTextField wallTime;
     public javax.swing.JLabel wallTimeLb;
     // End of variables declaration//GEN-END:variables
+    public static ArrayList<String> titleList;
+    public static String fileName;
+    public JButton SelectSecondInputFileBtn;
+    public static javax.swing.GroupLayout GeneralPanelLayout;
+    
+    
 }

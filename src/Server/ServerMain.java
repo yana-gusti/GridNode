@@ -7,8 +7,11 @@
 package Server;
 
 import Server.*;
+import static Server.CreateNewJob.CreateNewSHExecute;
+import static Server.CreateNewJob.CreateNewXRSLExecute;
 import static Server.Login.*;
 import static Server.Registration.*;
+import static Server.SaveFile.saveFile;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,37 +29,95 @@ import services.Users;
  * @author yana
  */
 public class ServerMain {
-    public static Socket skt; 
-
-     public static void main(String[] args) throws IOException, ClassNotFoundException {
-         ServerSocket myServerSocket = new ServerSocket(9999);
+    public static Socket skt=null;
+    public static void main(String args[]){
 
 
-             skt = myServerSocket.accept();
-            System.out.println("om here");
+   
+    ServerSocket ss2=null;
+    System.out.println("Server Listening......");
+    try{
+        ss2 = new ServerSocket(9999); // can also use static final PORT_NUM , when defined
 
-
-
-         while (true) {
-
-             BufferedReader fromClient = new BufferedReader(new InputStreamReader(skt.getInputStream()));
-             String action = fromClient.readLine();
-
-             System.out.println(action);
-
-
-             if (action.equals("login")) {
-                 LoginExecute();
-
-             } else if (action.equals("registr")) {
-                 Registration.RegistrationExecute();
-
-
-             }
-         }
-
-               
-        }
     }
+    catch(IOException e){
+    e.printStackTrace();
+    System.out.println("Server error");
+
+    }
+
+    while(true){
+        try{
+            skt= ss2.accept();
+            System.out.println("connection Established");
+            UserThread st=new UserThread(skt);
+            st.start();
+
+        }
+
+    catch(Exception e){
+        e.printStackTrace();
+        System.out.println("Connection Error");
+
+    }
+    }
+    
+    
+//    public static Socket skt; 
+//
+//     public static void main(String[] args) throws IOException, ClassNotFoundException, Exception {
+//         ServerSocket myServerSocket = new ServerSocket(9999);
+//
+//
+//             skt = myServerSocket.accept();
+//             BufferedReader fromClient = new BufferedReader(new InputStreamReader(skt.getInputStream()));
+//             String action = fromClient.readLine();
+//
+//             System.out.println(action);
+//
+//
+//         while (true) {
+//
+//             
+//          
+//
+//
+//             if (action.equals("login")) {
+//                 LoginExecute();
+//
+//             } else if (action.equals("registr")) {
+//                 RegistrationExecute();
+//                 
+//             }else if (action.equals("createSHFile")) {
+//                 CreateNewSHExecute();
+//                 
+//             }else if (action.equals("createXRSLFile")) {
+//                 CreateNewXRSLExecute();
+//
+//             }
+//             else if (action.equals("saveFile")) {
+//               saveFile(skt);
+//
+//             } else if (action.equals("findXRSLFile")) {
+//               SubmitJob.FindXRSLFile();
+//
+//             }else if (action.equals("submitJob")) {
+//               SubmitJob.SubmitJob();
+//
+//             }
+//             
+//             
+//         }
+//                     
+//             
+//             
+//             
+//            
+//                
+//
+//               
+//        }
+    }
+}
     
 

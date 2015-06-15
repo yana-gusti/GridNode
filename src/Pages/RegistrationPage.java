@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import services.DBConnection;
+import services.SelectFile;
 import services.UserServices;
 import services.Users;
 
@@ -94,7 +95,7 @@ public File userKeyFile;
 
         userCertBtn.setBackground(new java.awt.Color(0, 204, 204));
         userCertBtn.setText("Choose your usercert.pem");
-        userCertBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        userCertBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         userCertBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userCertBtnActionPerformed(evt);
@@ -103,7 +104,7 @@ public File userKeyFile;
 
         userKeyBtn.setBackground(new java.awt.Color(0, 204, 204));
         userKeyBtn.setText("Choose your userkey.pem");
-        userKeyBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        userKeyBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         userKeyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userKeyBtnActionPerformed(evt);
@@ -120,13 +121,13 @@ public File userKeyFile;
 
         emailLb.setText("Email Address");
 
-        passLb.setText("Private key password");
+        passLb.setText("Password");
 
-        passConfLb.setText("Re-type prive key password");
+        passConfLb.setText("Password Confirmation");
 
         RegistrationBtn.setBackground(new java.awt.Color(0, 204, 204));
         RegistrationBtn.setText("Registration");
-        RegistrationBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        RegistrationBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RegistrationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrationBtnActionPerformed(evt);
@@ -135,7 +136,7 @@ public File userKeyFile;
 
         CancelBtn.setBackground(new java.awt.Color(0, 204, 204));
         CancelBtn.setText("Cancel");
-        CancelBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        CancelBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelBtnActionPerformed(evt);
@@ -155,17 +156,13 @@ public File userKeyFile;
                         .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(passLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emailLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(BirthdayLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lastNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(firstNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(40, 40, 40))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(passConfLb, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(passConfLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BirthdayLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lastNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(firstNameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(firstName, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,7 +270,7 @@ public File userKeyFile;
             .addComponent(TopLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
             .addGroup(TopPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 578, Short.MAX_VALUE)
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         TopPanelLayout.setVerticalGroup(
@@ -301,27 +298,39 @@ public File userKeyFile;
     }// </editor-fold>//GEN-END:initComponents
 
     private void userKeyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userKeyBtnActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        int returnVal = fileChooser.showOpenDialog(this);
+    
+       JFileChooser fileChooser = new JFileChooser();
+         int returnVal;
+        returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             userKeyFile = fileChooser.getSelectedFile();
             userKey.setText(userKeyFile.getName());
-
-        } else {
-            System.out.println("File access cancelled by user.");
-
+           
+            try {
+                SelectFile.SelectFile(userKeyFile, errorLabel);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_userKeyBtnActionPerformed
 
     private void userCertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userCertBtnActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        int returnVal = fileChooser.showOpenDialog(this);
+         int returnVal;
+        returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             userCertFile = fileChooser.getSelectedFile();
             userCert.setText(userCertFile.getName());
-        } else {
-            System.out.println("File access cancelled by user.");
-
+           
+            try {
+                SelectFile.SelectFile(userCertFile, errorLabel);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_userCertBtnActionPerformed
 
