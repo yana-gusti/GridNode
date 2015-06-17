@@ -15,8 +15,11 @@ public class UserServices {
     }
 
     public static int addUser(Users newUser) {
+        DBConnection.flushTable();
         newUser.setId(DBConnection.save(newUser));
+        DBConnection.flushTable();
         users.add(newUser);
+        DBConnection.flushTable();
         return newUser.getId();
     }
 
@@ -25,8 +28,10 @@ public class UserServices {
     }
 
     public static Users findUser(String e_mail, String password) {
+        
         for (Users u : users) {
             if (e_mail.equals(u.getE_mail()) && (password.equals(u.getPass()))) {
+                
                 return u;
             }
         }

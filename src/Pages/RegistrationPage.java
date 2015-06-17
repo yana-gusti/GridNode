@@ -6,28 +6,18 @@
 
 package Pages;
 
-import static Pages.LoginPage.profilePage;
 import grid_node.Main;
-import static grid_node.Main.socket;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.net.Socket;
+import services.SelectFile;
+import services.Users;
+
+import javax.swing.*;
+import java.io.*;
 import java.net.UnknownHostException;
-import java.nio.file.DirectoryIteratorException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import services.DBConnection;
-import services.SelectFile;
-import services.UserServices;
-import services.Users;
+
+import static grid_node.Main.socket;
 
 /**
  *
@@ -36,6 +26,7 @@ import services.Users;
 public class RegistrationPage extends javax.swing.JFrame {
 public File userCertFile;
 public File userKeyFile;
+public static ProfilePage profilePage;
     /**
      * Creates new form RegistrationPage
      */
@@ -117,9 +108,9 @@ public File userKeyFile;
 
         lastNameLb.setText("Last Name");
 
-        BirthdayLb.setText("Birthday");
+        BirthdayLb.setText("Virtual Organization");
 
-        emailLb.setText("Email Address");
+        emailLb.setText("Username");
 
         passLb.setText("Password");
 
@@ -270,7 +261,7 @@ public File userKeyFile;
             .addComponent(TopLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
             .addGroup(TopPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 578, Short.MAX_VALUE)
                 .addContainerGap())
         );
         TopPanelLayout.setVerticalGroup(
@@ -306,13 +297,7 @@ public File userKeyFile;
             userKeyFile = fileChooser.getSelectedFile();
             userKey.setText(userKeyFile.getName());
            
-            try {
-                SelectFile.SelectFile(userKeyFile, errorLabel);
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
         }
     }//GEN-LAST:event_userKeyBtnActionPerformed
 
@@ -324,62 +309,26 @@ public File userKeyFile;
             userCertFile = fileChooser.getSelectedFile();
             userCert.setText(userCertFile.getName());
            
-            try {
-                SelectFile.SelectFile(userCertFile, errorLabel);
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
         }
     }//GEN-LAST:event_userCertBtnActionPerformed
 
     private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrationBtnActionPerformed
-//        File globus = new File("/home/yana/.globus");
-//        if (!globus.exists()) {
-//            if (globus.mkdir()) {
-//                System.out.println("Directory is created!");
-//            } else {
-//                System.out.println("Failed to create directory!");
-//                errorLabel.setText("Such directory is already exists!");
-//            }
-//        }
-//        if(userCertFile.renameTo(new File("/home/yana/.globus/" + userCertFile.getName()))){
-//            System.out.println("File is moved successful!");
-//        }else{
-//            errorLabel.setText("You don't select a usercert.pem file");
-//            System.out.println("File is failed to move!");
-//        }
-//        if(userKeyFile.renameTo(new File("/home/yana/.globus/" + userKeyFile.getName()))){
-//            Runtime r =Runtime.getRuntime();
-//            Process changePermissions = null;
-//            try {
-//                changePermissions = r.exec("chmod 400 /home/yana/.globus/"+userKeyFile.getName());
-//            } catch (IOException ex) {
-//                Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            try {
-//                changePermissions.waitFor();
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            System.out.println("File is moved successful!");
-//        }else{
-//            errorLabel.setText("You don't select a userkey.pem file");
-//            System.out.println("File is failed to move!");
-//        }
-//        
+      
         String _firstName = (String) firstName.getText();
 	String _lastName = (String) lastName.getText();
-	String _birthday = (String) birthday.getText();
+	String _vo = (String) birthday.getText();
 	String _email = (String) email.getText();
 	String _pass = (String) pass.getText();
 	String _passConf = (String) passConf.getText();
+        String _userCert = userCertFile.getName();
+        String _userKey = userKeyFile.getName();
 	Users newUser = null;
 	System.out.println("q");
 
 	if (_firstName != null && _lastName != null
-	&& _birthday != null && _email != null && _pass != null && _passConf != null) {
+	&& _vo != null && _email != null && _pass != null && _passConf != null
+                && _userCert != null && _userKey != null) {
             
             try {
                 System.out.println("fields not empty");
@@ -388,25 +337,29 @@ public File userKeyFile;
                 ArrayList<String> my = new ArrayList<String>();
                 my.add(0, _firstName);
                 my.add(1, _lastName);
-                my.add(2, _birthday);
+                my.add(2, _vo);
                 my.add(3, _email);
                 my.add(4, _pass);
                 my.add(5, _passConf);
+                my.add(6, _userCert);
+                my.add(7, _userKey);
                 String login = "registr";
                 System.out.println(login);
+                socket.setKeepAlive(true);
                 PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
                     toClient.println(login);
+                socket.setKeepAlive(true);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
                 
-                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 try {
-                    
+                     
+                    SelectFile.SelectFile(userCertFile, errorLabel);
+                       
+                    SelectFile.SelectFile(userKeyFile, errorLabel);
                     objectOutput.writeObject(my);
                     titleList = new ArrayList<String>();
-            
                     ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-
-                
                     Object object = objectInput.readObject();
                     titleList = (ArrayList<String>) object;
                     System.out.println(titleList);
@@ -414,9 +367,11 @@ public File userKeyFile;
                     System.out.println(result);
                     errorLabel.setText(result);
                     if (result.equals("success")){
-                    Main.loginPage.setVisible(true);
+                       
+                    profilePage = new ProfilePage();
+                    profilePage.setVisible(true);
                     LoginPage.registrationPage.setVisible(false);
-                        errorLabel.setText("Registration is success. Please, login!");
+                        
                     }else{
                        errorLabel.setText("error"); 
                     }
@@ -465,13 +420,13 @@ public static void main(String args[]) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

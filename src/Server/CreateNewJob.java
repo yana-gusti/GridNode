@@ -6,11 +6,11 @@
 
 package Server;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -46,10 +46,10 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static void CreateNewSHExecute() throws IOException, ClassNotFoundException{
+    public static void CreateNewSHExecute(Socket s) throws IOException, ClassNotFoundException{
         ArrayList<String> titleList = new ArrayList<String>();
             
-                ObjectInputStream objectInput = new ObjectInputStream(ServerMain.skt.getInputStream());
+                ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
 
                 
                     Object object = objectInput.readObject();
@@ -65,7 +65,7 @@ public class CreateNewJob {
                 
                 
                 my.add(0, message);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(ServerMain.skt.getOutputStream());
+                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
                 objectOutput.writeObject(my);
     }
      public static FileWriter CreateNewXRSL (String fileName, String result ){
@@ -90,10 +90,10 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static void CreateNewXRSLExecute() throws IOException, ClassNotFoundException{
+    public static void CreateNewXRSLExecute(Socket s) throws IOException, ClassNotFoundException{
         ArrayList<String> titleList = new ArrayList<String>();
             
-                ObjectInputStream objectInput = new ObjectInputStream(ServerMain.skt.getInputStream());
+                ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
 
                 
                     Object object = objectInput.readObject();
@@ -109,7 +109,7 @@ public class CreateNewJob {
                 
                 
                 my.add(0, message);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(ServerMain.skt.getOutputStream());
+                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
                 objectOutput.writeObject(my);
     }
     

@@ -6,27 +6,26 @@
 
 package Server;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import static Server.CreateNewJob.CreateNewSHExecute;
 import static Server.CreateNewJob.CreateNewXRSLExecute;
 import static Server.Login.LoginExecute;
 import static Server.Registration.RegistrationExecute;
 import static Server.SaveFile.saveFile;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author yana
  */
 public class UserThread extends Thread{
-     String line=null;
+    String action=null;
     BufferedReader  is = null;
-    PrintWriter os=null;
     Socket s=null;
 
     public UserThread(Socket s){
@@ -36,79 +35,61 @@ public class UserThread extends Thread{
     public void run() {
     try{
         is= new BufferedReader(new InputStreamReader(s.getInputStream()));
-        os=new PrintWriter(s.getOutputStream());
 
     }catch(IOException e){
         System.out.println("IO error in server thread");
     }
 
     try {
-        line=is.readLine();
-        while(line.compareTo("QUIT")!=0){
+        action=is.readLine();
+        while(action.compareTo("QUIT")!=0){
             
-             if (line.equals("login")) {
-                 os.flush();
-                 LoginExecute();
-                 os.flush();
-                 System.out.println("Response to Client  :  "+line);
-                 line=is.readLine();
-
-             } else if (line.equals("registr")) {
-                 os.flush();
-                 RegistrationExecute();
-                 os.flush();
-                 System.out.println("Response to Client  :  "+line);
-                 line=is.readLine();
+            if (action.equals("login")) {
+                 LoginExecute(s);
                  
-             }else if (line.equals("createSHFile")) {
-                 os.flush();
-                 CreateNewSHExecute();
-                 os.flush();
-                 System.out.println("Response to Client  :  "+line);
-                 line=is.readLine();
+             } else if (action.equals("registr")) {
+                 RegistrationExecute(s);
                  
-             }else if (line.equals("createXRSLFile")) {
-                 os.flush();
-                 CreateNewXRSLExecute();
-                 os.flush();
-                 System.out.println("Response to Client  :  "+line);
-                 line=is.readLine();
+             }else if (action.equals("createSHFile")) {
+                 CreateNewSHExecute(s);
+                 
+             }else if (action.equals("createXRSLFile")) {
+                 CreateNewXRSLExecute(s);
 
              }
-             else if (line.equals("saveFile")) {
-                 os.flush();
+             else if (action.equals("saveFile")) {
                saveFile(s);
-               os.flush();
-                 System.out.println("Response to Client  :  "+line);
-                 line=is.readLine();
+               
+             } else if (action.equals("findXRSLFile")) {
+               SubmitJob.FindXRSLFile(s);
+               
+             }else if (action.equals("submitJob")) {
+               SubmitJob.SubmitJob(s);
 
-             } else if (line.equals("findXRSLFile")) {
-                 os.flush();
-               SubmitJob.FindXRSLFile();
-                 os.flush();
-                 System.out.println("Response to Client  :  "+line);
-                 line=is.readLine();                
-             }else if (line.equals("submitJob")) {
-                 os.flush();
-               SubmitJob.SubmitJob();
-                 System.out.println("Response to Client  :  "+line);
-                 line=is.readLine();  
              }
-
+           
+             System.out.println("connection reset2");
+            s.setKeepAlive(true);
+            System.out.println("connection reset 4");
+            action=is.readLine();
+             System.out.println("connection reset 5");
+            s.setKeepAlive(true);
+             System.out.println("connection reset3");
+            
         }   
     } catch (IOException e) {
 
-        line=this.getName(); //reused String line for getting thread name
-        System.out.println("IO Error/ Client "+line+" terminated abruptly");
+        action=this.getName(); //reused String line for getting thread name
+        System.out.println("IO Error/ Client "+action+" terminated abruptly");
     }
     catch(NullPointerException e){
-        line=this.getName(); //reused String line for getting thread name
-        System.out.println("Client "+line+" Closed");
-    }    catch (ClassNotFoundException ex) {
-             Logger.getLogger(UserThread.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (Exception ex) {
-             Logger.getLogger(UserThread.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        action=this.getName(); //reused String line for getting thread name
+        System.out.println("Client "+action+" Closed");
+    }   catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserThread.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(UserThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     finally{    
     try{
@@ -118,10 +99,7 @@ public class UserThread extends Thread{
             System.out.println(" Socket Input Stream Closed");
         }
 
-        if(os!=null){
-            os.close();
-            System.out.println("Socket Out Closed");
-        }
+        
         if (s!=null){
         s.close();
         System.out.println("Socket Closed");

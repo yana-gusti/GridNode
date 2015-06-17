@@ -11,7 +11,7 @@ import java.io.IOException;
 public class FileCreator {
     String proxyfilename = null;
     String loginfilename = null;
-    public void CreateProxyFile(String vo){
+    public void CreateProxyFile(String vo, String name){
 
 
         try {
@@ -20,7 +20,7 @@ public class FileCreator {
 
             output.append("#! /bin/bash");
             output.newLine();
-            output.append("voms-proxy-init -voms " + vo + " -valid 48:00 -pwstdin");
+            output.append("sudo -H -u "+name+" bash -c 'voms-proxy-init -voms "+vo+" -valid 48:00 -pwstdin'");
             output.close();
             Runtime.getRuntime().exec("chmod +x proxyInit.sh");
             proxyfilename = file.getName();
@@ -36,12 +36,50 @@ public class FileCreator {
 
             output.append("#! /bin/bash");
             output.newLine();
-            output.append("cd /home/grid/IdeaProjects/GridNode");
+            output.append("cd /home/yana/Desktop/GridNode");
             output.newLine();
             output.append("./proxyInit.sh<<< \"" + pass + "\"");
             output.newLine();
             output.append("sleep 2");
             Runtime.getRuntime().exec("chmod +x Login.sh");
+            System.out.println("Files were created");
+
+            output.close();
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        }
+
+
+    }
+    
+    public void CreateRegistrationFile( String name, 
+            String userCernName, String userKeyName){
+        try {
+            File file1 = new File("Register"+name+".sh");
+            BufferedWriter output = new BufferedWriter(new FileWriter(file1));
+
+            output.append("#! /bin/bash"); 
+            output.newLine();
+            output.append("echo 1  | sudo -H -u yana bash -c 'chmod +xrw /home/yana/Desktop/GridNode/userkey.pem'");
+            output.newLine();
+            output.append("echo 1  | sudo -S useradd -m -s /bin/bash -p $"
+                    + "(echo 1 | openssl passwd -1 -stdin) "+name+"");
+            output.newLine();
+            output.append("echo 1  | sudo usermod -aG sudo,adm "+name+"");
+            output.newLine();
+            output.append("sudo -H -u "+name+" bash -c 'mkdir /home/"+name+"/.globus'");
+            output.newLine();
+            output.append("sudo -H -u "+name+" bash -c 'cp "
+                    + "/home/yana/Desktop/GridNode/"+userCernName+" /home/"+name+"/.globus'");
+            output.newLine();
+            output.append("sudo -H -u "+name+" bash -c 'cp "
+                    + "/home/yana/Desktop/GridNode/"+userKeyName+" /home/"+name+"/.globus'");
+            output.newLine();
+            output.append("sudo -H -u "+name+" bash -c 'chmod 400 "
+                    + "/home/"+name+"/.globus/"+userKeyName+"'");
+            output.newLine();
+            output.append("sleep 2");
+            Runtime.getRuntime().exec("chmod +x Register"+name+".sh");
             System.out.println("Files were created");
 
             output.close();

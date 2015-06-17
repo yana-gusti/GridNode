@@ -315,12 +315,12 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="BirthdayLb">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Birthday"/>
+                        <Property name="text" type="java.lang.String" value="Virtual Organization"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="emailLb">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Email Address"/>
+                        <Property name="text" type="java.lang.String" value="Username"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="passLb">

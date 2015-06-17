@@ -7,26 +7,19 @@
 package Pages;
 
 
-import static Server.ServerMain.skt;
 import grid_node.Main;
-import static grid_node.Main.socket;
-import java.io.BufferedReader;
+import services.Users;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import services.DBConnection;
-import services.ExecuteShellComand;
-import services.UserServices;
-import services.Users;
+
+import static grid_node.Main.socket;
 
 /**
  *
@@ -86,7 +79,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         LoginPanel.setBackground(new java.awt.Color(153, 255, 255));
 
-        emailLabel.setText("Email Address");
+        emailLabel.setText("Username");
 
         pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,7 +245,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         registrationPage=new RegistrationPage();
         registrationPage.setVisible(true);
-        Main.loginPage.setVisible(false);  
+        Main.loginPage.setVisible(false);
     }//GEN-LAST:event_RegistrBtnActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
@@ -263,7 +256,7 @@ public class LoginPage extends javax.swing.JFrame {
         String e_mail = email.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();
-        if (e_mail != null && pass != null&& vo!=null) {
+        if (e_mail != null && _pass != null&& _vo != null) {
 
 
             try {
@@ -275,16 +268,20 @@ public class LoginPage extends javax.swing.JFrame {
                 String login = "login";
                 PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
                     toClient.println(login);
+                    System.out.println("Send message to server");
+                    socket.setKeepAlive(true);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-                
-                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                System.out.println("Send message to server 2");
+//                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 try {
                     
                     objectOutput.writeObject(my);
+                    System.out.println("Send data to server");
                     titleList = new ArrayList<String>();
-            
+                    socket.setKeepAlive(true);
+                    System.out.println("receive data to server");
                     ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-
+                    System.out.println("receive data to server 2");
                 
                     Object object = objectInput.readObject();
                     titleList = (ArrayList<String>) object;
@@ -296,6 +293,7 @@ public class LoginPage extends javax.swing.JFrame {
                     profilePage = new ProfilePage();
                     profilePage.setVisible(true);
                     Main.loginPage.setVisible(false);
+
                     }else{
                        errorLabel.setText("error"); 
                     }
@@ -337,13 +335,13 @@ public static void main(String args[]) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

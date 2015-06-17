@@ -7,34 +7,13 @@
 package Pages;
 
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.TextArea;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.Reader;
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
 import java.net.Socket;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import sun.misc.IOUtils;
 
 /**
  *
@@ -61,14 +40,14 @@ public class SubmitJobPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        TopPanel = new javax.swing.JPanel();
+        TopPanel = new JPanel();
         TopLabel = new javax.swing.JLabel();
-        MainPanel = new javax.swing.JPanel();
+        MainPanel = new JPanel();
         VONameLb = new javax.swing.JLabel();
         cluster = new javax.swing.JTextField();
         CancelBtn = new javax.swing.JButton();
         SubmitJobBtn = new javax.swing.JButton();
-        textArea = new java.awt.TextArea();
+        textArea = new TextArea();
         SelectJobFileCB = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -182,23 +161,23 @@ public class SubmitJobPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
-       
+
         LoginPage.profilePage.setVisible(true);
         CreateJobPage.submitJobPage.setVisible(false);
-  
-        
+
+
     }//GEN-LAST:event_CancelBtnActionPerformed
 
  public SubmitJobPage(final TextArea _textArea) {
       textArea = _textArea;
     }
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitJobBtnActionPerformed
-     textArea.setText("");   
-     
+     textArea.setText("");
+
 //     String fileName= SelectJobFileCB.getSelectedItem().toString();
      String fileName = "nordu_start.xrsl";
      String clusterName = cluster.getText();
-     
+
       Socket socket = null;
         try {
             socket = new Socket("localhost", 9999);
@@ -223,21 +202,21 @@ public class SubmitJobPage extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
+
             try {
                 BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-                    
+
+
             try {
                 objectOutput.writeObject(my);
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
                     ArrayList<String> titleList = new ArrayList<String>();
-            
+
                     ObjectInputStream objectInput = null;
             try {
                 objectInput = new ObjectInputStream(socket.getInputStream());
@@ -245,27 +224,28 @@ public class SubmitJobPage extends javax.swing.JFrame {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-                
+
                     Object object = null;
             try {
                 object = objectInput.readObject();
+                 titleList = (ArrayList<String>) object;
+                    System.out.println(titleList);
+                    String result = titleList.get(0);
+                    System.out.println(result);
+                    textArea.setText(result);
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-            titleList = (ArrayList<String>) object;
-                    System.out.println(titleList);
-                    String result = titleList.get(0);
-                    System.out.println(result);
-                    textArea.setText(result);
-           
+
+
         }  else{
             textArea.setText("Job not found");
         }
-        
-                      
-       
+
+
+
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 
     private void SelectJobFileCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectJobFileCBActionPerformed
@@ -295,21 +275,21 @@ public class SubmitJobPage extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
+
             try {
                 BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-                    
+
+
             try {
                 objectOutput.writeObject(my);
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
                     ArrayList<String> titleList = new ArrayList<String>();
-            
+
                     ObjectInputStream objectInput = null;
             try {
                 objectInput = new ObjectInputStream(socket.getInputStream());
@@ -317,21 +297,23 @@ public class SubmitJobPage extends javax.swing.JFrame {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-                
+
                     Object object = null;
             try {
                 object = objectInput.readObject();
+                titleList = (ArrayList<String>) object;
+                    System.out.println(titleList);
+                    String result = titleList.get(0);
+                    System.out.println(result);
+                    textArea.setText(result);
+                    object = objectInput.readObject();
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-            titleList = (ArrayList<String>) object;
-                    System.out.println(titleList);
-                    String result = titleList.get(0);
-                    System.out.println(result);
-                    textArea.setText(result);
-           
+
+
         }  else{
             textArea.setText("");
         }
@@ -342,7 +324,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -352,35 +334,35 @@ public class SubmitJobPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateJobPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SubmitJobPage().setVisible(true);
             }
         });
     }
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton CancelBtn;
-    private javax.swing.JPanel MainPanel;
+    private JPanel MainPanel;
     public static javax.swing.JComboBox SelectJobFileCB;
     public javax.swing.JButton SubmitJobBtn;
     private javax.swing.JLabel TopLabel;
-    public javax.swing.JPanel TopPanel;
+    public JPanel TopPanel;
     public javax.swing.JLabel VONameLb;
     public javax.swing.JTextField cluster;
-    public java.awt.TextArea textArea;
+    public TextArea textArea;
     // End of variables declaration//GEN-END:variables
 
     /**

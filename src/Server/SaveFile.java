@@ -67,7 +67,7 @@ public class SaveFile {
                 
                 
                 my.add(0, message);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(ServerMain.skt.getOutputStream());
+                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
                 objectOutput.writeObject(my);  
     }  
   

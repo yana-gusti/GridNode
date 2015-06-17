@@ -7,14 +7,16 @@
 package Server;
 
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-
 import services.DBConnection;
 import services.UserServices;
 import services.Users;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+
 /**
  *
  * @author yana
@@ -27,11 +29,11 @@ public class Login {
     public static String vo;
     public static ArrayList<String> userData;
     
-    public static void LoginExecute() throws IOException, ClassNotFoundException{
+    public static void LoginExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
         
             ArrayList<String> titleList = new ArrayList<String>();
-            
-                ObjectInputStream objectInput = new ObjectInputStream(ServerMain.skt.getInputStream());
+                
+                ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
 
                 
                     Object object = objectInput.readObject();
@@ -43,19 +45,23 @@ public class Login {
                     Users user =Login(name, pass);
                     FileCreator fileCreator = new FileCreator();
                     fileCreator.CreateLoginFile(pass);
-                    fileCreator.CreateProxyFile(vo);
+                    fileCreator.CreateProxyFile(vo, name);
                     Runtime.getRuntime().exec("./Login.sh");
                     
                      System.out.println("fedfdsfsdf");
-               
+                    Thread.sleep(2000);
+                    Runtime.getRuntime().exec("rm Login.sh");
+                    Runtime.getRuntime().exec("rm proxyInit.sh");
+                    System.out.println("reset connection after login");
                 ArrayList<String> my = new ArrayList<String>();
                 
                 my.add(0, user.getFirst_name());
                 my.add(1, user.getLast_name());
-                my.add(2, user.getBirthday());
+                my.add(2, user.getVO());
                 my.add(3, user.getE_mail());
                 my.add(4, message);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(ServerMain.skt.getOutputStream());
+               
+                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
                 objectOutput.writeObject(my);
                 
                 

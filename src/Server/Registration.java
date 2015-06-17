@@ -6,13 +6,15 @@
 
 package Server;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import services.DBConnection;
 import services.UserServices;
 import services.Users;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,45 +26,60 @@ public class Registration {
     public static String message = null;
     public static String firtsName;
     public static String lastName;
-    public static String birthday;
+    public static String vo;
     public static String email;
     public static String pass;
     public static String configPass;
+    public static String userCertName;
+    public static String userKeyName;
     public static ArrayList<String> userData;
     
-    public static void RegistrationExecute() throws IOException, ClassNotFoundException{
+    public static void RegistrationExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException{
         
             ArrayList<String> titleList = new ArrayList<String>();
             
-                ObjectInputStream objectInput = new ObjectInputStream(ServerMain.skt.getInputStream());
+                ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
 
                 
                     Object object = objectInput.readObject();
+                    System.out.println("get data from client");
                     titleList = (ArrayList<String>) object;
                     firtsName = titleList.get(0);
                     lastName = titleList.get(1);
-                    birthday = titleList.get(2);
+                    vo = titleList.get(2);
                     email = titleList.get(3);
                     pass = titleList.get(4);
                     configPass = titleList.get(5);
-                    
-                    Users user = Registration(firtsName, lastName, birthday, email, pass, pass);
-                    
-                String first_name = user.getFirst_name();
-                String last_name = user.getLast_name();
-                String birthday = user.getBirthday();
-                String email = user.getE_mail();
-                System.out.println(first_name+last_name+birthday+email);
-               
+                    userCertName = titleList.get(6);
+                    userKeyName = titleList.get(7);
+                    Users user = Registration(firtsName, lastName, vo, email, pass, pass);
+                    System.out.println("register new user");
+                    FileCreator fileCreator = new FileCreator();
+                    fileCreator.CreateRegistrationFile(email, userCertName, userKeyName);
+                    System.out.println("create file ./Register"+email+".sh");
+                    String[] command = { "xterm", "/home/yana/Desktop/GridNode/Register"+email+".sh" };
+                    Runtime.getRuntime().exec(command);
+                    Thread.sleep(5000);
+                    Runtime.getRuntime().exec("rm Register"+email+".sh");
+                    Runtime.getRuntime().exec("rm "+userCertName+"");
+                    Runtime.getRuntime().exec("rm "+userKeyName+"");
+                    fileCreator.CreateLoginFile(pass);
+                    fileCreator.CreateProxyFile(vo, email);
+                    Runtime.getRuntime().exec("./Login.sh");
+                    Runtime.getRuntime().exec("rm Login.sh");
+                    Runtime.getRuntime().exec("rm proxyInit.sh");
+            if(user!=null) {
                 ArrayList<String> my = new ArrayList<String>();
-                
+
                 my.add(0, user.getFirst_name());
                 my.add(1, user.getLast_name());
-                my.add(2, user.getBirthday());
+                my.add(2, user.getVO());
                 my.add(3, user.getE_mail());
                 my.add(4, message);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(ServerMain.skt.getOutputStream());
+
+                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
                 objectOutput.writeObject(my);
+            }
                 
     }
     
@@ -83,19 +100,19 @@ public class Registration {
 
 	}else{
         System.out.println("success");
-            
+         
+
+         
 	}
 	}
 	}
-        
         newUser = new Users(null, _firstName, _lastName, _birthday, _email, _pass);
 	System.out.println("qqq");
-        
 	DBConnection.save(newUser);
         System.out.println("jfhKDJKLDFHlgf");
          message ="success";
-
-        return newUser;
+        
+         return newUser; 
     }
 
    

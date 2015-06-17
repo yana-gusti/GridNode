@@ -17,7 +17,7 @@ public interface Interface <users> {
 
 
 
-    public ArrayList<Tasks> getTasksByTask_Name(String n, String t);
+   
 
 
 

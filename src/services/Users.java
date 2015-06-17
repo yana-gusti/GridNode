@@ -40,7 +40,7 @@ public class Users {
 		this.last_name = last_name;
 	}
 
-	public String getBirthday() {
+	public String getVO() {
 		return birthday;
 	}
 
