@@ -19,17 +19,19 @@ import java.util.ArrayList;
  */
 public class SaveFile {
     public static final int BUFFER_SIZE = 100;  
-  public static void saveFile(Socket socket) throws Exception {  
+  public static void saveFile(Socket socket) throws Exception {
         ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());  
         ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());  
         FileOutputStream fos = null;  
         byte [] buffer = new byte[BUFFER_SIZE];  
   
         // 1. Read file name.  
-        Object o = ois.readObject();  
+        Object o = ois.readObject();
   
         if (o instanceof String) {  
-            fos = new FileOutputStream(o.toString());  
+            fos = new FileOutputStream(o.toString());
+            System.out.println(fos);
+
         } else {  
             throwException("Something is wrong");  
         }  
@@ -55,7 +57,8 @@ public class SaveFile {
             buffer = (byte[])o;  
   
             // 3. Write data to output file.  
-            fos.write(buffer, 0, bytesRead);  
+            fos.write(buffer, 0, bytesRead);
+
             
         } while (bytesRead == BUFFER_SIZE);  
         
@@ -68,7 +71,15 @@ public class SaveFile {
                 
                 my.add(0, message);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-                objectOutput.writeObject(my);  
+                objectOutput.writeObject(my);
+//      FileCreator fileCreator=new FileCreator();
+//      fileCreator.CreateMoveFile(userName, );
+//      System.out.println("create file ./Register"+email+".sh");
+//      String[] command = { "xterm", "/home/yana/Desktop/GridNode/Register"+email+".sh" };
+//      Runtime.getRuntime().exec(command);
+//      Thread.sleep(5000);
+//      Runtime.getRuntime().exec("rm Register"+email+".sh");
+//      Runtime.getRuntime().exec("rm "+userCertName+"");
     }  
   
     public static void throwException(String message) throws Exception {  

@@ -101,7 +101,7 @@ public class CreateNewJob {
                     fileNameXRSL = titleList.get(0);
                     resulXRSL = titleList.get(1);
                     System.out.println(fileNameXRSL+"   "+resulXRSL);
-                    FileWriter SHFile = CreateNewSH(fileNameXRSL, resulXRSL);
+                    FileWriter SHFile = CreateNewXRSL(fileNameXRSL, resulXRSL);
                     
                      System.out.println("fedfdsfsdf");
                

@@ -90,6 +90,32 @@ public class FileCreator {
 
     }
 
+    public void CreateMoveFile( String userName,String fileName){
+        try {
+            File file1 = new File("Move"+userName+".sh");
+            BufferedWriter output = new BufferedWriter(new FileWriter(file1));
+
+            output.append("#! /bin/bash");
+            output.newLine();
+            output.append("echo 1  | sudo -H -u yana bash -c 'chmod +xrw /home/yana/Desktop/GridNode/"+fileName+"'");
+
+
+            output.newLine();
+            output.append("sudo -H -u "+userName+" bash -c 'cp "
+                    + "/home/yana/Desktop/GridNode/"+fileName+" /home/"+userName+"'");
+
+            output.append("sleep 2");
+            Runtime.getRuntime().exec("chmod +x Move"+userName+".sh");
+            System.out.println("Files were moved");
+
+            output.close();
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        }
+
+
+    }
+
         public static void main (String arg[]) throws IOException {
 
 
