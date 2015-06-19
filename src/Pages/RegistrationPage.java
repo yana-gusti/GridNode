@@ -121,7 +121,13 @@ public static ProfilePage profilePage;
         RegistrationBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RegistrationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegistrationBtnActionPerformed(evt);
+                try {
+                    RegistrationBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -313,7 +319,7 @@ public static ProfilePage profilePage;
         }
     }//GEN-LAST:event_userCertBtnActionPerformed
 
-    private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrationBtnActionPerformed
+    private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_RegistrationBtnActionPerformed
       
         String _firstName = (String) firstName.getText();
 	String _lastName = (String) lastName.getText();
@@ -329,8 +335,8 @@ public static ProfilePage profilePage;
 	if (_firstName != null && _lastName != null
 	&& _vo != null && _email != null && _pass != null && _passConf != null
                 && _userCert != null && _userKey != null) {
-            
-            try {
+
+
                 System.out.println("fields not empty");
                 System.out.println("connection start");
 
@@ -344,32 +350,25 @@ public static ProfilePage profilePage;
                 my.add(6, _userCert);
                 my.add(7, _userKey);
                 String login = "registr";
+
                 System.out.println(login);
-                socket.setKeepAlive(true);
                 PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-                    toClient.println(login);
-                socket.setKeepAlive(true);
+                toClient.println(login);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-                
-//                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                try {
-                     
-                    SelectFile.SelectFile(userCertFile, errorLabel);
-                       
-                    SelectFile.SelectFile(userKeyFile, errorLabel);
-                    objectOutput.writeObject(my);
+                objectOutput.writeObject(my);
+                SelectFile.SelectFile(userCertFile, errorLabel);
+                SelectFile.SelectFile(userKeyFile, errorLabel);
+
                     titleList = new ArrayList<String>();
                     ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
                     Object object = objectInput.readObject();
                     titleList = (ArrayList<String>) object;
-                    System.out.println(titleList);
                     String result = titleList.get(4);
-                    System.out.println(result);
                     errorLabel.setText(result);
                     if (result.equals("success")){
-                       
-                    profilePage = new ProfilePage();
-                    profilePage.setVisible(true);
+
+                    Main.loginPage.setVisible(true);
+                        Main.loginPage.errorLabel.setText(result);
                     LoginPage.registrationPage.setVisible(false);
                         
                     }else{
@@ -377,27 +376,11 @@ public static ProfilePage profilePage;
                     }
                     
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-                    
-                    
-                    
-                   
-                
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
 	
 	} else {
 	errorLabel.setText("Empty fields!");
 	System.out.println("d");
-	return ;
 	}
     }//GEN-LAST:event_RegistrationBtnActionPerformed
 

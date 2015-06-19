@@ -56,7 +56,7 @@ public class LoginPage extends javax.swing.JFrame {
         pass = new javax.swing.JTextField();
         passLabel = new javax.swing.JLabel();
         RegistrBtn = new javax.swing.JButton();
-        email = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
         LoginBtn = new javax.swing.JButton();
         errorLabel = new javax.swing.JLabel();
         voLabel = new javax.swing.JLabel();
@@ -99,7 +99,7 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
-        email.addActionListener(new java.awt.event.ActionListener() {
+        username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailActionPerformed(evt);
             }
@@ -110,7 +110,13 @@ public class LoginPage extends javax.swing.JFrame {
         LoginBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LoginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginBtnActionPerformed(evt);
+                try {
+                    LoginBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -127,36 +133,36 @@ public class LoginPage extends javax.swing.JFrame {
         javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
         LoginPanel.setLayout(LoginPanelLayout);
         LoginPanelLayout.setHorizontalGroup(
-            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(LoginPanelLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                        .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                        .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(LoginPanelLayout.createSequentialGroup()
-                                .addComponent(passLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                                                .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                                                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                                                                .addComponent(passLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(LoginPanelLayout.createSequentialGroup()
+                                                                .addComponent(voLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                                                .addComponent(vo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(51, 51, 51))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(RegistrBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(LoginPanelLayout.createSequentialGroup()
-                                .addComponent(voLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                                .addComponent(vo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(51, 51, 51))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(RegistrBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
-            .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
-                    .addContainerGap(307, Short.MAX_VALUE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(51, 51, 51)))
+                                .addComponent(LoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(72, 72, 72))
+                        .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+                                        .addContainerGap(307, Short.MAX_VALUE)
+                                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(51, 51, 51)))
         );
         LoginPanelLayout.setVerticalGroup(
             LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +186,7 @@ public class LoginPage extends javax.swing.JFrame {
             .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(LoginPanelLayout.createSequentialGroup()
                     .addGap(46, 46, 46)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(185, Short.MAX_VALUE)))
         );
 
@@ -252,43 +258,39 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
 
-    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
-        String e_mail = email.getText();
+    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_LoginBtnActionPerformed
+        String _username = username.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();
-        if (e_mail != null && _pass != null&& _vo != null) {
+        if (_username != null && _pass != null&& _vo != null) {
 
 
-            try {
+
                 
                 ArrayList<String> my = new ArrayList<String>();
-                my.add(0, e_mail);
+                my.add(0, _username);
                 my.add(1, _pass);
                 my.add(2, _vo);
+
                 String login = "login";
                 PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-                    toClient.println(login);
-                    System.out.println("Send message to server");
-                    socket.setKeepAlive(true);
+                toClient.println(login);
+                System.out.println("Send message to server");
+
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
                 System.out.println("Send message to server 2");
-//                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                try {
-                    
-                    objectOutput.writeObject(my);
-                    System.out.println("Send data to server");
-                    titleList = new ArrayList<String>();
-                    socket.setKeepAlive(true);
-                    System.out.println("receive data to server");
-                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-                    System.out.println("receive data to server 2");
-                
-                    Object object = objectInput.readObject();
-                    titleList = (ArrayList<String>) object;
-                    System.out.println(titleList);
-                    String result = titleList.get(4);
-                    System.out.println(result);
-                    errorLabel.setText(result);
+                objectOutput.writeObject(my);
+                System.out.println("Send data to server");
+
+
+                titleList = new ArrayList<String>();
+                System.out.println("receive data to server");
+                ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+                Object object = objectInput.readObject();
+                titleList = (ArrayList<String>) object;
+                String result = titleList.get(4);
+                errorLabel.setText(result);
+
                     if (result.equals("success")){
                     profilePage = new ProfilePage();
                     profilePage.setVisible(true);
@@ -297,25 +299,6 @@ public class LoginPage extends javax.swing.JFrame {
                     }else{
                        errorLabel.setText("error"); 
                     }
-                    
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-                    
-                    
-                    
-                   
-                
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
 
         }
 
@@ -372,7 +355,7 @@ public static void main(String args[]) {
     public javax.swing.JButton RegistrBtn;
     private javax.swing.JLabel TopLabel;
     public javax.swing.JPanel TopPanel;
-    public javax.swing.JTextField email;
+    public javax.swing.JTextField username;
     private javax.swing.JLabel emailLabel;
     public javax.swing.JLabel errorLabel;
     public javax.swing.JTextField pass;

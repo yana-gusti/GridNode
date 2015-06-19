@@ -79,6 +79,8 @@ public class Registration {
 
                 ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
                 objectOutput.writeObject(my);
+            }else {
+                System.out.println("user=null");
             }
                 
     }
