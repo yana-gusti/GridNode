@@ -64,7 +64,7 @@ public class SaveFile {
         
         String message="File transfer success";
           
-        System.out.println(message);  
+        System.out.println(message);
           
         ArrayList<String> my = new ArrayList<String>();
                 
@@ -72,17 +72,12 @@ public class SaveFile {
                 my.add(0, message);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
                 objectOutput.writeObject(my);
-//      FileCreator fileCreator=new FileCreator();
-//      fileCreator.CreateMoveFile(userName, );
-//      System.out.println("create file ./Register"+email+".sh");
-//      String[] command = { "xterm", "/home/yana/Desktop/GridNode/Register"+email+".sh" };
-//      Runtime.getRuntime().exec(command);
-//      Thread.sleep(5000);
-//      Runtime.getRuntime().exec("rm Register"+email+".sh");
-//      Runtime.getRuntime().exec("rm "+userCertName+"");
+
     }  
   
-    public static void throwException(String message) throws Exception {  
-        throw new Exception(message);  
-    }    
+    public static void throwException(String message) throws Exception {
+        throw new Exception(message);
+    }
+
+
 }

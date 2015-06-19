@@ -9,6 +9,7 @@ package Server;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -89,5 +90,21 @@ public class SubmitJob {
                 objectOutput.writeObject(my);
     }
 
-   
+   public static void listOfFiles(String userName, Socket socket) throws IOException {
+       List<String> results = new ArrayList<String>();
+
+
+       File[] files = new File("/home/"+userName+"").listFiles();
+       //If this pathname does not denote a directory, then listFiles() returns null.
+
+       for (File file : files) {
+           if (file.isFile()&&file.getName().endsWith(".xrsl")) {
+               results.add(file.getName());
+           }
+       }
+
+       ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+       objectOutput.writeObject(results);
+
+   }
 }

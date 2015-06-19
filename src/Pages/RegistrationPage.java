@@ -319,12 +319,8 @@ public static ProfilePage profilePage;
 
     private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_RegistrationBtnActionPerformed
         Socket socket = null;
+        socket = new Socket("localhost", 9999);
 
-        try {
-            socket = new Socket("localhost", 9999);
-        } catch (IOException ex) {
-            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
         String _firstName = (String) firstName.getText();
 	String _lastName = (String) lastName.getText();
 	String _vo = (String) birthday.getText();
@@ -333,7 +329,6 @@ public static ProfilePage profilePage;
 	String _passConf = (String) passConf.getText();
         String _userCert = userCertFile.getName();
         String _userKey = userKeyFile.getName();
-	Users newUser = null;
 	System.out.println("q");
 
 	if (_firstName != null && _lastName != null
@@ -354,14 +349,14 @@ public static ProfilePage profilePage;
                 my.add(6, _userCert);
                 my.add(7, _userKey);
                 String login = "registr";
+                SelectFile.SelectFile(userCertFile, errorLabel);
+                SelectFile.SelectFile(userKeyFile, errorLabel);
 
                 System.out.println(login);
                 PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
                 toClient.println(login);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
                 objectOutput.writeObject(my);
-                SelectFile.SelectFile(userCertFile, errorLabel);
-                SelectFile.SelectFile(userKeyFile, errorLabel);
 
                     titleList = new ArrayList<String>();
                     ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());

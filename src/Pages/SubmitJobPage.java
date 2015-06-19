@@ -27,7 +27,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
     /**
      * Creates new form SubmitJobPage
      */
-    public SubmitJobPage() {
+    public SubmitJobPage() throws IOException, ClassNotFoundException {
         initComponents();
     }
 
@@ -38,7 +38,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws IOException, ClassNotFoundException {
 
         TopPanel = new JPanel();
         TopLabel = new javax.swing.JLabel();
@@ -81,11 +81,28 @@ public class SubmitJobPage extends javax.swing.JFrame {
         SubmitJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SubmitJobBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitJobBtnActionPerformed(evt);
+                try {
+                    SubmitJobBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
-        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select your XRSL file", "CeO2.scf.in", "nordu_start.xrsl" }));
+        socket = new Socket("localhost", 9999);
+        String command = "listOfJobs";
+        PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
+        toClient.println(command);
+
+        ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+
+        Object object = objectInput.readObject();
+        ArrayList<String> titleList = (ArrayList<String>) object;
+        String [] list =(String[]) titleList.toArray();
+
+        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(list));
         SelectJobFileCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelectJobFileCBActionPerformed(evt);
@@ -171,7 +188,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
  public SubmitJobPage(final TextArea _textArea) {
       textArea = _textArea;
     }
-    private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitJobBtnActionPerformed
+    private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformed
      textArea.setText("");
 
 //     String fileName= SelectJobFileCB.getSelectedItem().toString();
@@ -179,65 +196,29 @@ public class SubmitJobPage extends javax.swing.JFrame {
      String clusterName = cluster.getText();
 
       Socket socket = null;
-        try {
-            socket = new Socket("localhost", 9999);
-        } catch (IOException ex) {
-            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      socket = new Socket("localhost", 9999);
+
 	 if (fileName != null) {
                 ArrayList<String> my = new ArrayList<String>();
                 my.add(0, clusterName);
                 my.add(1, fileName);
                 String command = "submitJob";
-                PrintWriter toClient = null;
-            try {
-                toClient = new PrintWriter(socket.getOutputStream(), true);
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    toClient.println(command);
-                ObjectOutputStream objectOutput = null;
-            try {
-                objectOutput = new ObjectOutputStream(socket.getOutputStream());
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
+                toClient.println(command);
+                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
 
-            try {
-                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-
-            try {
                 objectOutput.writeObject(my);
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
                     ArrayList<String> titleList = new ArrayList<String>();
 
-                    ObjectInputStream objectInput = null;
-            try {
-                objectInput = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
 
-
-                    Object object = null;
-            try {
-                object = objectInput.readObject();
+                    Object object = objectInput.readObject();
                  titleList = (ArrayList<String>) object;
                     System.out.println(titleList);
                     String result = titleList.get(0);
                     System.out.println(result);
                     textArea.setText(result);
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
 
         }  else{
@@ -347,7 +328,13 @@ public class SubmitJobPage extends javax.swing.JFrame {
         /* Create and display the form */
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SubmitJobPage().setVisible(true);
+                try {
+                    new SubmitJobPage().setVisible(true);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -363,6 +350,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
     public javax.swing.JLabel VONameLb;
     public javax.swing.JTextField cluster;
     public TextArea textArea;
+    public Socket socket = null;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -370,15 +358,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
      * @param p
      * @return
      */
-    public static boolean isAlive(Process p) {
-    try {
-      p.exitValue();
-      return false;
-    }
-    catch (IllegalThreadStateException e) {
-      return true;
-    }
-  }
+
 }
 
 

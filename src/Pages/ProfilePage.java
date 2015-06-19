@@ -138,7 +138,13 @@ public class ProfilePage extends JFrame {
         SubmitJobBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SubmitJobBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitJobBtnActionPerformed(evt);
+                try {
+                    SubmitJobBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -345,7 +351,7 @@ public class ProfilePage extends JFrame {
 
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
-    private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitJobBtnActionPerformed
+    private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformed
         submitJobPage=new SubmitJobPage();
         submitJobPage.setVisible(true);
         LoginPage.profilePage.setVisible(false);

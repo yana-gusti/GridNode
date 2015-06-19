@@ -257,12 +257,8 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_LoginBtnActionPerformed
         Socket socket = null;
+        socket = new Socket("localhost", 9999);
 
-        try {
-            socket = new Socket("localhost", 9999);
-        } catch (IOException ex) {
-            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
         String _username = username.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();
@@ -288,7 +284,7 @@ public class LoginPage extends javax.swing.JFrame {
 
 
                 titleList = new ArrayList<String>();
-                System.out.println("receive data to server");
+                System.out.println("receive data from server");
                 ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
                 Object object = objectInput.readObject();
                 titleList = (ArrayList<String>) object;

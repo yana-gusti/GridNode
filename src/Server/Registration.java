@@ -52,7 +52,7 @@ public class Registration {
                     configPass = titleList.get(5);
                     userCertName = titleList.get(6);
                     userKeyName = titleList.get(7);
-                    Users user = Registration(firtsName, lastName, vo, email, pass, pass);
+                    Users user = Registration(firtsName, lastName, vo, email, pass, configPass);
                     System.out.println("register new user");
                     FileCreator fileCreator = new FileCreator();
                     fileCreator.CreateRegistrationFile(email, userCertName, userKeyName);
@@ -63,11 +63,11 @@ public class Registration {
                     Runtime.getRuntime().exec("rm Register"+email+".sh");
                     Runtime.getRuntime().exec("rm "+userCertName+"");
                     Runtime.getRuntime().exec("rm "+userKeyName+"");
-                    fileCreator.CreateLoginFile(pass);
-                    fileCreator.CreateProxyFile(vo, email);
-                    Runtime.getRuntime().exec("./Login.sh");
-                    Runtime.getRuntime().exec("rm Login.sh");
-                    Runtime.getRuntime().exec("rm proxyInit.sh");
+//                    fileCreator.CreateLoginFile(pass);
+//                    fileCreator.CreateProxyFile(vo, email);
+//                    Runtime.getRuntime().exec("./Login.sh");
+//                    Runtime.getRuntime().exec("rm Login.sh");
+//                    Runtime.getRuntime().exec("rm proxyInit.sh");
             if(user!=null) {
                 ArrayList<String> my = new ArrayList<String>();
 
@@ -87,12 +87,12 @@ public class Registration {
     
 
     
-    public static Users Registration ( String _firstName,String _lastName, String _birthday,
-            String _email, String _pass, String _passConf){
+    public static Users Registration ( String _firstName,String _lastName, String vo,
+            String username, String _pass, String _passConf){
 
         for (Integer i = 0; i < UserServices.getAll().size(); i++) {
-	if (UserServices.getAll().get(i).getUserName().equals(_email)) {
-	message = "Sorry, you can't registr as "+ _email+"";
+	if (UserServices.getAll().get(i).getUserName().equals(username)) {
+	message = "Sorry, you can't registr as "+ username+"";
 	System.out.println("a");
 
 	}else{
@@ -108,7 +108,7 @@ public class Registration {
 	}
 	}
 	}
-        newUser = new Users(null, _firstName, _lastName, _birthday, _email, _pass);
+        newUser = new Users(null, _firstName, _lastName, vo, username, _pass);
 	System.out.println("qqq");
 	DBConnection.save(newUser);
         System.out.println("jfhKDJKLDFHlgf");

@@ -66,7 +66,11 @@ public class UserThread extends Thread{
              }else if (action.equals("submitJob")) {
                SubmitJob.SubmitJob(s);
 
-             }
+             }else if (action.equals("listOfJobs")) {
+                SubmitJob.listOfFiles(Login.user.getUserName(), s);
+
+            }
+
            
              System.out.println("connection reset2");
             s.setKeepAlive(true);

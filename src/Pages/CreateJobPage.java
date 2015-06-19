@@ -130,7 +130,13 @@ public class CreateJobPage extends JFrame {
         CreateJobBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CreateJobBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateJobBtnActionPerformed(evt);
+                try {
+                    CreateJobBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -602,69 +608,32 @@ public class CreateJobPage extends JFrame {
         }
     }//GEN-LAST:event_OpenJobBtnActionPerformed
 
-    private void CreateJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateJobBtnActionPerformed
+    private void CreateJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_CreateJobBtnActionPerformed
         Socket socket = null;
+        socket = new Socket("localhost", 9999);
 
-        try {
-            socket = new Socket("localhost", 9999);
-        } catch (IOException ex) {
-            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         fileName = JOptionPane.showInputDialog("Enter file name");
         String resultXRSL = Result.getText();
 	 if (fileName != null && resultXRSL!= null) {
 
-
-
                 ArrayList<String> my = new ArrayList<String>();
                 my.add(0, fileName);
                 my.add(1, resultXRSL);
                 String command = "createXRSLFile";
-                PrintWriter toClient = null;
-            try {
-                toClient = new PrintWriter(socket.getOutputStream(), true);
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    toClient.println(command);
-                ObjectOutputStream objectOutput = null;
-            try {
-                objectOutput = new ObjectOutputStream(socket.getOutputStream());
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
+                toClient.println(command);
 
-            try {
-                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                ObjectOutputStream objectOutput= new ObjectOutputStream(socket.getOutputStream());
 
-
-            try {
                 objectOutput.writeObject(my);
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
                     titleList = new ArrayList<String>();
 
-                    ObjectInputStream objectInput = null;
-            try {
-                objectInput = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
 
+                    Object object  = objectInput.readObject();
 
-                    Object object = null;
-            try {
-                object = objectInput.readObject();
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
                     titleList = (ArrayList<String>) object;
                     System.out.println(titleList);
                     String result = titleList.get(0);
