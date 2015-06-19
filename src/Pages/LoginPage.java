@@ -14,12 +14,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.net.UnknownHostException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static grid_node.Main.socket;
 
 /**
  *
@@ -28,9 +27,7 @@ import static grid_node.Main.socket;
 public class LoginPage extends javax.swing.JFrame {
     public static Users user;
     public static ProfilePage profilePage;
-    public static ForgotPassPage forgotPassPage;
     public static RegistrationPage registrationPage;
-    public static SubmitJobPage submitJobPage;
 
     /**
      * Creates new form LoginPage
@@ -259,6 +256,13 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_emailActionPerformed
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_LoginBtnActionPerformed
+        Socket socket = null;
+
+        try {
+            socket = new Socket("localhost", 9999);
+        } catch (IOException ex) {
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String _username = username.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();

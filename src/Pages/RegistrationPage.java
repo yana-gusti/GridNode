@@ -12,12 +12,10 @@ import services.Users;
 
 import javax.swing.*;
 import java.io.*;
-import java.net.UnknownHostException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static grid_node.Main.socket;
 
 /**
  *
@@ -320,7 +318,13 @@ public static ProfilePage profilePage;
     }//GEN-LAST:event_userCertBtnActionPerformed
 
     private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_RegistrationBtnActionPerformed
-      
+        Socket socket = null;
+
+        try {
+            socket = new Socket("localhost", 9999);
+        } catch (IOException ex) {
+            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String _firstName = (String) firstName.getText();
 	String _lastName = (String) lastName.getText();
 	String _vo = (String) birthday.getText();

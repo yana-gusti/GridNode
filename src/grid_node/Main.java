@@ -16,15 +16,12 @@ import java.net.Socket;
  */
 public class Main {
     public static LoginPage loginPage;
-    public static Socket socket;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        
-        socket = new Socket("localhost", 9999);
-        
+
          loginPage = new LoginPage();
          loginPage.setVisible(true);
     }
