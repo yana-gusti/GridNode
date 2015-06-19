@@ -2,69 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2434f25-6275-4c11-b14f-ccb46d669fa2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$1.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$10.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$11.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$2.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$3.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$4.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$5.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$6.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$7.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$8.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$9.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage.class" afterPath="$PROJECT_DIR$/build/classes/Pages/CreateJobPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/services/DBConnection.class" afterPath="$PROJECT_DIR$/build/classes/services/DBConnection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/EditProfilePage$1.class" afterPath="$PROJECT_DIR$/build/classes/Pages/EditProfilePage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/EditProfilePage.class" afterPath="$PROJECT_DIR$/build/classes/Pages/EditProfilePage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/FileCreator.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/FileCreator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/services/Interface.class" afterPath="$PROJECT_DIR$/build/classes/services/Interface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage$1.class" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage$2.class" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage$3.class" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage$4.class" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage$5.class" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage$6.class" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage.class" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/grid_node/Main.class" afterPath="$PROJECT_DIR$/build/classes/grid_node/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$1.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$10.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$2.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$3.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$4.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$5.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$6.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$7.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$8.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$9.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage.class" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$1.class" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$2.class" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$3.class" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$4.class" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$5.class" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage.class" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$1.class" afterPath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$2.class" afterPath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$3.class" afterPath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage$1.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage$2.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage$3.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$4.class" afterPath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage$4.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$5.class" afterPath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage.class" afterPath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/SubmitJobPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/services/UserServices.class" afterPath="$PROJECT_DIR$/build/classes/services/UserServices.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/services/Users.class" afterPath="$PROJECT_DIR$/build/classes/services/Users.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/FileCreator.java" afterPath="$PROJECT_DIR$/src/Server/FileCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/LoginPage.form" afterPath="$PROJECT_DIR$/build/classes/Pages/LoginPage.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/ProfilePage.form" afterPath="$PROJECT_DIR$/build/classes/Pages/ProfilePage.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage.form" afterPath="$PROJECT_DIR$/build/classes/Pages/RegistrationPage.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/SubmitJob.java" afterPath="$PROJECT_DIR$/src/Server/SubmitJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage.form" afterPath="$PROJECT_DIR$/build/classes/Pages/SubmitJobPage.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/SubmitJobPage.form" afterPath="$PROJECT_DIR$/src/Pages/SubmitJobPage.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/SubmitJobPage.java" afterPath="$PROJECT_DIR$/src/Pages/SubmitJobPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.properties" afterPath="$PROJECT_DIR$/nbproject/private/private.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.xml" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Grid_Node.iws" />
@@ -88,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SubmitJob.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SubmitJob.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Server/SubmitJob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.37845305">
+              <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -102,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/src/Server/UserThread.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="48" />
+              <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -128,13 +72,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubmitJobPage.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SubmitJobPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.2135923">
-              <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="282" column="0" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
               <folding>
                 <element signature="e#922#952#0" expanded="true" />
+                <element signature="e#957#1046#0" expanded="true" />
                 <element signature="e#4832#5236#0" expanded="true" />
                 <element signature="e#5235#5236#0" expanded="true" />
               </folding>
@@ -181,8 +126,8 @@
         <option value="$PROJECT_DIR$/src/Server/UserThread.java" />
         <option value="$PROJECT_DIR$/src/Pages/ProfilePage.java" />
         <option value="$PROJECT_DIR$/src/Server/FileCreator.java" />
-        <option value="$PROJECT_DIR$/src/Server/SubmitJob.java" />
         <option value="$PROJECT_DIR$/src/Pages/SubmitJobPage.java" />
+        <option value="$PROJECT_DIR$/src/Server/SubmitJob.java" />
       </list>
     </option>
   </component>
@@ -809,7 +754,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434720225751</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Submit job">
+      <created>1434723648694</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1434723648694</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -817,33 +768,33 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1295" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293556" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39969134" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32561728" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24976076" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19455564" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19455564" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39506173" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39506173" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271605" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32561728" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -870,7 +821,42 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java</url>
+          <line>282</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java</url>
+          <line>284</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java</url>
+          <line>283</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java</url>
+          <line>285</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java</url>
+          <line>286</line>
+          <properties />
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="26" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -885,6 +871,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#922#952#0" expanded="true" />
+            <element signature="e#957#1046#0" expanded="true" />
             <element signature="e#4832#5236#0" expanded="true" />
             <element signature="e#5235#5236#0" expanded="true" />
           </folding>
@@ -1234,28 +1221,29 @@
     <entry file="file://$PROJECT_DIR$/src/Server/UserThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/SubmitJob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+          <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.2135923">
-          <caret line="92" column="11" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="282" column="0" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
           <folding>
             <element signature="e#922#952#0" expanded="true" />
+            <element signature="e#957#1046#0" expanded="true" />
             <element signature="e#4832#5236#0" expanded="true" />
             <element signature="e#5235#5236#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/SubmitJob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37845305">
+          <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>

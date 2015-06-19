@@ -272,10 +272,12 @@ public class SubmitJobPage extends javax.swing.JFrame {
             ArrayList<String> my = new ArrayList<String>();
             my.add(0, fileName);
             String command = "findXRSLFile";
+            System.out.println("findXRSLFile");
             PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
             toClient.println(command);
             ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
             objectOutput.writeObject(my);
+            System.out.println("fsend file name");
 
             ArrayList<String> titleList = new ArrayList<String>();
             ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());

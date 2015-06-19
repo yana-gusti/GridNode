@@ -29,22 +29,16 @@ public class SubmitJob {
                     titleList = (ArrayList<String>) object;
                     fileNameXRSL = titleList.get(0);
                     System.out.println(fileNameXRSL);
+        String command = "cat /home/"+Login.user.getUserName()+"/"+fileNameXRSL+"";
+        Process child = Runtime.getRuntime().exec(command);
                     
-                     BufferedReader br = new BufferedReader(new FileReader(fileNameXRSL));
-                           try {
-                              StringBuilder sb = new StringBuilder();
-                              String line = br.readLine();
+                     BufferedReader br = new BufferedReader(new InputStreamReader(child.getInputStream()));
 
-                              while (line != null) {
-                              sb.append(line);
-                              sb.append(System.lineSeparator());
-                              line = br.readLine();
-                              }
-                              everything= sb.toString();
-                             System.out.println(everything);
-                            } finally {
-                             br.close();
-                             }
+                         while ((everything = br.readLine()) != null) {
+                            System.out.println(everything);
+                            }
+                            br.close();
+
                     
                 ArrayList<String> my = new ArrayList<String>();
                 
