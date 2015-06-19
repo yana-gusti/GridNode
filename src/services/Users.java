@@ -11,8 +11,8 @@ public class Users {
 	public Integer id;
 	public String first_name;
 	public String last_name;
-	public String birthday;
-	public String e_mail;
+	public String vo;
+	public String username;
 
 	public String pass;
 
@@ -41,19 +41,19 @@ public class Users {
 	}
 
 	public String getVO() {
-		return birthday;
+		return vo;
 	}
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+	public void setVO(String birthday) {
+		this.vo = birthday;
 	}
 
-	public String getE_mail() {
-		return e_mail;
+	public String getUserName() {
+		return username;
 	}
 
-	public void setE_mail(String e_mail) {
-		this.e_mail = e_mail;
+	public void setUserName(String e_mail) {
+		this.username = e_mail;
 	}
 
 
@@ -67,12 +67,12 @@ public class Users {
 	}
 
 	public Users(Integer id, String first_name, String last_name,
-			 String birthday, String e_mail,  String pass) {
+			 String vo, String username,  String pass) {
 		this.id=id;
 		this.first_name = first_name;
 		this.last_name = last_name;
-		this.birthday = birthday;
-		this.e_mail =e_mail;
+		this.vo = vo;
+		this.username =username;
 		this.pass = pass;
 
 	}

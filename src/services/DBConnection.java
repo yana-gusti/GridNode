@@ -12,31 +12,30 @@ import java.util.logging.Logger;
 
 
 public class DBConnection implements Interface<Users> {
-        public static String table = "user_table" ;
+        public static String table = "users" ;
+		public static Connection connection=null;
 
-	public static String connectionUrl = "jdbc:mysql://0.0.0.0/users?user=root&password=1";
 
-	public static Connection connection;
-
-	public DBConnection() {
-           
-
-		try {
-            Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(connectionUrl);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-     
 
 	public ArrayList<Users> getAll() {
-               
+		try {
+			String userName = "root";
+			String password = "1";
+
+			String url = "jdbc:mysql://localhost:3306/gridnode";
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connection = DriverManager.getConnection(url, userName, password);
+			connection.getClientInfo();
+			System.out.println("Database connection established");
+		} catch (Exception e) {
+			System.err.println("Cannot connect to database server");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 		ArrayList<Users> array = new ArrayList<Users>();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM "+table;
+		String SQL = "SELECT * FROM "+table+";";
 
 		try {
 			stmt = connection.createStatement();
@@ -44,34 +43,52 @@ public class DBConnection implements Interface<Users> {
 			while (rs.next()) {
 				Users tmpUser = new Users(null, rs.getString("first_name"),
 						rs.getString("last_name"), 
-						rs.getString("birthday"), rs.getString("e_mail"), rs.getString("pass"));
+						rs.getString("vo"), rs.getString("username"), rs.getString("pass"));
 				tmpUser.setId(rs.getInt("id"));
 				array.add(tmpUser);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			if (connection != null) {
+				try {
+					connection.close();
+					System.out.println("Database Connection Terminated");
+				} catch (Exception e) {}
+			}
 		}
-
-            
-
 		return array;
 	}
 
 	public static int save(Users user) {
+		try {
+			String userName = "root";
+			String password = "1";
+
+			String url = "jdbc:mysql://localhost:3306/gridnode";
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connection = DriverManager.getConnection(url, userName, password);
+			connection.getClientInfo();
+			System.out.println("Database connection established");
+		} catch (Exception e) {
+			System.err.println("Cannot connect to database server");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int id =1;
-		String insertSQL = "INSERT INTO "+table+" ("+table+".first_name, "+table+".last_name, "+table+".birthday, "+table+".e_mail,  "+table+".pass) VALUES('"
+		String insertSQL = "INSERT INTO "+table+" ("+table+".first_name, "+table+".last_name, "+table+".vo, "+table+".username,  "+table+".pass) VALUES('"
 				+ user.getFirst_name()
 				+ "', '"
 				+ user.getLast_name()
 				+ "', '"
 				+ user.getVO()
 				+ "', '"
-				+ user.getE_mail()
+				+ user.getUserName()
 				+ "', '"
-				+ user.getPass() + "')";
+				+ user.getPass() + "');";
 
 		try {
 			stmt = connection.prepareStatement(insertSQL,
@@ -87,21 +104,39 @@ public class DBConnection implements Interface<Users> {
                         
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			if (connection != null) {
+				try {
+					connection.close();
+					System.out.println("Database Connection Terminated");
+				} catch (Exception e) {}
+			}
 		}
-
-
 		return id;
-                
+
                 
 	}
 
 	public static ArrayList<Users> getUser(Users user) {
+		try {
+			String userName = "root";
+			String password = "1";
 
+			String url = "jdbc:mysql://localhost:3306/gridnode";
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connection = DriverManager.getConnection(url, userName, password);
+			connection.getClientInfo();
+			System.out.println("Database connection established");
+		} catch (Exception e) {
+			System.err.println("Cannot connect to database server");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 		ArrayList<Users> arrayUsers = new ArrayList<Users>();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM "+table+" WHERE e_mail = '"
-				+ user.getE_mail() + "'";
+		String SQL = "SELECT * FROM "+table+" WHERE username = '"
+				+ user.getUserName() + "';";
 		System.out.println(SQL);
 		try {
 			stmt = connection.createStatement();
@@ -109,7 +144,7 @@ public class DBConnection implements Interface<Users> {
 			while (rs.next()) {
 				user = new Users(null, rs.getString("first_name"),
 						rs.getString("last_name"), 
-						rs.getString("birthday"), rs.getString("e_mail"),
+						rs.getString("vo"), rs.getString("username"),
 						 rs.getString("pass"));
 				user.setId(rs.getInt("id"));
 				arrayUsers.add(user);
@@ -117,8 +152,14 @@ public class DBConnection implements Interface<Users> {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			if (connection != null) {
+				try {
+					connection.close();
+					System.out.println("Database Connection Terminated");
+				} catch (Exception e) {}
+			}
 		}
-
 		return arrayUsers;
 
 	}
@@ -127,13 +168,27 @@ public class DBConnection implements Interface<Users> {
 
 	
 	public boolean delete(Users user) {
+		try {
+			String userName = "root";
+			String password = "1";
+
+			String url = "jdbc:mysql://localhost:3306/gridnode";
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connection = DriverManager.getConnection(url, userName, password);
+			connection.getClientInfo();
+			System.out.println("Database connection established");
+		} catch (Exception e) {
+			System.err.println("Cannot connect to database server");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 
 		PreparedStatement stmt = null;
 
 		try {
 
-			String insertSQL = "DELETE FROM "+table+" WHERE e_mail = '"
-					+ user.getE_mail() + "';";
+			String insertSQL = "DELETE FROM "+table+" WHERE username = '"
+					+ user.getUserName() + "';";
 			stmt = connection.prepareStatement(insertSQL,
 					Statement.RETURN_GENERATED_KEYS);
 			stmt.executeUpdate();
@@ -143,8 +198,14 @@ public class DBConnection implements Interface<Users> {
                 connection.close();
                 } catch (SQLException ex) {
                         Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                        
+                }finally {
+					if (connection != null) {
+						try {
+							connection.close();
+							System.out.println("Database Connection Terminated");
+						} catch (Exception e) {}
+					}
+				}
 			return true;
      
                 
@@ -156,7 +217,20 @@ public class DBConnection implements Interface<Users> {
 	
 
 	public static void flushTable() {
+		try {
+			String userName = "root";
+			String password = "1";
 
+			String url = "jdbc:mysql://localhost:3306/gridnode";
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connection = DriverManager.getConnection(url, userName, password);
+			connection.getClientInfo();
+			System.out.println("Database connection established");
+		} catch (Exception e) {
+			System.err.println("Cannot connect to database server");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 		PreparedStatement stmt = null;
 
 		try {
@@ -165,11 +239,18 @@ public class DBConnection implements Interface<Users> {
 			stmt = connection.prepareStatement(deleteSQL,
 					Statement.RETURN_GENERATED_KEYS);
 			stmt.executeUpdate();
-			
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			
+		}finally {
+			if (connection != null) {
+				try {
+					connection.close();
+					System.out.println("Database Connection Terminated");
+				} catch (Exception e) {}
+			}
 		}
 
 

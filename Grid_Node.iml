@@ -7,13 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="mysql:mysql-connector-java:5.0.2" level="project" />
-    <orderEntry type="library" name="org.jglobus:JGlobus-Core:2.0.4" level="project" />
-    <orderEntry type="library" name="org.jglobus:JGlobus-GRAM:2.0.0" level="project" />
-    <orderEntry type="library" name="org.jglobus:JGlobus-GridFTP:2.0.0" level="project" />
-    <orderEntry type="library" name="arc (2)" level="project" />
     <orderEntry type="library" name="org.apache.openwebbeans:openwebbeans-tomcat7:1.1.5" level="application" />
     <orderEntry type="library" name="mysql-connector-java-5.1.30-bin" level="project" />
   </component>
 </module>
-

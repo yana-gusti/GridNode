@@ -74,7 +74,7 @@ public class Registration {
                 my.add(0, user.getFirst_name());
                 my.add(1, user.getLast_name());
                 my.add(2, user.getVO());
-                my.add(3, user.getE_mail());
+                my.add(3, user.getUserName());
                 my.add(4, message);
 
                 ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
@@ -89,7 +89,7 @@ public class Registration {
             String _email, String _pass, String _passConf){
 
         for (Integer i = 0; i < UserServices.getAll().size(); i++) {
-	if (UserServices.getAll().get(i).getE_mail().equals(_email)) {
+	if (UserServices.getAll().get(i).getUserName().equals(_email)) {
 	message = "Sorry, you can't registr as "+ _email+"";
 	System.out.println("a");
 

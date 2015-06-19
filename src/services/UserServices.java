@@ -30,7 +30,7 @@ public class UserServices {
     public static Users findUser(String e_mail, String password) {
         
         for (Users u : users) {
-            if (e_mail.equals(u.getE_mail()) && (password.equals(u.getPass()))) {
+            if (e_mail.equals(u.getUserName()) && (password.equals(u.getPass()))) {
                 
                 return u;
             }
