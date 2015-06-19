@@ -40,15 +40,16 @@ public class SubmitJobPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() throws IOException, ClassNotFoundException {
 
-        TopPanel = new JPanel();
+        TopPanel = new javax.swing.JPanel();
         TopLabel = new javax.swing.JLabel();
-        MainPanel = new JPanel();
+        MainPanel = new javax.swing.JPanel();
         VONameLb = new javax.swing.JLabel();
         cluster = new javax.swing.JTextField();
         CancelBtn = new javax.swing.JButton();
         SubmitJobBtn = new javax.swing.JButton();
-        textArea = new TextArea();
+        textArea = new java.awt.TextArea();
         SelectJobFileCB = new javax.swing.JComboBox();
+        ViewJobBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,21 +92,46 @@ public class SubmitJobPage extends javax.swing.JFrame {
             }
         });
 
+        Socket socket = null;
         socket = new Socket("localhost", 9999);
         String command = "listOfJobs";
         PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
         toClient.println(command);
+        ArrayList<String> titleList = new ArrayList<String>();
 
         ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
 
         Object object = objectInput.readObject();
-        ArrayList<String> titleList = (ArrayList<String>) object;
-        String [] list =(String[]) titleList.toArray();
+        titleList = (ArrayList<String>) object;
+
+        String [] list = titleList.toArray(new String[titleList.size()]);
+
 
         SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(list));
         SelectJobFileCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelectJobFileCBActionPerformed(evt);
+                try {
+                    SelectJobFileCBActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        ViewJobBtn.setBackground(new java.awt.Color(0, 204, 204));
+        ViewJobBtn.setText("Open .xrsl file");
+        ViewJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ViewJobBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    ViewJobBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -115,14 +141,14 @@ public class SubmitJobPage extends javax.swing.JFrame {
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(CancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cluster)
-                        .addComponent(SubmitJobBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cluster)
+                    .addComponent(SubmitJobBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(VONameLb)
-                    .addComponent(SelectJobFileCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(SelectJobFileCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ViewJobBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -132,9 +158,10 @@ public class SubmitJobPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
                         .addComponent(SelectJobFileCB, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addGap(26, 26, 26)
+                        .addComponent(ViewJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
                         .addComponent(VONameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(cluster, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,8 +218,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformed
      textArea.setText("");
 
-//     String fileName= SelectJobFileCB.getSelectedItem().toString();
-     String fileName = "nordu_start.xrsl";
+     String fileName= SelectJobFileCB.getSelectedItem().toString();
      String clusterName = cluster.getText();
 
       Socket socket = null;
@@ -229,77 +255,36 @@ public class SubmitJobPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 
-    private void SelectJobFileCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectJobFileCBActionPerformed
-
-        if(SelectJobFileCB.getSelectedItem().toString()!="Select your XRSL file"){
-            String fileName=SelectJobFileCB.getSelectedItem().toString();
-            Socket socket = null;
-        try {
-            socket = new Socket("localhost", 9999);
-        } catch (IOException ex) {
-            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-	 if (fileName != null) {
-                ArrayList<String> my = new ArrayList<String>();
-                my.add(0, fileName);
-                String command = "findXRSLFile";
-                PrintWriter toClient = null;
-            try {
-                toClient = new PrintWriter(socket.getOutputStream(), true);
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    toClient.println(command);
-                ObjectOutputStream objectOutput = null;
-            try {
-                objectOutput = new ObjectOutputStream(socket.getOutputStream());
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            try {
-                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    private void SelectJobFileCBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SelectJobFileCBActionPerformed
 
 
-            try {
-                objectOutput.writeObject(my);
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    ArrayList<String> titleList = new ArrayList<String>();
+            
 
-                    ObjectInputStream objectInput = null;
-            try {
-                objectInput = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-
-                    Object object = null;
-            try {
-                object = objectInput.readObject();
-                titleList = (ArrayList<String>) object;
-                    System.out.println(titleList);
-                    String result = titleList.get(0);
-                    System.out.println(result);
-                    textArea.setText(result);
-                    object = objectInput.readObject();
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-
-        }  else{
-            textArea.setText("");
-        }
-        }
+        
     }//GEN-LAST:event_SelectJobFileCBActionPerformed
+
+    private void ViewJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_ViewJobBtnActionPerformed
+        String fileName = SelectJobFileCB.getSelectedItem().toString();
+        Socket socket = null;
+        socket = new Socket("localhost", 9999);
+
+        if (fileName != null) {
+            ArrayList<String> my = new ArrayList<String>();
+            my.add(0, fileName);
+            String command = "findXRSLFile";
+            PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
+            toClient.println(command);
+            ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+            objectOutput.writeObject(my);
+
+            ArrayList<String> titleList = new ArrayList<String>();
+            ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+            Object object = objectInput.readObject();
+            titleList = (ArrayList<String>) object;
+            String result = titleList.get(0);
+            textArea.setText(result);
+        }
+    }
 
   public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -342,15 +327,15 @@ public class SubmitJobPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton CancelBtn;
-    private JPanel MainPanel;
+    private javax.swing.JPanel MainPanel;
     public static javax.swing.JComboBox SelectJobFileCB;
     public javax.swing.JButton SubmitJobBtn;
     private javax.swing.JLabel TopLabel;
-    public JPanel TopPanel;
+    public javax.swing.JPanel TopPanel;
     public javax.swing.JLabel VONameLb;
+    public javax.swing.JButton ViewJobBtn;
     public javax.swing.JTextField cluster;
-    public TextArea textArea;
-    public Socket socket = null;
+    public java.awt.TextArea textArea;
     // End of variables declaration//GEN-END:variables
 
     /**

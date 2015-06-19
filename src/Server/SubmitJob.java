@@ -63,9 +63,12 @@ public class SubmitJob {
                     cluster = titleList.get(0);
                     fileNameXRSL=titleList.get(1);
                     System.out.println("arcsub -c "+cluster+" "+fileNameXRSL);
+                    FileCreator fileCreator = new FileCreator();
+                    fileCreator.SubmitJobFile(Login.user.getUserName(), cluster, fileNameXRSL);
         String s = null;
        try {
-            Process p = Runtime.getRuntime().exec("arcsub -c "+cluster+" "+fileNameXRSL);
+           String[] command = { "xterm", "./SubmitJobFile"+Login.user.getUserName()+".sh" };
+           Process p =Runtime.getRuntime().exec(command);
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             // read the output from the command
@@ -73,7 +76,7 @@ public class SubmitJob {
                 textArea=s+ "\n";
             }
             // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
+           System.out.println("Here is the standard error of the command (if any):\n");
             while ((s = stdError.readLine()) != null) {
                 textArea=s+ "\n";
             }   
@@ -88,6 +91,7 @@ public class SubmitJob {
                 my.add(0, textArea);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
                 objectOutput.writeObject(my);
+        Runtime.getRuntime().exec("rm SubmitJobFile"+Login.user.getUserName()+".sh");
     }
 
    public static void listOfFiles(String userName, Socket socket) throws IOException {

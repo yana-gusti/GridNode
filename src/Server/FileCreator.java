@@ -103,7 +103,7 @@ public class FileCreator {
             output.newLine();
             output.append("sudo -H -u "+userName+" bash -c 'cp "
                     + "/home/yana/Desktop/GridNode/"+fileName+" /home/"+userName+"'");
-
+            output.newLine();
             output.append("sleep 2");
             Runtime.getRuntime().exec("chmod +x Move"+userName+".sh");
             System.out.println("Files were moved");
@@ -113,13 +113,24 @@ public class FileCreator {
             e.printStackTrace();
         }
 
-
-
-
-
     }
 
+        public static void SubmitJobFile(String userName, String cluster, String fileNameXRSL) throws IOException {
+            File file1 = new File("SubmitJobFile"+userName+".sh");
+            BufferedWriter output = new BufferedWriter(new FileWriter(file1));
 
+            output.append("#! /bin/bash");
+            output.newLine();
+            output.append("echo 1  | sudo -H -u "+userName+" bash -c 'cd /home/"+userName+"'");
+            output.newLine();
+            output.append("echo 1  | sudo -H -u "+userName+" bash -c 'arcsub -c "+cluster+" "+fileNameXRSL+"'");
+            output.newLine();
+            output.append("sleep 2");
+            Runtime.getRuntime().exec("chmod +x SubmitJobFile"+userName+".sh");
+            System.out.println("SubmitJobFile was created");
+
+            output.close();
+        }
 
         public static void main (String arg[]) throws IOException {
 
