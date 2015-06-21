@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="org.apache.openwebbeans:openwebbeans-tomcat7:1.1.5" level="application" />
     <orderEntry type="library" name="mysql-connector-java-5.1.30-bin" level="project" />
+    <orderEntry type="library" name="org.hyperscala:hyperscala-socketio_2.10:0.8.4" level="project" />
   </component>
 </module>

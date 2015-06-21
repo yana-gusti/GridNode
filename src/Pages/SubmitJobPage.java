@@ -234,17 +234,13 @@ public class SubmitJobPage extends javax.swing.JFrame {
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
 
                 objectOutput.writeObject(my);
+         try {
+             Thread.sleep(5000);
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
+         getResult(textArea, "getResultJobList");
 
-                    ArrayList<String> titleList = new ArrayList<String>();
-
-                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-
-                    Object object = objectInput.readObject();
-                 titleList = (ArrayList<String>) object;
-                    System.out.println(titleList);
-                    String result = titleList.get(0);
-                    System.out.println(result);
-                    textArea.setText(result);
 
 
         }  else{
@@ -254,6 +250,44 @@ public class SubmitJobPage extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
+    public static void getResult(TextArea textArea, String command){
+        Socket socket = null;
+        try {
+            socket = new Socket("localhost", 9999);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        String command = "getResult";
+        PrintWriter toClient = null;
+        try {
+            toClient = new PrintWriter(socket.getOutputStream(), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        toClient.println(command);
+
+        ObjectInputStream objectInput = null;
+        try {
+            objectInput = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Object object  = null;
+        try {
+            object = objectInput.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<String> titleList = (ArrayList<String>) object;
+        System.out.println(titleList);
+        String result = titleList.get(0);
+        System.out.println(result);
+        textArea.setText(result);
+    }
 
     private void SelectJobFileCBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SelectJobFileCBActionPerformed
 
@@ -264,7 +298,10 @@ public class SubmitJobPage extends javax.swing.JFrame {
     }//GEN-LAST:event_SelectJobFileCBActionPerformed
 
     private void ViewJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_ViewJobBtnActionPerformed
-        String fileName = SelectJobFileCB.getSelectedItem().toString();
+        String fileName=null;
+        try{
+             fileName= SelectJobFileCB.getSelectedItem().toString();
+            System.out.println(fileName);
         Socket socket = null;
         socket = new Socket("localhost", 9999);
 
@@ -273,18 +310,16 @@ public class SubmitJobPage extends javax.swing.JFrame {
             my.add(0, fileName);
             String command = "findXRSLFile";
             System.out.println("findXRSLFile");
+
             PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
             toClient.println(command);
             ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
             objectOutput.writeObject(my);
-            System.out.println("fsend file name");
-
-            ArrayList<String> titleList = new ArrayList<String>();
-            ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-            Object object = objectInput.readObject();
-            titleList = (ArrayList<String>) object;
-            String result = titleList.get(0);
-            textArea.setText(result);
+            System.out.println("send file name");
+            Thread.sleep(3000);
+            getResult(textArea, "getResultJobList");
+        }}catch (Exception a){
+            System.out.println(a);
         }
     }
 

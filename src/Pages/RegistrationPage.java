@@ -300,8 +300,14 @@ public static ProfilePage profilePage;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             userKeyFile = fileChooser.getSelectedFile();
             userKey.setText(userKeyFile.getName());
-           
-            
+            try {
+                SelectFile.SelectFile(userKeyFile, errorLabel);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
     }//GEN-LAST:event_userKeyBtnActionPerformed
 
@@ -312,8 +318,14 @@ public static ProfilePage profilePage;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             userCertFile = fileChooser.getSelectedFile();
             userCert.setText(userCertFile.getName());
-           
-            
+            try {
+                SelectFile.SelectFile(userCertFile, errorLabel);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
     }//GEN-LAST:event_userCertBtnActionPerformed
 
@@ -349,21 +361,21 @@ public static ProfilePage profilePage;
                 my.add(6, _userCert);
                 my.add(7, _userKey);
                 String login = "registr";
-                SelectFile.SelectFile(userCertFile, errorLabel);
-                SelectFile.SelectFile(userKeyFile, errorLabel);
+
+
 
                 System.out.println(login);
                 PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
                 toClient.println(login);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
                 objectOutput.writeObject(my);
-
-                    titleList = new ArrayList<String>();
-                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-                    Object object = objectInput.readObject();
-                    titleList = (ArrayList<String>) object;
-                    String result = titleList.get(4);
-                    errorLabel.setText(result);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        CreateJobPage.getResult(errorLabel, "getResultRegistr");
+                    String result=errorLabel.getText();
                     if (result.equals("success")){
 
                     Main.loginPage.setVisible(true);

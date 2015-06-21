@@ -10,6 +10,7 @@ package Pages;
 import grid_node.Main;
 import services.Users;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -112,6 +113,8 @@ public class LoginPage extends javax.swing.JFrame {
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -255,7 +258,7 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
 
-    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_LoginBtnActionPerformed
+    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException, InterruptedException {//GEN-FIRST:event_LoginBtnActionPerformed
         Socket socket = null;
         socket = new Socket("localhost", 9999);
 
@@ -264,9 +267,6 @@ public class LoginPage extends javax.swing.JFrame {
         String _vo = vo.getText();
         if (_username != null && _pass != null&& _vo != null) {
 
-
-
-                
                 ArrayList<String> my = new ArrayList<String>();
                 my.add(0, _username);
                 my.add(1, _pass);
@@ -283,27 +283,35 @@ public class LoginPage extends javax.swing.JFrame {
                 System.out.println("Send data to server");
 
 
-                titleList = new ArrayList<String>();
+                Thread.sleep(5000);
                 System.out.println("receive data from server");
-                ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-                Object object = objectInput.readObject();
-                titleList = (ArrayList<String>) object;
-                String result = titleList.get(4);
-                errorLabel.setText(result);
+                CreateJobPage.getResult(errorLabel, "getResultLogin");
+//            if (socket.getInputStream()!=null) {
+//                ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+//                Object object = objectInput.readObject();
+//                titleList = (ArrayList<String>) object;
+//                String result = titleList.get(4);
+//                errorLabel.setText(result);
 
-                    if (result.equals("success")){
+                if (errorLabel.getText().equals("success")) {
                     profilePage = new ProfilePage();
                     profilePage.setVisible(true);
                     Main.loginPage.setVisible(false);
 
-                    }else{
-                       errorLabel.setText("error"); 
-                    }
+                } else {
+                    errorLabel.setText("error");
+                }
+
+            }else {
+                errorLabel.setText("error");
+
 
         }
 
 
     }//GEN-LAST:event_LoginBtnActionPerformed
+
+
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

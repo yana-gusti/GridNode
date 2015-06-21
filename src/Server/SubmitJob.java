@@ -10,6 +10,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -18,35 +19,45 @@ import java.util.List;
 public class SubmitJob {
     
     public static String fileNameXRSL;
-    public static String everything;
+    public static String message;
     public static String textArea;
     public static String cluster;
     
     public static void FindXRSLFile(Socket s) throws IOException, ClassNotFoundException {
+        System.out.println("start");
          ArrayList<String> titleList = new ArrayList<String>();
                 ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
-                    Object object = objectInput.readObject();
-                    titleList = (ArrayList<String>) object;
-                    fileNameXRSL = titleList.get(0);
-                    System.out.println(fileNameXRSL);
-        String command = "cat /home/"+Login.user.getUserName()+"/"+fileNameXRSL+"";
-        Process child = Runtime.getRuntime().exec(command);
-                    
-                     BufferedReader br = new BufferedReader(new InputStreamReader(child.getInputStream()));
+        System.out.println("1");
+        if(objectInput!=null) {
+            System.out.println("2");
+            Object object = objectInput.readObject();
+            System.out.println("3");
+            titleList = (ArrayList<String>) object;
+            System.out.println("4");
+            fileNameXRSL = titleList.get(0);
+            System.out.println(fileNameXRSL);
+            if (fileNameXRSL != null) {
+                message = new Scanner( new File("/home/"+Login.user.getUserName()+"/"+fileNameXRSL+"") ).useDelimiter("\\A").next();
 
-                         while ((everything = br.readLine()) != null) {
-                            System.out.println(everything);
-                            }
-                            br.close();
+//                String[] command = {"xterm", "cat /home/" + Login.user.getUserName() + "/" + fileNameXRSL + ""};
+//                System.out.println(command[1]);
+//                Process child = Runtime.getRuntime().exec(command);
 
-                    
-                ArrayList<String> my = new ArrayList<String>();
-                
-                
-                my.add(0, everything);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
-                objectOutput.writeObject(my);
-        
+//               BufferedReader br = new BufferedReader(new InputStreamReader(child.getInputStream()));
+//
+//                while ((everything = br.readLine()) != null) {
+//                    System.out.println(everything);
+//                }
+                System.out.println(message);
+
+//                br.close();
+            } else {
+                System.out.println("no such file");
+            }
+        }else {
+            System.out.println("connection not establish");
+        }
+
     }
     
     public static void SubmitJob(Socket socket) throws IOException, ClassNotFoundException {
@@ -67,24 +78,19 @@ public class SubmitJob {
             BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             // read the output from the command
             while ((s = stdInput.readLine()) != null) {
-                textArea=s+ "\n";
+                message=s+ "\n";
             }
             // read any errors from the attempted command
            System.out.println("Here is the standard error of the command (if any):\n");
             while ((s = stdError.readLine()) != null) {
-                textArea=s+ "\n";
+                message=s+ "\n";
             }   
         }
         catch (IOException e) {
             System.out.println("exception happened - here's what I know: ");
             e.printStackTrace();
         }
-        ArrayList<String> my = new ArrayList<String>();
-                
-                
-                my.add(0, textArea);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-                objectOutput.writeObject(my);
+
         Runtime.getRuntime().exec("rm SubmitJobFile"+Login.user.getUserName()+".sh");
     }
 

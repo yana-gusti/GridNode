@@ -97,11 +97,11 @@ public class FileCreator {
 
             output.append("#! /bin/bash");
             output.newLine();
-            output.append("echo 1  | sudo -H -u yana bash -c 'chmod +xrw /home/yana/Desktop/GridNode/"+fileName+"'");
+            output.append("chmod +xrw /home/yana/Desktop/GridNode/"+fileName+"");
 
 
             output.newLine();
-            output.append("sudo -H -u "+userName+" bash -c 'cp "
+            output.append("echo 1 | sudo -H -u "+userName+" bash -c 'cp "
                     + "/home/yana/Desktop/GridNode/"+fileName+" /home/"+userName+"'");
             output.newLine();
             output.append("sleep 2");

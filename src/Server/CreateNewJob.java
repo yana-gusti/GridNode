@@ -28,7 +28,7 @@ public class CreateNewJob {
         FileWriter outFile = null;
         try {
 //            
-          outFile = new FileWriter(fileName +".sh",true);
+          outFile = new FileWriter(fileName, true);
 	} catch (IOException e1) {
 		e1.printStackTrace();
 		}
@@ -46,7 +46,7 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static void CreateNewSHExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
+    public static String CreateNewSHExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
         ArrayList<String> titleList = new ArrayList<String>();
             
                 ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
@@ -54,7 +54,7 @@ public class CreateNewJob {
                 
                     Object object = objectInput.readObject();
                     titleList = (ArrayList<String>) object;
-                    fileNameSH = titleList.get(0);
+                    fileNameSH = titleList.get(0)+".sh";
                     resulSH = titleList.get(1);
                     System.out.println(fileNameSH+"   "+resulSH);
                     FileWriter SHFile = CreateNewSH(fileNameSH, resulSH);
@@ -69,18 +69,19 @@ public class CreateNewJob {
                     
                      System.out.println("fedfdsfsdf");
                
-                ArrayList<String> my = new ArrayList<String>();
-                
-                
-                my.add(0, message);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
-                objectOutput.writeObject(my);
+//                ArrayList<String> my = new ArrayList<String>();
+//
+//
+//                my.add(0, message);
+//                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
+//                objectOutput.writeObject(my);
+        return message;
     }
      public static FileWriter CreateNewXRSL (String fileName, String result ){
         FileWriter outFile = null;
         try {
 //            
-          outFile = new FileWriter(fileName +".xrsl",true);
+          outFile = new FileWriter(fileName ,true);
 	} catch (IOException e1) {
 		e1.printStackTrace();
 		}
@@ -98,7 +99,7 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static void CreateNewXRSLExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
+    public static String CreateNewXRSLExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
         ArrayList<String> titleList = new ArrayList<String>();
             
                 ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
@@ -106,13 +107,13 @@ public class CreateNewJob {
                 
                     Object object = objectInput.readObject();
                     titleList = (ArrayList<String>) object;
-                    fileNameXRSL = titleList.get(0);
+                    fileNameXRSL = titleList.get(0)+".xrsl";
                     resulXRSL = titleList.get(1);
                     System.out.println(fileNameXRSL+"   "+resulXRSL);
                     FileWriter SHFile = CreateNewXRSL(fileNameXRSL, resulXRSL);
                     String userName = Login.user.getUserName();
 
-        FileCreator fileCreator=new FileCreator();
+                    FileCreator fileCreator=new FileCreator();
 
                     fileCreator.CreateMoveFile(userName, fileNameXRSL);
                     System.out.println("create file ./Move"+userName+".sh");
@@ -121,15 +122,11 @@ public class CreateNewJob {
                     Runtime.getRuntime().exec("rm Move"+userName+".sh");
                     Thread.sleep(5000);
 
+
                     
                      System.out.println("fedfdsfsdf");
                
-                ArrayList<String> my = new ArrayList<String>();
-                
-                
-                my.add(0, message);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
-                objectOutput.writeObject(my);
+         return message;
     }
     
 

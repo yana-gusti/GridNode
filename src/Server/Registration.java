@@ -68,20 +68,20 @@ public class Registration {
 //                    Runtime.getRuntime().exec("./Login.sh");
 //                    Runtime.getRuntime().exec("rm Login.sh");
 //                    Runtime.getRuntime().exec("rm proxyInit.sh");
-            if(user!=null) {
-                ArrayList<String> my = new ArrayList<String>();
-
-                my.add(0, user.getFirst_name());
-                my.add(1, user.getLast_name());
-                my.add(2, user.getVO());
-                my.add(3, user.getUserName());
-                my.add(4, message);
-
-                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
-                objectOutput.writeObject(my);
-            }else {
-                System.out.println("user=null");
-            }
+//            if(user!=null) {
+//                ArrayList<String> my = new ArrayList<String>();
+//
+//                my.add(0, user.getFirst_name());
+//                my.add(1, user.getLast_name());
+//                my.add(2, user.getVO());
+//                my.add(3, user.getUserName());
+//                my.add(4, message);
+//
+//                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
+//                objectOutput.writeObject(my);
+//            }else {
+//                System.out.println("user=null");
+//            }
                 
     }
     

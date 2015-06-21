@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 
 import static Server.CreateNewJob.CreateNewSHExecute;
 import static Server.CreateNewJob.CreateNewXRSLExecute;
+import static Server.Login.Login;
 import static Server.Login.LoginExecute;
 import static Server.Registration.RegistrationExecute;
 import static Server.SaveFile.saveFile;
@@ -27,6 +28,7 @@ public class UserThread extends Thread{
     String action=null;
     BufferedReader  is = null;
     Socket s=null;
+    String result =null;
 
     public UserThread(Socket s){
         this.s=s;
@@ -45,16 +47,18 @@ public class UserThread extends Thread{
         while(action.compareTo("QUIT")!=0){
             
             if (action.equals("login")) {
-                 LoginExecute(s);
+                result =LoginExecute(s);
+                System.out.println(result);
                  
              } else if (action.equals("registr")) {
                  RegistrationExecute(s);
                  
              }else if (action.equals("createSHFile")) {
-                 CreateNewSHExecute(s);
+                result =CreateNewSHExecute(s);
+
                  
              }else if (action.equals("createXRSLFile")) {
-                 CreateNewXRSLExecute(s);
+                 result =CreateNewXRSLExecute(s);
 
              }
              else if (action.equals("saveFile")) {
@@ -70,6 +74,27 @@ public class UserThread extends Thread{
                 SubmitJob.listOfFiles(Login.user.getUserName(), s);
 
             }
+            else if (action.equals("getResultLogin")) {
+                System.out.println(Login.message);
+                Result.Result(Login.message, s);
+
+            }
+            else if (action.equals("getResult")) {
+                System.out.println(CreateNewJob.message);
+                Result.Result(CreateNewJob.message, s);
+
+            }
+            else if (action.equals("getResultRegistr")) {
+                System.out.println(Registration.message);
+                Result.Result(Registration.message, s);
+
+            }
+            else if (action.equals("getResultJobList")) {
+                System.out.println(SubmitJob.message);
+                Result.Result(SubmitJob.message, s);
+
+            }
+
 
            
              System.out.println("connection reset2");

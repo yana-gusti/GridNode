@@ -627,19 +627,14 @@ public class CreateJobPage extends JFrame {
                 ObjectOutputStream objectOutput= new ObjectOutputStream(socket.getOutputStream());
 
                 objectOutput.writeObject(my);
+         try {
+             Thread.sleep(3000);
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
+         getResult(errorLabel, "getResult");
 
-                    titleList = new ArrayList<String>();
 
-                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-
-                    Object object  = objectInput.readObject();
-
-                    titleList = (ArrayList<String>) object;
-                    System.out.println(titleList);
-                    String result = titleList.get(0);
-                    System.out.println(result);
-                    errorLabel.setText(result);
-                    SubmitJobPage.SelectJobFileCB.addItem(fileName);
 
 
         }
@@ -648,6 +643,45 @@ public class CreateJobPage extends JFrame {
         ProfilePage.createJobPage.setVisible(false);
     }//GEN-LAST:event_CreateJobBtnActionPerformed
 
+    public static void getResult(JLabel errorLabel, String command){
+        Socket socket = null;
+        try {
+            socket = new Socket("localhost", 9999);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        String command = "getResult";
+        PrintWriter toClient = null;
+        try {
+            toClient = new PrintWriter(socket.getOutputStream(), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        toClient.println(command);
+        titleList = new ArrayList<String>();
+
+        ObjectInputStream objectInput = null;
+        try {
+            objectInput = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Object object  = null;
+        try {
+            object = objectInput.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        titleList = (ArrayList<String>) object;
+        System.out.println(titleList);
+        String result = titleList.get(0);
+        System.out.println(result);
+        errorLabel.setText(result);
+    }
     private void ClearFieldsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearFieldsBtnActionPerformed
         Result.setText("");
         SelectFileLb.setText("");
@@ -689,43 +723,25 @@ public class CreateJobPage extends JFrame {
                 PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
                     toClient.println(command);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-
-                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 try {
 
                     objectOutput.writeObject(my);
-                    titleList = new ArrayList<String>();
-
-                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-
-
-                    Object object = objectInput.readObject();
-                    titleList = (ArrayList<String>) object;
-                    System.out.println(titleList);
-                    String result = titleList.get(0);
-                    System.out.println(result);
-                    errorLabel.setText(result);
-
-
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-
-
-
-
 
             } catch (UnknownHostException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
+         try {
+             Thread.sleep(3000);
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
+         getResult(errorLabel, "getResult");
         }
     }//GEN-LAST:event_CreateBashScriptBtnActionPerformed
 

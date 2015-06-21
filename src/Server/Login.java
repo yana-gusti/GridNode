@@ -29,7 +29,7 @@ public class Login {
     public static String vo;
     public static ArrayList<String> userData;
     
-    public static void LoginExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
+    public static String LoginExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
         
             ArrayList<String> titleList = new ArrayList<String>();
                 
@@ -53,18 +53,18 @@ public class Login {
                     Runtime.getRuntime().exec("rm Login.sh");
                     Runtime.getRuntime().exec("rm proxyInit.sh");
                     System.out.println("reset connection after login");
-                ArrayList<String> my = new ArrayList<String>();
+//                ArrayList<String> my = new ArrayList<String>();
+//
+//                my.add(0, user.getFirst_name());
+//                my.add(1, user.getLast_name());
+//                my.add(2, user.getVO());
+//                my.add(3, user.getUserName());
+//                my.add(4, message);
+//
+//                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
+//                objectOutput.writeObject(my);
                 
-                my.add(0, user.getFirst_name());
-                my.add(1, user.getLast_name());
-                my.add(2, user.getVO());
-                my.add(3, user.getUserName());
-                my.add(4, message);
-               
-                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
-                objectOutput.writeObject(my);
-                
-                
+         return message;
     }
     
 
