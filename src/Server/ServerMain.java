@@ -6,7 +6,8 @@
 
 package Server;
 
-import com.typesafe.config.Config;
+import java.net.Socket;
+
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -17,7 +18,7 @@ import java.net.Socket;
  * @author yana
  */
 public class ServerMain {
-    public static Socket skt; 
+    public static Socket skt;
     
     public static void main(String args[]){
 

@@ -754,7 +754,7 @@ public class CreateJobPage extends JFrame {
        if(SelectProgCB.getSelectedItem().toString()=="Quantum Espresso"){
            queue.setText("mult.q");
            gmlog.setText("gridlog");
-           runtimeenvironment.setText("Espresso-OPENMPI-12");
+           runtimeenvironment.setText("\"Espresso-OPENMPI-12\"");
            stderr.setText("espresso.err");
            stdout.setText("espresso.out");
 
@@ -821,11 +821,11 @@ public class CreateJobPage extends JFrame {
                 &&!SelectInputFileLb.getText().isEmpty()){
             Result.setText("&(exectutable="+SelectFileLb.getText() +
                 ")\n(jobname="+JobName.getText()+
-                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb3.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb4.getText()+"\" \" \" )) "
-                + "\n(outputFiles=(\"/\" \" \"))"
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb3.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb4.getText()+"\" \"\" )) "
+                + "\n(outputFiles=(\"/\" \"\"))"
                 + "\n(stdout="+stdout.getText()+")"
                 + "\n(stderr="+stderr.getText()+")"
                 + "\n(gmlog="+gmlog.getText()+")"
@@ -838,10 +838,10 @@ public class CreateJobPage extends JFrame {
                 &&!SelectInputFileLb.getText().isEmpty()){
             Result.setText("&(exectutable="+SelectFileLb.getText() +
                 ")\n(jobname="+JobName.getText()+
-                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb3.getText()+"\" \" \" )) "
-                + "\n(outputFiles=(\"/\" \" \"))"
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb3.getText()+"\" \"\" )) "
+                + "\n(outputFiles=(\"/\" \"\"))"
                 + "\n(stdout="+stdout.getText()+")"
                 + "\n(stderr="+stderr.getText()+")"
                 + "\n(gmlog="+gmlog.getText()+")"
@@ -854,9 +854,9 @@ public class CreateJobPage extends JFrame {
                 && !SelectInputFileLb.getText().isEmpty()){
             Result.setText("&(exectutable="+SelectFileLb.getText() +
                 ")\n(jobname="+JobName.getText()+
-                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
-                + "\n(outputFiles=(\"/\" \" \"))"
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \"\" )) "
+                + "\n(outputFiles=(\"/\" \"\"))"
                 + "\n(stdout="+stdout.getText()+")"
                 + "\n(stderr="+stderr.getText()+")"
                 + "\n(gmlog="+gmlog.getText()+")"
@@ -868,7 +868,7 @@ public class CreateJobPage extends JFrame {
         }else if(!SelectInputFileLb.getText().isEmpty()){
             Result.setText("&(exectutable="+SelectFileLb.getText() +
                 ")\n(jobname="+JobName.getText()+
-                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \"\" )) "
                 + "\n(outputFiles=(\"/\" \" \"))"
                 + "\n(stdout="+stdout.getText()+")"
                 + "\n(stderr="+stderr.getText()+")"
@@ -900,11 +900,11 @@ public class CreateJobPage extends JFrame {
                 &&!SelectInputFileLb.getText().isEmpty()){
             Result.setText("&(exectutable="+SelectFileLb.getText() +
                 ")\n(jobname="+JobName.getText()+
-                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb3.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb4.getText()+"\" \" \" )) "
-                + "\n(outputFiles=(\"/\" \" \"))"
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb3.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb4.getText()+"\" \"\" )) "
+                + "\n(outputFiles=(\"/\" \"\"))"
                 + "\n(stdout="+stdout.getText()+")"
                 + "\n(stderr="+stderr.getText()+")");
         }else if(!SelectInputFileLb3.getText().isEmpty()
@@ -912,10 +912,10 @@ public class CreateJobPage extends JFrame {
                 &&!SelectInputFileLb.getText().isEmpty()){
             Result.setText("&(exectutable="+SelectFileLb.getText() +
                 ")\n(jobname="+JobName.getText()+
-                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb3.getText()+"\" \" \" )) "
-                + "\n(outputFiles=(\"/\" \" \"))"
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb3.getText()+"\" \"\" )) "
+                + "\n(outputFiles=(\"/\" \"\"))"
                 + "\n(stdout="+stdout.getText()+")"
                 + "\n(stderr="+stderr.getText()+")");
 
@@ -923,17 +923,17 @@ public class CreateJobPage extends JFrame {
                 && !SelectInputFileLb.getText().isEmpty()){
             Result.setText("&(exectutable="+SelectFileLb.getText() +
                 ")\n(jobname="+JobName.getText()+
-                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
-                + "(\""+SelectInputFileLb2.getText()+"\" \" \" )) "
-                + "\n(outputFiles=(\"/\" \" \"))"
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \"\" )) "
+                + "(\""+SelectInputFileLb2.getText()+"\" \"\" )) "
+                + "\n(outputFiles=(\"/\" \"\"))"
                 + "\n(stdout="+stdout.getText()+")"
                 + "\n(stderr="+stderr.getText()+")");
 
         }else if(!SelectInputFileLb.getText().isEmpty()){
             Result.setText("&(exectutable="+SelectFileLb.getText() +
                 ")\n(jobname="+JobName.getText()+
-                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \" \" )) "
-                + "\n(outputFiles=(\"/\" \" \"))"
+                ")\n(inputFiles=(\""+SelectInputFileLb.getText()+"\" \"\" )) "
+                + "\n(outputFiles=(\"/\" \"\"))"
                 + "\n(stdout="+stdout.getText()+")"
                 + "\n(stderr="+stderr.getText()+")");
 

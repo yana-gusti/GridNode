@@ -78,6 +78,9 @@ public class FileCreator {
             output.append("sudo -H -u "+name+" bash -c 'chmod 400 "
                     + "/home/"+name+"/.globus/"+userKeyName+"'");
             output.newLine();
+            output.append("sudo -H -u "+name+" bash -c 'chmod 644 "
+                    + "/home/"+name+"/.globus/"+userCernName+"'");
+            output.newLine();
             output.append("sleep 2");
             Runtime.getRuntime().exec("chmod +x Register"+name+".sh");
             System.out.println("Files were created");
