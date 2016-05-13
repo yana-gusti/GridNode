@@ -7,9 +7,7 @@
 package Server;
 
 
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -19,11 +17,14 @@ import java.util.ArrayList;
  */
 public class SaveFile {
     public static final int BUFFER_SIZE = 100;  
-  public static void saveFile(Socket socket) throws Exception {
-        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());  
+  public static void saveFile(Socket socket, BufferedReader reader, PrintWriter writer) throws Exception {
+
+        String request =reader.readLine();
+        System.out.print(request);
+        writer.write("ok");
         ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());  
         FileOutputStream fos = null;  
-        byte [] buffer = new byte[BUFFER_SIZE];  
+        byte [] buffer ;
   
         // 1. Read file name.  
         Object o = ois.readObject();
@@ -66,12 +67,7 @@ public class SaveFile {
           
         System.out.println(message);
           
-        ArrayList<String> my = new ArrayList<String>();
-                
-                
-                my.add(0, message);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-                objectOutput.writeObject(my);
+        writer.write(message);
 
     }  
   

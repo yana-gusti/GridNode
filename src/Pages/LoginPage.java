@@ -11,14 +11,14 @@ import grid_node.Main;
 import services.Users;
 
 import javax.swing.*;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static grid_node.Main.address;
+import static grid_node.Main.port;
 
 
 /**
@@ -29,6 +29,10 @@ public class LoginPage extends javax.swing.JFrame {
     public static Users user;
     public static ProfilePage profilePage;
     public static RegistrationPage registrationPage;
+    public static Socket s;
+    public static BufferedReader reader;
+    public static PrintWriter writer;
+
 
     /**
      * Creates new form LoginPage
@@ -79,11 +83,6 @@ public class LoginPage extends javax.swing.JFrame {
 
         emailLabel.setText("Username");
 
-        pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
-            }
-        });
 
         passLabel.setText("Password");
 
@@ -97,11 +96,6 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
-            }
-        });
 
         LoginBtn.setBackground(new java.awt.Color(0, 204, 204));
         LoginBtn.setText("Login");
@@ -243,9 +237,6 @@ public class LoginPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passActionPerformed
 
     private void RegistrBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrBtnActionPerformed
 
@@ -254,46 +245,30 @@ public class LoginPage extends javax.swing.JFrame {
         Main.loginPage.setVisible(false);
     }//GEN-LAST:event_RegistrBtnActionPerformed
 
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
+
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException, InterruptedException {//GEN-FIRST:event_LoginBtnActionPerformed
-        Socket socket = null;
-        socket = new Socket("localhost", 9999);
-
+        try {
+            s = new Socket(address, port);
+            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            System.out.println("Connected");
+        } catch (IOException ex) {
+            System.out.print(ex);
+        }
         String _username = username.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();
         if (_username != null && _pass != null&& _vo != null) {
+            System.out.println("writing to server: "+_username +"\n"+_pass +"\n"+_vo +"\n");
+            writer.write("login\n");
+            writer.write(_username+"\n");
+            writer.write(_pass+"\n");
+            writer.write(_vo+"\n");
+            writer.flush();
+            errorLabel.setText(reader.readLine());
 
-                ArrayList<String> my = new ArrayList<String>();
-                my.add(0, _username);
-                my.add(1, _pass);
-                my.add(2, _vo);
-
-                String login = "login";
-                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-                toClient.println(login);
-                System.out.println("Send message to server");
-
-                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-                System.out.println("Send message to server 2");
-                objectOutput.writeObject(my);
-                System.out.println("Send data to server");
-
-
-                Thread.sleep(5000);
-                System.out.println("receive data from server");
-                CreateJobPage.getResult(errorLabel, "getResultLogin");
-//            if (socket.getInputStream()!=null) {
-//                ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-//                Object object = objectInput.readObject();
-//                titleList = (ArrayList<String>) object;
-//                String result = titleList.get(4);
-//                errorLabel.setText(result);
-
-                if (errorLabel.getText().equals("success")) {
+                if (errorLabel.getText().equals("success login")) {
                     profilePage = new ProfilePage();
                     profilePage.setVisible(true);
                     Main.loginPage.setVisible(false);
@@ -306,7 +281,7 @@ public class LoginPage extends javax.swing.JFrame {
                 errorLabel.setText("error");
 
 
-        }
+            }
 
 
     }//GEN-LAST:event_LoginBtnActionPerformed

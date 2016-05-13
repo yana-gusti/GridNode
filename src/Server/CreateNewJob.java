@@ -6,10 +6,7 @@
 
 package Server;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -46,17 +43,10 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static String CreateNewSHExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
-        ArrayList<String> titleList = new ArrayList<String>();
-            
-                ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
+    public static void CreateNewSHExecute(BufferedReader reader, PrintWriter writer) throws IOException {
 
-                
-                    Object object = objectInput.readObject();
-                    titleList = (ArrayList<String>) object;
-                    fileNameSH = titleList.get(0)+".sh";
-                    resulSH = titleList.get(1);
-                    System.out.println(fileNameSH+"   "+resulSH);
+                    fileNameSH = reader.readLine()+".sh";
+                    resulSH = reader.readLine();
                     FileWriter SHFile = CreateNewSH(fileNameSH, resulSH);
         String userName = Login.user.getUserName();
         FileCreator fileCreator=new FileCreator();
@@ -64,18 +54,8 @@ public class CreateNewJob {
         System.out.println("create file ./Move"+userName+".sh");
         String[] command1 = { "xterm", "/home/yana/Desktop/GridNode/Move"+userName+".sh" };
         Runtime.getRuntime().exec(command1);
-        Thread.sleep(5000);
         Runtime.getRuntime().exec("rm Move"+userName+".sh");
-                    
-                     System.out.println("fedfdsfsdf");
-               
-//                ArrayList<String> my = new ArrayList<String>();
-//
-//
-//                my.add(0, message);
-//                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
-//                objectOutput.writeObject(my);
-        return message;
+        writer.write(message);
     }
      public static FileWriter CreateNewXRSL (String fileName, String result ){
         FileWriter outFile = null;
@@ -99,18 +79,11 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static String CreateNewXRSLExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
-        ArrayList<String> titleList = new ArrayList<String>();
-            
-                ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
+    public static void CreateNewXRSLExecute(BufferedReader reader, PrintWriter writer) throws IOException{
 
-                
-                    Object object = objectInput.readObject();
-                    titleList = (ArrayList<String>) object;
-                    fileNameXRSL = titleList.get(0)+".xrsl";
-                    resulXRSL = titleList.get(1);
-                    System.out.println(fileNameXRSL+"   "+resulXRSL);
-                    FileWriter SHFile = CreateNewXRSL(fileNameXRSL, resulXRSL);
+                    fileNameXRSL = reader.readLine()+".xrsl";
+                    resulXRSL = reader.readLine();
+                    FileWriter XRSLFile = CreateNewXRSL(fileNameXRSL, resulXRSL);
                     String userName = Login.user.getUserName();
 
                     FileCreator fileCreator=new FileCreator();
@@ -120,13 +93,7 @@ public class CreateNewJob {
                     String[] command = { "xterm", "/home/yana/Desktop/GridNode/Move"+userName+".sh" };
                     Runtime.getRuntime().exec(command);
                     Runtime.getRuntime().exec("rm Move"+userName+".sh");
-                    Thread.sleep(5000);
-
-
-                    
-                     System.out.println("fedfdsfsdf");
-               
-         return message;
+        writer.write(message);
     }
     
 

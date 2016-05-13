@@ -10,11 +10,11 @@ import services.DBConnection;
 import services.UserServices;
 import services.Users;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import static Server.Registration.message;
 
 /**
  *
@@ -24,61 +24,47 @@ public class Registration {
     
     public static Users newUser=null;
     public static String message = null;
-    public static String firtsName;
+    public static String firstName;
     public static String lastName;
     public static String vo;
-    public static String email;
+    public static String username;
     public static String pass;
     public static String configPass;
     public static String userCertName;
     public static String userKeyName;
-    public static ArrayList<String> userData;
     
-    public static void RegistrationExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException{
-        
-            ArrayList<String> titleList = new ArrayList<String>();
-            
-                ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
+    public static void RegistrationExecute(BufferedReader reader, PrintWriter writer) throws IOException{
 
-                
-                    Object object = objectInput.readObject();
-                    System.out.println("get data from client");
-                    titleList = (ArrayList<String>) object;
-                    firtsName = titleList.get(0);
-                    lastName = titleList.get(1);
-                    vo = titleList.get(2);
-                    email = titleList.get(3);
-                    pass = titleList.get(4);
-                    configPass = titleList.get(5);
-                    userCertName = titleList.get(6);
-                    userKeyName = titleList.get(7);
-                    Users user = Registration(firtsName, lastName, vo, email, pass, configPass);
-                    System.out.println("register new user");
+        firstName = reader.readLine();
+        lastName = reader.readLine();
+        vo = reader.readLine();
+        username = reader.readLine();
+        pass = reader.readLine();
+        userCertName = reader.readLine();
+        userKeyName = reader.readLine();
+
+        System.out.println(firstName+"   "+pass+"   "+vo);
+
+                    Users user = Registration(firstName, lastName, vo, username, pass, pass);
                     FileCreator fileCreator = new FileCreator();
-                    fileCreator.CreateRegistrationFile(email, userCertName, userKeyName);
-                    System.out.println("create file ./Register"+email+".sh");
-                    String[] command = { "xterm", "/home/yana/Desktop/GridNode/Register"+email+".sh" };
+                    fileCreator.CreateRegistrationFile(username, userCertName, userKeyName);
+                    System.out.println("create file ./Register"+username+".sh");
+                    String[] command = { "xterm", "/home/yana/Desktop/GridNode/Register"+username+".sh" };
                     Runtime.getRuntime().exec(command);
-                    Thread.sleep(5000);
-                    Runtime.getRuntime().exec("rm Register"+email+".sh");
+                    Runtime.getRuntime().exec("rm Register"+username+".sh");
                     Runtime.getRuntime().exec("rm "+userCertName+"");
                     Runtime.getRuntime().exec("rm "+userKeyName+"");
-//                    fileCreator.CreateLoginFile(pass);
-//                    fileCreator.CreateProxyFile(vo, email);
-//                    Runtime.getRuntime().exec("./Login.sh");
-//                    Runtime.getRuntime().exec("rm Login.sh");
-//                    Runtime.getRuntime().exec("rm proxyInit.sh");
+                    fileCreator.CreateLoginFile(pass);
+                    fileCreator.CreateProxyFile(vo, username);
+                    Runtime.getRuntime().exec("./Login.sh");
+                    Runtime.getRuntime().exec("rm Login.sh");
+                    Runtime.getRuntime().exec("rm proxyInit.sh");
             if(user!=null) {
-                ArrayList<String> my = new ArrayList<String>();
-
-                my.add(0, user.getFirst_name());
-                my.add(1, user.getLast_name());
-                my.add(2, user.getVO());
-                my.add(3, user.getUserName());
-                my.add(4, message);
-
-                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
-                objectOutput.writeObject(my);
+                System.out.println("writing to client: "+message+" "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");
+                writer.write(message);
+                writer.write(user.getFirst_name()+"\n");
+                writer.write(user.getLast_name()+"\n");
+                writer.flush();
             }else {
                 System.out.println("user=null");
             }
@@ -92,27 +78,23 @@ public class Registration {
 
         for (Integer i = 0; i < UserServices.getAll().size(); i++) {
 	if (UserServices.getAll().get(i).getUserName().equals(username)) {
-	message = "Sorry, you can't registr as "+ username+"";
+	message = "Sorry, you can't register as "+ username+"\n";
 	System.out.println("a");
 
 	}else{
 	if (!_pass.equals(_passConf)) {
-	message = "Password confirm failed!";
+	message = "Password confirm failed!\n";
 	System.out.println("b");
 
 	}else{
-        System.out.println("success");
-         
 
-         
+        System.out.println("success");
 	}
 	}
 	}
         newUser = new Users(null, _firstName, _lastName, vo, username, _pass);
-	System.out.println("qqq");
 	DBConnection.save(newUser);
-        System.out.println("jfhKDJKLDFHlgf");
-         message ="success";
+        message = "success registration\n";
         
          return newUser; 
     }

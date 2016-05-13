@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static grid_node.Main.address;
+import static grid_node.Main.port;
+
 /**
  *
  * @author Дом
@@ -26,6 +29,10 @@ public class CreateJobPage extends JFrame {
     public File InputFile;
     public File JobFile;
     public static SubmitJobPage submitJobPage;
+
+    public static Socket s;
+    public static BufferedReader reader;
+    public static PrintWriter writer;
 
 
 
@@ -171,7 +178,11 @@ public class CreateJobPage extends JFrame {
         CreateBashScriptBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CreateBashScriptBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateBashScriptBtnActionPerformed(evt);
+                try {
+                    CreateBashScriptBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -609,78 +620,42 @@ public class CreateJobPage extends JFrame {
     }//GEN-LAST:event_OpenJobBtnActionPerformed
 
     private void CreateJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_CreateJobBtnActionPerformed
-        Socket socket = null;
-        socket = new Socket("localhost", 9999);
+
 
 
         fileName = JOptionPane.showInputDialog("Enter file name");
         String resultXRSL = Result.getText();
 	 if (fileName != null && resultXRSL!= null) {
-
-                ArrayList<String> my = new ArrayList<String>();
-                my.add(0, fileName);
-                my.add(1, resultXRSL);
-                String command = "createXRSLFile";
-                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-                toClient.println(command);
-
-                ObjectOutputStream objectOutput= new ObjectOutputStream(socket.getOutputStream());
-
-                objectOutput.writeObject(my);
          try {
-             Thread.sleep(3000);
-         } catch (InterruptedException e) {
-             e.printStackTrace();
+             s = new Socket(address, port);
+             writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+             reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+             System.out.println("Connected");
+         } catch (IOException ex) {
+             System.out.print(ex);
          }
+
+         System.out.println("writing to server: "+fileName +"\n");
+         writer.write("createXRSLFile\n");
+         writer.write(fileName+"\n");
+         writer.write(resultXRSL+"\n");
+
          getResult(errorLabel, "getResult");
-
-
-
-
-        }
         submitJobPage = new SubmitJobPage();
         submitJobPage.setVisible(true);
-        ProfilePage.createJobPage.setVisible(false);
-    }//GEN-LAST:event_CreateJobBtnActionPerformed
+        ProfilePage.createJobPage.setVisible(false);}}
 
-    public static void getResult(JLabel errorLabel, String command){
-        Socket socket = null;
+    public static void getResult(JLabel errorLabel, String command) throws IOException {
         try {
-            socket = new Socket("localhost", 9999);
-        } catch (IOException e) {
-            e.printStackTrace();
+            s = new Socket(address, port);
+            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            System.out.println("Connected");
+        } catch (IOException ex) {
+            System.out.print(ex);
         }
-//        String command = "getResult";
-        PrintWriter toClient = null;
-        try {
-            toClient = new PrintWriter(socket.getOutputStream(), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        toClient.println(command);
-        titleList = new ArrayList<String>();
-
-        ObjectInputStream objectInput = null;
-        try {
-            objectInput = new ObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Object object  = null;
-        try {
-            object = objectInput.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        titleList = (ArrayList<String>) object;
-        System.out.println(titleList);
-        String result = titleList.get(0);
-        System.out.println(result);
-        errorLabel.setText(result);
+        writer.write(command);
+        errorLabel.setText(reader.readLine());
     }
     private void ClearFieldsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearFieldsBtnActionPerformed
         Result.setText("");
@@ -702,45 +677,26 @@ public class CreateJobPage extends JFrame {
         ProfilePage.createJobPage.setVisible(false);
     }//GEN-LAST:event_CancelBtnActionPerformed
 
-    private void CreateBashScriptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateBashScriptBtnActionPerformed
-         Socket socket = null;
-        try {
-            socket = new Socket("localhost", 9999);
-        } catch (IOException ex) {
-            Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void CreateBashScriptBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_CreateBashScriptBtnActionPerformed
+
         fileName = JOptionPane.showInputDialog("Enter file name");
         String resultSH = Result.getText();
 	 if (fileName != null && resultSH!= null) {
                 SelectSHCB.addItem(fileName);
-
-            try {
-
-                ArrayList<String> my = new ArrayList<String>();
-                my.add(0, fileName);
-                my.add(1, resultSH);
-                String command = "createSHFile";
-                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-                    toClient.println(command);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-                try {
-
-                    objectOutput.writeObject(my);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
          try {
-             Thread.sleep(3000);
-         } catch (InterruptedException e) {
-             e.printStackTrace();
+             s = new Socket(address, port);
+             writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+             reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+             System.out.println("Connected");
+         } catch (IOException ex) {
+             System.out.print(ex);
          }
+
+         System.out.println("writing to server: "+fileName +"\n");
+         writer.write("createSHFile\n");
+         writer.write(fileName+"\n");
+         writer.write(resultSH+"\n");
+
          getResult(errorLabel, "getResult");
         }
     }//GEN-LAST:event_CreateBashScriptBtnActionPerformed

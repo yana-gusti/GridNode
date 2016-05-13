@@ -11,9 +11,7 @@ import services.DBConnection;
 import services.UserServices;
 import services.Users;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -27,53 +25,38 @@ public class Login {
     public static String name;
     public static String pass;
     public static String vo;
-    public static ArrayList<String> userData;
     
-    public static String LoginExecute(Socket s) throws IOException, ClassNotFoundException, InterruptedException {
-        
-            ArrayList<String> titleList = new ArrayList<String>();
-                
-                ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
+    public static void LoginExecute(BufferedReader reader, PrintWriter writer) throws IOException {
 
-                
-                    Object object = objectInput.readObject();
-                    titleList = (ArrayList<String>) object;
-                    name = titleList.get(0);
-                    pass = titleList.get(1);
-                    vo = titleList.get(2);
+        name = reader.readLine();
+        pass = reader.readLine();
+        vo = reader.readLine();
                     System.out.println(name+"   "+pass+"   "+vo);
-                    Users user =Login(name, pass);
+                    Users user = Login(name, pass);
                     FileCreator fileCreator = new FileCreator();
                     fileCreator.CreateLoginFile(pass);
                     fileCreator.CreateProxyFile(vo, name);
-                    Runtime.getRuntime().exec("./Login.sh");
-                    
-                     System.out.println("fedfdsfsdf");
-                    Thread.sleep(2000);
+                    Runtime.getRuntime().exec("sudo ./Login.sh");
                     Runtime.getRuntime().exec("rm Login.sh");
                     Runtime.getRuntime().exec("rm proxyInit.sh");
-                    System.out.println("reset connection after login");
-//                ArrayList<String> my = new ArrayList<String>();
-//
-//                my.add(0, user.getFirst_name());
-//                my.add(1, user.getLast_name());
-//                my.add(2, user.getVO());
-//                my.add(3, user.getUserName());
-//                my.add(4, message);
-//
-//                ObjectOutputStream objectOutput = new ObjectOutputStream(s.getOutputStream());
-//                objectOutput.writeObject(my);
-                
-         return message;
+        if(user!=null) {
+            System.out.println("writing to client: "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");
+            writer.write("success login\n");
+            writer.write(user.getFirst_name()+"\n");
+            writer.write(user.getLast_name()+"\n");
+            writer.flush();
+        }else {
+            System.out.println("user=null");
+        }
     }
     
 
     
-    public static Users Login (String e_mail, String _pass){
+    public static Users Login (String name, String pass){
         
            
-        if (e_mail != null && _pass != null) {
-	        user = UserServices.findUser(e_mail, _pass);
+        if (name != null && pass != null) {
+	        user = UserServices.findUser(name, pass);
             if (user != null) {
             DBConnection.getUser(user);
                 message ="success";

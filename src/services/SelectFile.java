@@ -12,29 +12,42 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static grid_node.Main.address;
+import static grid_node.Main.port;
+
 /**
  *
  * @author yana
  */
 public class SelectFile extends JFileChooser{
-    public static final int BUFFER_SIZE = 100; 
+    public static final int BUFFER_SIZE = 100;
+
+
+    public static Socket s;
+    public static BufferedReader reader;
+    public static PrintWriter writer;
 
    
 
     public static void SelectFile(File file,  JLabel errorlabel) throws IOException, ClassNotFoundException {
-         Socket socket = null;
-        
-            socket = new Socket("localhost", 9999);
-        
+        try {
+            s = new Socket(address, port);
+            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            System.out.println("Connected");
+        } catch (IOException ex) {
+            System.out.print(ex);
+        }
         
             
                 String command = "saveFile";
-                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-                    toClient.println(command);
-        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());  
-        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());  
-  
-        oos.writeObject(file.getName());  
+                writer.write(command);
+        System.out.println("Send command");
+                System.out.print(reader.readLine());
+
+        ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
+
+        oos.writeObject(file.getName());
   
         FileInputStream fis = new FileInputStream(file);  
         byte [] buffer = new byte[BUFFER_SIZE];  
@@ -44,19 +57,7 @@ public class SelectFile extends JFileChooser{
             oos.writeObject(bytesRead);  
             oos.writeObject(Arrays.copyOf(buffer, buffer.length));  
         }  
-                
-                BufferedReader fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                
-                    
-                   ArrayList<String> result = new ArrayList<String>();
-            
-                    ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-
-                
-                    Object object = objectInput.readObject();
-                    result = (ArrayList<String>) object;
-                    String result1 = result.get(0);
-                    errorlabel.setText(result1);
+          errorlabel.setText(reader.readLine());
        
         } 
     

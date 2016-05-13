@@ -18,43 +18,55 @@ import java.net.Socket;
  * @author yana
  */
 public class ServerMain {
-    public static Socket skt;
-    
-    public static void main(String args[]){
+//    public static Socket skt;
+//
+//    public static void main(String args[]){
+//
+//
+//    ServerSocket ss2=null;
+//    System.out.println("Server Listening......");
+//    try{
+//        ss2 = new ServerSocket(9999); // can also use static final PORT_NUM , when defined
+//
+//    }
+//    catch(IOException e){
+//    e.printStackTrace();
+//    System.out.println("Server error");
+//
+//    }
+//
+//    while(true){
+//        try{
+//            skt= ss2.accept();
+//
+//            System.out.println("connection Established");
+//
+//            UserThread st=new UserThread(skt);
+//            st.start();
+//
+//        }
+//
+//    catch(Exception e){
+//        e.printStackTrace();
+//        System.out.println("Connection Error");
+//
+//    }
+//    }
 
-
-    ServerSocket ss2=null;
-    System.out.println("Server Listening......");
-    try{
-        ss2 = new ServerSocket(9999); // can also use static final PORT_NUM , when defined
-
-    }
-    catch(IOException e){
-    e.printStackTrace();
-    System.out.println("Server error");
-
-    }
+//}
+public static void main(String[] args) throws IOException, InterruptedException {
+    // TODO code application logic here
+    ServerSocket serverSocket = new ServerSocket(7009);
 
     while(true){
-        try{
-            skt= ss2.accept();
-
-            System.out.println("connection Established");
-
-            UserThread st=new UserThread(skt);
-            st.start();
-
-        }
-
-    catch(Exception e){
-        e.printStackTrace();
-        System.out.println("Connection Error");
+        System.out.println("Server Listening......");
+        Socket socket = serverSocket.accept();
+        System.out.println("connection Established");
+        Thread tr = new Thread(new UserThread(socket));
+        tr.start();
 
     }
-    }
-
 }
-
 
      
     }

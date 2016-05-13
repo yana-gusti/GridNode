@@ -13,9 +13,13 @@ import services.Users;
 import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static grid_node.Main.address;
+import static grid_node.Main.port;
 
 /**
  *
@@ -25,6 +29,10 @@ public class RegistrationPage extends javax.swing.JFrame {
 public File userCertFile;
 public File userKeyFile;
 public static ProfilePage profilePage;
+
+    public static Socket s;
+    public static BufferedReader reader;
+    public static PrintWriter writer;
     /**
      * Creates new form RegistrationPage
      */
@@ -134,7 +142,11 @@ public static ProfilePage profilePage;
         CancelBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelBtnActionPerformed(evt);
+                try {
+                    CancelBtnActionPerformed(evt);
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -293,7 +305,7 @@ public static ProfilePage profilePage;
     }// </editor-fold>//GEN-END:initComponents
 
     private void userKeyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userKeyBtnActionPerformed
-    
+        errorLabel.setText("");
        JFileChooser fileChooser = new JFileChooser();
          int returnVal;
         returnVal = fileChooser.showOpenDialog(this);
@@ -312,6 +324,7 @@ public static ProfilePage profilePage;
     }//GEN-LAST:event_userKeyBtnActionPerformed
 
     private void userCertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userCertBtnActionPerformed
+        errorLabel.setText("");
         JFileChooser fileChooser = new JFileChooser();
          int returnVal;
         returnVal = fileChooser.showOpenDialog(this);
@@ -330,72 +343,56 @@ public static ProfilePage profilePage;
     }//GEN-LAST:event_userCertBtnActionPerformed
 
     private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_RegistrationBtnActionPerformed
-        Socket socket = null;
-        socket = new Socket("localhost", 9999);
-
+        try {
+            s = new Socket(address, port);
+            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            System.out.println("Connected");
+        } catch (IOException ex) {
+            System.out.print(ex);
+        }
         String _firstName = (String) firstName.getText();
-	String _lastName = (String) lastName.getText();
-	String _vo = (String) birthday.getText();
-	String _email = (String) email.getText();
-	String _pass = (String) pass.getText();
-	String _passConf = (String) passConf.getText();
+	    String _lastName = (String) lastName.getText();
+	    String _vo = (String) birthday.getText();
+	    String _username = (String) email.getText();
+	    String _pass = (String) pass.getText();
+	    String _passConf = (String) passConf.getText();
         String _userCert = userCertFile.getName();
         String _userKey = userKeyFile.getName();
-	System.out.println("q");
 
 	if (_firstName != null && _lastName != null
-	&& _vo != null && _email != null && _pass != null && _passConf != null
+	&& _vo != null && _username != null && _pass != null && _passConf != null
                 && _userCert != null && _userKey != null) {
 
+        System.out.println("writing to server: "+_username +"\n"+_pass +"\n"+_vo +"\n");
+        writer.write("register\n");
+        writer.write(_firstName+"\n");
+        writer.write(_lastName+"\n");
+        writer.write(_vo+"\n");
+        writer.write(_username+"\n");
+        writer.write(_pass+"\n");
+        writer.write(_userCert+"\n");
+        writer.write(_userKey+"\n");
+        writer.flush();
+        errorLabel.setText(reader.readLine());
 
-                System.out.println("fields not empty");
-                System.out.println("connection start");
+        if (errorLabel.getText().equals("success registration")) {
+            profilePage = new ProfilePage();
+            profilePage.setVisible(true);
+            LoginPage.registrationPage.setVisible(false);
 
-                ArrayList<String> my = new ArrayList<String>();
-                my.add(0, _firstName);
-                my.add(1, _lastName);
-                my.add(2, _vo);
-                my.add(3, _email);
-                my.add(4, _pass);
-                my.add(5, _passConf);
-                my.add(6, _userCert);
-                my.add(7, _userKey);
-                String login = "registr";
-
-
-
-                System.out.println(login);
-                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-                toClient.println(login);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-                objectOutput.writeObject(my);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } else {
+            errorLabel.setText("error");
         }
-        CreateJobPage.getResult(errorLabel, "getResultRegistr");
-                    String result=errorLabel.getText();
-                    if (result.equals("success")){
 
-                    Main.loginPage.setVisible(true);
-                        Main.loginPage.errorLabel.setText(result);
-                    LoginPage.registrationPage.setVisible(false);
-                        
-                    }else{
-                       errorLabel.setText("error"); 
-                    }
-                    
+    }else {
+        errorLabel.setText("error");
 
 
-	
-	} else {
-	errorLabel.setText("Empty fields!");
-	System.out.println("d");
-	}
+    }
     }//GEN-LAST:event_RegistrationBtnActionPerformed
 
-    private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
+    private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) throws SocketException {//GEN-FIRST:event_CancelBtnActionPerformed
         
         Main.loginPage.setVisible(true);
         LoginPage.registrationPage.setVisible(false);
