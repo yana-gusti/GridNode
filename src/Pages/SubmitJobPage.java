@@ -54,7 +54,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() throws IOException, ClassNotFoundException {
+    private void initComponents() {
 
         TopPanel = new javax.swing.JPanel();
         TopLabel = new javax.swing.JLabel();
@@ -63,9 +63,10 @@ public class SubmitJobPage extends javax.swing.JFrame {
         cluster = new javax.swing.JTextField();
         CancelBtn = new javax.swing.JButton();
         SubmitJobBtn = new javax.swing.JButton();
-        textArea = new java.awt.TextArea();
         SelectJobFileCB = new javax.swing.JComboBox();
         ViewJobBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ResultTextPane = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,21 +109,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
             }
         });
 
-
-
-        writer.write("listOfJobs\n");
-        writer.flush();
-        ArrayList<String> titleList;
-
-        ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
-
-        Object object = objectInput.readObject();
-        titleList = (ArrayList<String>) object;
-
-        String [] list = titleList.toArray(new String[titleList.size()]);
-
-
-        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(list));
+        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select your XRSL file", "CeO2.scf.in", "nordu_start.xrsl" }));
         SelectJobFileCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelectJobFileCBActionPerformed(evt);
@@ -144,70 +131,72 @@ public class SubmitJobPage extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setViewportView(ResultTextPane);
+
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
-            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cluster)
-                    .addComponent(SubmitJobBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(VONameLb)
-                    .addComponent(SelectJobFileCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ViewJobBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cluster)
+                                        .addComponent(SubmitJobBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(VONameLb)
+                                        .addComponent(SelectJobFileCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(ViewJobBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53))
         );
         MainPanelLayout.setVerticalGroup(
-            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addComponent(SelectJobFileCB, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(ViewJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(VONameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(cluster, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(72, Short.MAX_VALUE))
-                    .addComponent(textArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(MainPanelLayout.createSequentialGroup()
+                                                .addComponent(SelectJobFileCB, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(26, 26, 26)
+                                                .addComponent(ViewJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(VONameLb, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(12, 12, 12)
+                                                .addComponent(cluster, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(33, 33, 33)
+                                                .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(53, 53, 53)
+                                                .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout TopPanelLayout = new javax.swing.GroupLayout(TopPanel);
         TopPanel.setLayout(TopPanelLayout);
         TopPanelLayout.setHorizontalGroup(
-            TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TopLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(TopLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                        .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         TopPanelLayout.setVerticalGroup(
-            TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TopPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(TopLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(TopPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(TopLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(TopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(TopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -234,36 +223,14 @@ public class SubmitJobPage extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformed
-     textArea.setText("");
+        textArea.setText("");
 
-     String fileName= SelectJobFileCB.getSelectedItem().toString();
-     String clusterName = cluster.getText();
-
-	 if (fileName != null) {
-         writer.write("submitJob\n");
-         writer.write(clusterName+"\n");
-         writer.write(fileName+"\n");
-         writer.flush();
-         textArea.setText(reader.readLine());
-        }  else{
-            textArea.setText("Job not found");
-        }
-
-
-
-    }//GEN-LAST:event_SubmitJobBtnActionPerformed
-
-
-
-    private void ViewJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_ViewJobBtnActionPerformed
-        String fileName;
-        String message="text";
-        try{
-             fileName= SelectJobFileCB.getSelectedItem().toString();
-            System.out.println(fileName);
+        String fileName= SelectJobFileCB.getSelectedItem().toString();
+        String clusterName = cluster.getText();
 
         if (fileName != null) {
-            writer.write("findXRSLFile\n");
+            writer.write("submitJob\n");
+            writer.write(clusterName+"\n");
             writer.write(fileName+"\n");
             writer.flush();
             try {
@@ -285,21 +252,61 @@ public class SubmitJobPage extends javax.swing.JFrame {
                 System.out.println("exception happened - here's what I know: ");
                 e.printStackTrace();
             }
-
-
-            ArrayList<String> listResult = new ArrayList<>();
-
-                for (int i=0; i<8; i++) {
-                    listResult.add(reader.readLine() + "\n");
-                }
-                textArea.setText(String.valueOf(listResult));
-
-
-
-        }else {
-            message = "Please, choose file";
-            textArea.setText(message);
+        }  else{
+            textArea.setText("Job not found");
         }
+
+
+
+    }//GEN-LAST:event_SubmitJobBtnActionPerformed
+
+
+
+    private void ViewJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {
+        String fileName;
+        String message="text";
+        try{
+            fileName= SelectJobFileCB.getSelectedItem().toString();
+            System.out.println(fileName);
+
+            if (fileName != null) {
+                writer.write("findXRSLFile\n");
+                writer.write(fileName+"\n");
+                writer.flush();
+                try {
+                    String result = reader.readLine();
+                    // read the output from the command
+                    while (result!= null) {
+                        textArea.append(result+ "\n");
+
+                    }
+                    // read any errors from the attempted command
+                    System.out.println("Here is the standard error of the command (if any):\n");
+                    while (result != null) {
+                        textArea.append(result+ "\n");
+
+                    }
+                    ResultTextPane.setText(textArea.getText());
+                }
+                catch (IOException e) {
+                    System.out.println("exception happened - here's what I know: ");
+                    e.printStackTrace();
+                }
+
+
+//            ArrayList<String> listResult = new ArrayList<>();
+//
+//                for (int i=0; i<8; i++) {
+//                    listResult.add(reader.readLine() + "\n");
+//                }
+//                textArea.setText(String.valueOf(listResult));
+
+
+
+            }else {
+                message = "Please, choose file";
+                textArea.setText(message);
+            }
         }catch (Exception a){
             System.out.println(a);
         }
@@ -307,7 +314,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
 
     }
 
-  public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -349,6 +356,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton CancelBtn;
     private javax.swing.JPanel MainPanel;
+    public javax.swing.JTextPane ResultTextPane;
     public static javax.swing.JComboBox SelectJobFileCB;
     public javax.swing.JButton SubmitJobBtn;
     private javax.swing.JLabel TopLabel;
@@ -356,9 +364,9 @@ public class SubmitJobPage extends javax.swing.JFrame {
     public javax.swing.JLabel VONameLb;
     public javax.swing.JButton ViewJobBtn;
     public javax.swing.JTextField cluster;
-    public java.awt.TextArea textArea;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
+    public java.awt.TextArea textArea;
     /**
      *
      * @param p
