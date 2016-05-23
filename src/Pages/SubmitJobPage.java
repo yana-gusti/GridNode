@@ -9,9 +9,11 @@ package Pages;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,13 +24,27 @@ import java.util.logging.Logger;
 public class SubmitJobPage extends javax.swing.JFrame {
     public File XRSLFile;
     public Reader reader_ = null;
-    private String s;
+
+    public static Socket s;
+    public static BufferedReader reader;
+    public static PrintWriter writer;
 
     /**
      * Creates new form SubmitJobPage
      */
     public SubmitJobPage() throws IOException, ClassNotFoundException {
+        initServerConnection();
         initComponents();
+    }
+    private void initServerConnection(){
+        try {
+            s = new Socket("localhost",7009);
+            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            System.out.println("Connected");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -92,14 +108,13 @@ public class SubmitJobPage extends javax.swing.JFrame {
             }
         });
 
-        Socket socket = null;
-        socket = new Socket("localhost", 9999);
-        String command = "listOfJobs";
-        PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-        toClient.println(command);
-        ArrayList<String> titleList = new ArrayList<String>();
 
-        ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+
+        writer.write("listOfJobs\n");
+        writer.flush();
+        ArrayList<String> titleList;
+
+        ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
 
         Object object = objectInput.readObject();
         titleList = (ArrayList<String>) object;
@@ -110,13 +125,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
         SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(list));
         SelectJobFileCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    SelectJobFileCBActionPerformed(evt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                SelectJobFileCBActionPerformed(evt);
             }
         });
 
@@ -204,45 +213,38 @@ public class SubmitJobPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void SelectJobFileCBActionPerformed(ActionEvent evt) {
+
+    }
+
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
 
-        LoginPage.profilePage.setVisible(true);
-        CreateJobPage.submitJobPage.setVisible(false);
+        ProfilePage profilePage = new ProfilePage();
+        profilePage.setVisible(true);
+        if(CreateJobPage.submitJobPage.isActive()){
+            CreateJobPage.submitJobPage.setVisible(false);
+        }else if (ProfilePage.submitJobPage.isActive()){
+            ProfilePage.submitJobPage.setVisible(false);
+        }else {
+            System.out.print("error");
+        }
+
 
 
     }//GEN-LAST:event_CancelBtnActionPerformed
 
- public SubmitJobPage(final TextArea _textArea) {
-      textArea = _textArea;
-    }
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformed
      textArea.setText("");
 
      String fileName= SelectJobFileCB.getSelectedItem().toString();
      String clusterName = cluster.getText();
 
-      Socket socket = null;
-      socket = new Socket("localhost", 9999);
-
 	 if (fileName != null) {
-                ArrayList<String> my = new ArrayList<String>();
-                my.add(0, clusterName);
-                my.add(1, fileName);
-                String command = "submitJob";
-                PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-                toClient.println(command);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-
-                objectOutput.writeObject(my);
-         try {
-             Thread.sleep(5000);
-         } catch (InterruptedException e) {
-             e.printStackTrace();
-         }
-         getResult(textArea, "getResultJobList");
-
-
-
+         writer.write("submitJob\n");
+         writer.write(clusterName+"\n");
+         writer.write(fileName+"\n");
+         writer.flush();
+         textArea.setText(reader.readLine());
         }  else{
             textArea.setText("Job not found");
         }
@@ -250,77 +252,59 @@ public class SubmitJobPage extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
-    public static void getResult(TextArea textArea, String command){
-        Socket socket = null;
-        try {
-            socket = new Socket("localhost", 9999);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        String command = "getResult";
-        PrintWriter toClient = null;
-        try {
-            toClient = new PrintWriter(socket.getOutputStream(), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        toClient.println(command);
-
-        ObjectInputStream objectInput = null;
-        try {
-            objectInput = new ObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Object object  = null;
-        try {
-            object = objectInput.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        ArrayList<String> titleList = (ArrayList<String>) object;
-        System.out.println(titleList);
-        String result = titleList.get(0);
-        System.out.println(result);
-        textArea.setText(result);
-    }
-
-    private void SelectJobFileCBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SelectJobFileCBActionPerformed
 
 
-            
-
-        
-    }//GEN-LAST:event_SelectJobFileCBActionPerformed
 
     private void ViewJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_ViewJobBtnActionPerformed
-        String fileName=null;
+        String fileName;
+        String message="text";
         try{
              fileName= SelectJobFileCB.getSelectedItem().toString();
             System.out.println(fileName);
-        Socket socket = null;
-        socket = new Socket("localhost", 9999);
 
         if (fileName != null) {
-            ArrayList<String> my = new ArrayList<String>();
-            my.add(0, fileName);
-            String command = "findXRSLFile";
-            System.out.println("findXRSLFile");
+            writer.write("findXRSLFile\n");
+            writer.write(fileName+"\n");
+            writer.flush();
+            try {
+                String result = reader.readLine();
+                // read the output from the command
+                while (result!= null) {
+                    textArea.append(result+ "\n");
 
-            PrintWriter toClient = new PrintWriter(socket.getOutputStream(), true);
-            toClient.println(command);
-            ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-            objectOutput.writeObject(my);
-            System.out.println("send file name");
-            Thread.sleep(3000);
-            getResult(textArea, "getResultJobList");
-        }}catch (Exception a){
+                }
+                // read any errors from the attempted command
+                System.out.println("Here is the standard error of the command (if any):\n");
+                while (result != null) {
+                    textArea.append(result+ "\n");
+
+                }
+                ResultTextPane.setText(textArea.getText());
+            }
+            catch (IOException e) {
+                System.out.println("exception happened - here's what I know: ");
+                e.printStackTrace();
+            }
+
+
+            ArrayList<String> listResult = new ArrayList<>();
+
+                for (int i=0; i<8; i++) {
+                    listResult.add(reader.readLine() + "\n");
+                }
+                textArea.setText(String.valueOf(listResult));
+
+
+
+        }else {
+            message = "Please, choose file";
+            textArea.setText(message);
+        }
+        }catch (Exception a){
             System.out.println(a);
         }
+
+
     }
 
   public static void main(String args[]) {

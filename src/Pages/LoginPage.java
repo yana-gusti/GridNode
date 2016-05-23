@@ -11,6 +11,8 @@ import grid_node.Main;
 import services.Users;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -39,7 +41,19 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
+        initServerConnection();
     }
+    private void initServerConnection(){
+        try {
+            s = new Socket("localhost",7009);
+            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            System.out.println("Connected");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -248,14 +262,7 @@ public class LoginPage extends javax.swing.JFrame {
 
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException, InterruptedException {//GEN-FIRST:event_LoginBtnActionPerformed
-        try {
-            s = new Socket(address, port);
-            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
-            System.out.println("Connected");
-        } catch (IOException ex) {
-            System.out.print(ex);
-        }
+
         String _username = username.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();
@@ -266,7 +273,9 @@ public class LoginPage extends javax.swing.JFrame {
             writer.write(_pass+"\n");
             writer.write(_vo+"\n");
             writer.flush();
-            errorLabel.setText(reader.readLine());
+                errorLabel.setText(reader.readLine());
+
+
 
                 if (errorLabel.getText().equals("success login")) {
                     profilePage = new ProfilePage();

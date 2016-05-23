@@ -11,48 +11,63 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import static Server.UserThread.socket;
+import static Server.UserThread.writer;
+
 /**
  *
  * @author yana
  */
 public class SaveFile {
-    public static final int BUFFER_SIZE = 100;  
-  public static void saveFile(Socket socket, BufferedReader reader, PrintWriter writer) throws Exception {
+    public static final int BUFFER_SIZE = 100;
+    static String message;
+  public static void saveFile() throws IOException {
 
-        String request =reader.readLine();
-        System.out.print(request);
-        writer.write("ok");
+      System.out.print("start");
         ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());  
         FileOutputStream fos = null;  
         byte [] buffer ;
   
         // 1. Read file name.  
-        Object o = ois.readObject();
-  
-        if (o instanceof String) {  
+      Object o = null;
+      try {
+          o = ois.readObject();
+      } catch (ClassNotFoundException e) {
+          e.printStackTrace();
+      }
+
+      if (o instanceof String) {
             fos = new FileOutputStream(o.toString());
             System.out.println(fos);
 
         } else {  
-            throwException("Something is wrong");  
+            message = "Something is wrong\n";
         }  
   
         // 2. Read file to the end.  
         Integer bytesRead = 0;  
   
-        do {  
-            o = ois.readObject();  
-  
+        do {
+            try {
+                o = ois.readObject();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
             if (!(o instanceof Integer)) {  
-                throwException("Something is wrong");  
+                message = "Something is wrong\n";
             }  
   
-            bytesRead = (Integer)o;  
-  
-            o = ois.readObject();  
-  
+            bytesRead = (Integer)o;
+
+            try {
+                o = ois.readObject();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
             if (!(o instanceof byte[])) {  
-                throwException("Something is wrong");  
+                message = "Something is wrong\n";
             }  
   
             buffer = (byte[])o;  
@@ -63,17 +78,14 @@ public class SaveFile {
             
         } while (bytesRead == BUFFER_SIZE);  
         
-        String message="File transfer success";
+        message="File transfer success\n";
           
         System.out.println(message);
           
         writer.write(message);
-
+        writer.flush();
     }  
   
-    public static void throwException(String message) throws Exception {
-        throw new Exception(message);
-    }
 
 
 }

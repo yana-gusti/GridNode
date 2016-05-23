@@ -41,7 +41,19 @@ public class CreateJobPage extends JFrame {
      * Creates new form CreateJobPage
      */
     public CreateJobPage() {
+
         initComponents();
+        initServerConnection();
+    }
+    private void initServerConnection(){
+        try {
+            s = new Socket("localhost",7009);
+            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            System.out.println("Connected");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -626,37 +638,19 @@ public class CreateJobPage extends JFrame {
         fileName = JOptionPane.showInputDialog("Enter file name");
         String resultXRSL = Result.getText();
 	 if (fileName != null && resultXRSL!= null) {
-         try {
-             s = new Socket(address, port);
-             writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-             reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
-             System.out.println("Connected");
-         } catch (IOException ex) {
-             System.out.print(ex);
-         }
 
          System.out.println("writing to server: "+fileName +"\n");
          writer.write("createXRSLFile\n");
          writer.write(fileName+"\n");
          writer.write(resultXRSL+"\n");
+         writer.flush();
 
-         getResult(errorLabel, "getResult");
+         errorLabel.setText(reader.readLine());
         submitJobPage = new SubmitJobPage();
         submitJobPage.setVisible(true);
         ProfilePage.createJobPage.setVisible(false);}}
 
-    public static void getResult(JLabel errorLabel, String command) throws IOException {
-        try {
-            s = new Socket(address, port);
-            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
-            System.out.println("Connected");
-        } catch (IOException ex) {
-            System.out.print(ex);
-        }
-        writer.write(command);
-        errorLabel.setText(reader.readLine());
-    }
+
     private void ClearFieldsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearFieldsBtnActionPerformed
         Result.setText("");
         SelectFileLb.setText("");
@@ -683,21 +677,14 @@ public class CreateJobPage extends JFrame {
         String resultSH = Result.getText();
 	 if (fileName != null && resultSH!= null) {
                 SelectSHCB.addItem(fileName);
-         try {
-             s = new Socket(address, port);
-             writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-             reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
-             System.out.println("Connected");
-         } catch (IOException ex) {
-             System.out.print(ex);
-         }
+
 
          System.out.println("writing to server: "+fileName +"\n");
          writer.write("createSHFile\n");
          writer.write(fileName+"\n");
          writer.write(resultSH+"\n");
-
-         getResult(errorLabel, "getResult");
+         writer.flush();
+         errorLabel.setText(reader.readLine());
         }
     }//GEN-LAST:event_CreateBashScriptBtnActionPerformed
 
@@ -745,7 +732,7 @@ public class CreateJobPage extends JFrame {
             inputFileLb.setText(InputFile.getName());
             SelectInputFileLb.setText(inputFileLb.getText());
             try {
-                SelectFile.SelectFile(InputFile, errorLabel);
+                SelectFile.SelectFile(s, writer, reader, InputFile, errorLabel);
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -906,7 +893,7 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb.setText(InputFile.getName());
 
             try {
-                SelectFile.SelectFile(InputFile, errorLabel);
+                SelectFile.SelectFile(s, writer, reader,InputFile, errorLabel);
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -927,7 +914,7 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb2.setText(InputFile.getName());
 
             try {
-                SelectFile.SelectFile(InputFile, errorLabel);
+                SelectFile.SelectFile(s, writer, reader,InputFile, errorLabel);
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -946,7 +933,7 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb3.setText(InputFile.getName());
 
             try {
-                SelectFile.SelectFile(InputFile, errorLabel);
+                SelectFile.SelectFile(s, writer, reader, InputFile, errorLabel);
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -964,7 +951,7 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb4.setText(InputFile.getName());
 
             try {
-                SelectFile.SelectFile(InputFile, errorLabel);
+                SelectFile.SelectFile(s, writer, reader,InputFile, errorLabel);
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {

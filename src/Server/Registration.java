@@ -15,6 +15,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import static Server.Registration.message;
+import static Server.UserThread.reader;
+import static Server.UserThread.writer;
 
 /**
  *
@@ -29,11 +31,10 @@ public class Registration {
     public static String vo;
     public static String username;
     public static String pass;
-    public static String configPass;
     public static String userCertName;
     public static String userKeyName;
     
-    public static void RegistrationExecute(BufferedReader reader, PrintWriter writer) throws IOException{
+    public static void RegistrationExecute() throws IOException{
 
         firstName = reader.readLine();
         lastName = reader.readLine();
@@ -51,14 +52,12 @@ public class Registration {
                     System.out.println("create file ./Register"+username+".sh");
                     String[] command = { "xterm", "/home/yana/Desktop/GridNode/Register"+username+".sh" };
                     Runtime.getRuntime().exec(command);
-                    Runtime.getRuntime().exec("rm Register"+username+".sh");
-                    Runtime.getRuntime().exec("rm "+userCertName+"");
-                    Runtime.getRuntime().exec("rm "+userKeyName+"");
+
                     fileCreator.CreateLoginFile(pass);
                     fileCreator.CreateProxyFile(vo, username);
                     Runtime.getRuntime().exec("./Login.sh");
-                    Runtime.getRuntime().exec("rm Login.sh");
-                    Runtime.getRuntime().exec("rm proxyInit.sh");
+//                    Runtime.getRuntime().exec("rm Login.sh");
+//                    Runtime.getRuntime().exec("rm proxyInit.sh");
             if(user!=null) {
                 System.out.println("writing to client: "+message+" "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");
                 writer.write(message);
@@ -68,6 +67,11 @@ public class Registration {
             }else {
                 System.out.println("user=null");
             }
+        //                    Runtime.getRuntime().exec("rm Register"+username+".sh");
+//                    Runtime.getRuntime().exec("rm "+userCertName+"");
+//                    Runtime.getRuntime().exec("rm "+userKeyName+"");
+        //                    Runtime.getRuntime().exec("rm Login.sh");
+//                    Runtime.getRuntime().exec("rm proxyInit.sh");
                 
     }
     

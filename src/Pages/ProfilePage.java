@@ -9,11 +9,12 @@ package Pages;
 import grid_node.Main;
 
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static Server.UserThread.writer;
 
 /**
  *
@@ -23,7 +24,9 @@ public class ProfilePage extends JFrame {
     public static EditProfilePage editProfilePage;
     public static CreateJobPage createJobPage;
     public static SubmitJobPage submitJobPage;
-
+    public static Socket s;
+    public static BufferedReader reader;
+    public static PrintWriter writer;
 
 
     /**
@@ -32,6 +35,17 @@ public class ProfilePage extends JFrame {
     public ProfilePage() {
 
         initComponents();
+        initServerConnection();
+    }
+    private void initServerConnection(){
+        try {
+            s = new Socket("localhost",7009);
+            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            System.out.println("Connected");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -95,7 +109,11 @@ public class ProfilePage extends JFrame {
         RemoveJobBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RemoveJobBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveJobBtnActionPerformed(evt);
+                try {
+                    RemoveJobBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -156,7 +174,11 @@ public class ProfilePage extends JFrame {
         StatusBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         StatusBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StatusBtnActionPerformed(evt);
+                try {
+                    StatusBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -175,7 +197,11 @@ public class ProfilePage extends JFrame {
         ListOfJob.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ListOfJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListOfJobActionPerformed(evt);
+                try {
+                    ListOfJobActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -185,7 +211,11 @@ public class ProfilePage extends JFrame {
         ResultOfJobBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ResultOfJobBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ResultOfJobBtnActionPerformed(evt);
+                try {
+                    ResultOfJobBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -309,29 +339,8 @@ public class ProfilePage extends JFrame {
         LoginPage.profilePage.setVisible(false);
     }//GEN-LAST:event_EditProfileBtnActionPerformed
 
-    private void RemoveJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveJobBtnActionPerformed
-        textArea.setText("");
-        String s = null;
-       try {
-            Process p = Runtime.getRuntime().exec("ping -c 3 cisco.com");
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            // read the output from the command
-            while ((s = stdInput.readLine()) != null) {
-                textArea.append(s+ "\n");
-                ResultTextPane.setText(textArea.getText());
-            }
-            // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
-                textArea.append(s+ "\n");
-                ResultTextPane.setText(textArea.getText());
-            }
-        }
-        catch (IOException e) {
-            System.out.println("exception happened - here's what I know: ");
-            e.printStackTrace();
-        }
+    private void RemoveJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_RemoveJobBtnActionPerformed
+        jobActions("KillJob");
     }//GEN-LAST:event_RemoveJobBtnActionPerformed
 
     private void CreateJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateJobBtnActionPerformed
@@ -342,12 +351,10 @@ public class ProfilePage extends JFrame {
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
 
-        Main.loginPage.setVisible(true);
-        try{
-            LoginPage.profilePage.setVisible(false);
-        }catch(Exception e){
-            RegistrationPage.profilePage.setVisible(false);
-        }
+        LoginPage loginPage = new LoginPage();
+        loginPage.setVisible(true);
+        LoginPage.profilePage.setVisible(false);
+
 
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
@@ -357,56 +364,13 @@ public class ProfilePage extends JFrame {
         LoginPage.profilePage.setVisible(false);
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 
-    private void StatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusBtnActionPerformed
-        textArea.setText("");
-        String s = null;
-       try {
-            Process p = Runtime.getRuntime().exec("arcstat "+JobName.getText()+" && arccat "+JobName.getText()+"");
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            // read the output from the command
-            while ((s = stdInput.readLine()) != null) {
-                textArea.append(s+ "\n");
-                ResultTextPane.setText(textArea.getText());
-            }
-            // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
-                textArea.append(s+ "\n");
-                ResultTextPane.setText(textArea.getText());
-            }
-        }
-        catch (IOException e) {
-            System.out.println("exception happened - here's what I know: ");
-            e.printStackTrace();
-        }
+    private void StatusBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_StatusBtnActionPerformed
+        jobActions("StatusOfJob");
+
     }//GEN-LAST:event_StatusBtnActionPerformed
 
-    private void ListOfJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListOfJobActionPerformed
-       textArea.setText("");
-       String s = null;
-       try {
-            Process p = Runtime.getRuntime().exec("arcstat -a");
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            // read the output from the command
-            while ((s = stdInput.readLine()) != null) {
-                textArea.append(s+ "\n");
-                ResultTextPane.setText(textArea.getText());
-            }
-            // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
-                textArea.append(s+ "\n");
-                ResultTextPane.setText(textArea.getText());
-            }
-        }
-        catch (IOException e) {
-            System.out.println("exception happened - here's what I know: ");
-            e.printStackTrace();
-        }
-
-
+    private void ListOfJobActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_ListOfJobActionPerformed
+        jobActions("ListOfJobs");
 
     }//GEN-LAST:event_ListOfJobActionPerformed
 
@@ -414,30 +378,45 @@ public class ProfilePage extends JFrame {
       JobName.setText("");
     }//GEN-LAST:event_JobNameMouseClicked
 
-    private void ResultOfJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResultOfJobBtnActionPerformed
-        textArea.setText("");
-        String s = null;
-       try {
-            Process p = Runtime.getRuntime().exec("arccat "+JobName.getText()+"");
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            // read the output from the command
-            while ((s = stdInput.readLine()) != null) {
-                textArea.append(s+ "\n");
-                ResultTextPane.setText(textArea.getText());
-            }
-            // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
-                textArea.append(s+ "\n");
-                ResultTextPane.setText(textArea.getText());
-            }
-        }
-        catch (IOException e) {
-            System.out.println("exception happened - here's what I know: ");
-            e.printStackTrace();
-        }
+    private void ResultOfJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_ResultOfJobBtnActionPerformed
+        jobActions("ResultOfJob");
+
     }//GEN-LAST:event_ResultOfJobBtnActionPerformed
+
+    public void jobActions (String command) throws IOException {
+        textArea.setText("");
+        String jobName= JOptionPane.showInputDialog("Enter file name");
+        if (jobName != null ) {
+
+            JobName.setText(jobName);
+            System.out.println("writing to server: "+jobName +"\n");
+            writer.write(command+"\n");
+            writer.write(jobName+"\n");
+            writer.flush();
+            try {
+                String result = reader.readLine();
+                // read the output from the command
+                while (result!= null) {
+                    textArea.append(result+ "\n");
+
+                }
+                // read any errors from the attempted command
+                System.out.println("Here is the standard error of the command (if any):\n");
+                while (result != null) {
+                    textArea.append(result+ "\n");
+
+                }
+                ResultTextPane.setText(textArea.getText());
+            }
+            catch (IOException e) {
+                System.out.println("exception happened - here's what I know: ");
+                e.printStackTrace();
+            }
+        }else {
+            JobName.setText("Please, enter job name");
+        }
+
+    }
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

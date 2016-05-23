@@ -11,6 +11,8 @@ import services.SelectFile;
 import services.Users;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
@@ -37,8 +39,22 @@ public static ProfilePage profilePage;
      * Creates new form RegistrationPage
      */
     public RegistrationPage() {
-        initComponents();
+
+
+    initComponents();
+    initServerConnection();
+}
+    private void initServerConnection(){
+        try {
+            s = new Socket("localhost",7009);
+            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            System.out.println("Connected");
+        } catch (IOException ex) {
+            Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,7 +120,13 @@ public static ProfilePage profilePage;
         userKeyBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         userKeyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userKeyBtnActionPerformed(evt);
+                try {
+                    userKeyBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -304,7 +326,7 @@ public static ProfilePage profilePage;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userKeyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userKeyBtnActionPerformed
+    private void userKeyBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_userKeyBtnActionPerformed
         errorLabel.setText("");
        JFileChooser fileChooser = new JFileChooser();
          int returnVal;
@@ -312,13 +334,9 @@ public static ProfilePage profilePage;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             userKeyFile = fileChooser.getSelectedFile();
             userKey.setText(userKeyFile.getName());
-            try {
-                SelectFile.SelectFile(userKeyFile, errorLabel);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+
+                SelectFile.SelectFile(s, writer, reader, userKeyFile, errorLabel);
+
 
         }
     }//GEN-LAST:event_userKeyBtnActionPerformed
@@ -332,7 +350,7 @@ public static ProfilePage profilePage;
             userCertFile = fileChooser.getSelectedFile();
             userCert.setText(userCertFile.getName());
             try {
-                SelectFile.SelectFile(userCertFile, errorLabel);
+                SelectFile.SelectFile(s, writer, reader,userCertFile, errorLabel);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -343,20 +361,13 @@ public static ProfilePage profilePage;
     }//GEN-LAST:event_userCertBtnActionPerformed
 
     private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_RegistrationBtnActionPerformed
-        try {
-            s = new Socket(address, port);
-            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
-            System.out.println("Connected");
-        } catch (IOException ex) {
-            System.out.print(ex);
-        }
-        String _firstName = (String) firstName.getText();
-	    String _lastName = (String) lastName.getText();
-	    String _vo = (String) birthday.getText();
-	    String _username = (String) email.getText();
-	    String _pass = (String) pass.getText();
-	    String _passConf = (String) passConf.getText();
+
+        String _firstName = firstName.getText();
+	    String _lastName = lastName.getText();
+	    String _vo =  birthday.getText();
+	    String _username =  email.getText();
+	    String _pass =  pass.getText();
+	    String _passConf =  passConf.getText();
         String _userCert = userCertFile.getName();
         String _userKey = userKeyFile.getName();
 
@@ -394,7 +405,8 @@ public static ProfilePage profilePage;
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) throws SocketException {//GEN-FIRST:event_CancelBtnActionPerformed
         
-        Main.loginPage.setVisible(true);
+        LoginPage loginPage = new LoginPage();
+        loginPage.setVisible(true);
         LoginPage.registrationPage.setVisible(false);
     }//GEN-LAST:event_CancelBtnActionPerformed
 public static void main(String args[]) {

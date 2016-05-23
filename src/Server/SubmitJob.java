@@ -12,93 +12,83 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static Server.UserThread.reader;
+import static Server.UserThread.socket;
+import static Server.UserThread.writer;
+
 /**
  *
  * @author yana
  */
 public class SubmitJob {
-    
+
     public static String fileNameXRSL;
     public static String message;
     public static String textArea;
     public static String cluster;
-    
-    public static void FindXRSLFile(Socket s) throws IOException, ClassNotFoundException {
+
+    public static void findXRSLFile() throws IOException {
         System.out.println("start");
-         ArrayList<String> titleList = new ArrayList<String>();
-                ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream());
-        System.out.println("1");
-        if(objectInput!=null) {
-            System.out.println("2");
-            Object object = objectInput.readObject();
-            System.out.println("3");
-            titleList = (ArrayList<String>) object;
-            System.out.println("4");
-            fileNameXRSL = titleList.get(0);
+
+            fileNameXRSL = reader.readLine();
             System.out.println(fileNameXRSL);
             if (fileNameXRSL != null) {
-                message = new Scanner( new File("/home/"+Login.user.getUserName()+"/"+fileNameXRSL+"") ).useDelimiter("\\A").next();
 
-//                String[] command = {"xterm", "cat /home/" + Login.user.getUserName() + "/" + fileNameXRSL + ""};
-//                System.out.println(command[1]);
-//                Process child = Runtime.getRuntime().exec(command);
-
-//               BufferedReader br = new BufferedReader(new InputStreamReader(child.getInputStream()));
-//
-//                while ((everything = br.readLine()) != null) {
-//                    System.out.println(everything);
-//                }
+                Scanner scanner = new Scanner( new File("/home/"+Login.user.getUserName()+"/"+fileNameXRSL+"") );
+               message = scanner.useDelimiter("\\A").next();
+                scanner.close(); // Put this call in a finally block
                 System.out.println(message);
-
-//                br.close();
+                System.out.println("finish record");
             } else {
-                System.out.println("no such file");
+                message = "no such file";
+
             }
-        }else {
-            System.out.println("connection not establish");
+        writer.write(message);
+        writer.flush();
         }
 
-    }
+
+
     
-    public static void SubmitJob(Socket socket) throws IOException, ClassNotFoundException {
-          ArrayList<String> titleList = new ArrayList<String>();
-                ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-                    Object object = objectInput.readObject();
-                    titleList = (ArrayList<String>) object;
-                    cluster = titleList.get(0);
-                    fileNameXRSL=titleList.get(1);
+    public static void submitJob() throws IOException {
+                    cluster = reader.readLine();
+                    fileNameXRSL=reader.readLine();
                     System.out.println("arcsub -c "+cluster+" "+fileNameXRSL);
                     FileCreator fileCreator = new FileCreator();
                     fileCreator.SubmitJobFile(Login.user.getUserName(), cluster, fileNameXRSL);
-        String s = null;
+        String result;
        try {
            String[] command = { "xterm", "./SubmitJobFile"+Login.user.getUserName()+".sh" };
            Process p =Runtime.getRuntime().exec(command);
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             // read the output from the command
-            while ((s = stdInput.readLine()) != null) {
-                message=s+ "\n";
+            while ((result = stdInput.readLine()) != null) {
+                message=result+ "\n";
             }
             // read any errors from the attempted command
            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
-                message=s+ "\n";
+            while ((result = stdError.readLine()) != null) {
+                message=result+ "\n";
             }   
         }
         catch (IOException e) {
-            System.out.println("exception happened - here's what I know: ");
+            message = "exception happened - here's what I know: ";
+            System.out.println(message);
             e.printStackTrace();
         }
 
         Runtime.getRuntime().exec("rm SubmitJobFile"+Login.user.getUserName()+".sh");
+        writer.write(message);
+        writer.flush();
+
     }
 
-   public static void listOfFiles(String userName, Socket socket) throws IOException {
-       List<String> results = new ArrayList<String>();
+   public static void listOfFiles() throws IOException {
+       List<String> results = new ArrayList<>();
 
 
-       File[] files = new File("/home/"+userName+"").listFiles();
+       File[] files = new File("/home/"+Login.user.getUserName()+"").listFiles();
        //If this pathname does not denote a directory, then listFiles() returns null.
 
        for (File file : files) {

@@ -10,6 +10,9 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import static Server.UserThread.reader;
+import static Server.UserThread.writer;
+
 /**
  *
  * @author yana
@@ -43,7 +46,7 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static void CreateNewSHExecute(BufferedReader reader, PrintWriter writer) throws IOException {
+    public static void CreateNewSHExecute() throws IOException {
 
                     fileNameSH = reader.readLine()+".sh";
                     resulSH = reader.readLine();
@@ -56,6 +59,7 @@ public class CreateNewJob {
         Runtime.getRuntime().exec(command1);
         Runtime.getRuntime().exec("rm Move"+userName+".sh");
         writer.write(message);
+        writer.flush();
     }
      public static FileWriter CreateNewXRSL (String fileName, String result ){
         FileWriter outFile = null;
@@ -79,7 +83,7 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static void CreateNewXRSLExecute(BufferedReader reader, PrintWriter writer) throws IOException{
+    public static void CreateNewXRSLExecute() throws IOException{
 
                     fileNameXRSL = reader.readLine()+".xrsl";
                     resulXRSL = reader.readLine();
@@ -94,6 +98,7 @@ public class CreateNewJob {
                     Runtime.getRuntime().exec(command);
                     Runtime.getRuntime().exec("rm Move"+userName+".sh");
         writer.write(message);
+        writer.flush();
     }
     
 

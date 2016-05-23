@@ -10,10 +10,13 @@ package Server;
 import services.DBConnection;
 import services.UserServices;
 import services.Users;
+import Server.UserThread.*;
+
 
 import java.io.*;
-import java.net.Socket;
-import java.util.ArrayList;
+
+import static Server.UserThread.reader;
+import static Server.UserThread.writer;
 
 /**
  *
@@ -26,7 +29,7 @@ public class Login {
     public static String pass;
     public static String vo;
     
-    public static void LoginExecute(BufferedReader reader, PrintWriter writer) throws IOException {
+    public static void LoginExecute() throws IOException {
 
         name = reader.readLine();
         pass = reader.readLine();

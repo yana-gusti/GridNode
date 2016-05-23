@@ -29,21 +29,14 @@ public class SelectFile extends JFileChooser{
 
    
 
-    public static void SelectFile(File file,  JLabel errorlabel) throws IOException, ClassNotFoundException {
-        try {
-            s = new Socket(address, port);
-            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
-            System.out.println("Connected");
-        } catch (IOException ex) {
-            System.out.print(ex);
-        }
+    public static void SelectFile(Socket s, PrintWriter writer, BufferedReader reader, File file,  JLabel errorlabel) throws IOException, ClassNotFoundException {
+
         
             
-                String command = "saveFile";
+                String command = "saveFile\n";
                 writer.write(command);
+                writer.flush();
         System.out.println("Send command");
-                System.out.print(reader.readLine());
 
         ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
 
