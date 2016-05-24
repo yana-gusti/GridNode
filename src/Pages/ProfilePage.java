@@ -370,7 +370,29 @@ public class ProfilePage extends JFrame {
     }//GEN-LAST:event_StatusBtnActionPerformed
 
     private void ListOfJobActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_ListOfJobActionPerformed
-        jobActions("ListOfJobs");
+
+        String command = "ListOfJobs";
+        textArea.setText("");
+
+            System.out.println("writing to server: list of jobs\n");
+            writer.write(command+"\n");
+            writer.flush();
+            try {
+                String result = reader.readLine();
+                System.out.println("get result");
+                // read the output from the command
+
+                    textArea.append(result+ "\n");
+                    System.out.println(result);
+
+                // read any errors from the attempted command
+
+                ResultTextPane.setText(textArea.getText());
+            }
+            catch (IOException e) {
+                System.out.println("exception happened - here's what I know: ");
+                e.printStackTrace();
+            }
 
     }//GEN-LAST:event_ListOfJobActionPerformed
 

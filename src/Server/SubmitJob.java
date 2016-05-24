@@ -8,6 +8,8 @@ package Server;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,23 +30,28 @@ public class SubmitJob {
     public static String cluster;
 
     public static void findXRSLFile() throws IOException {
+
         System.out.println("start");
 
             fileNameXRSL = reader.readLine();
             System.out.println(fileNameXRSL);
             if (fileNameXRSL != null) {
 
-                Scanner scanner = new Scanner( new File("/home/"+Login.user.getUserName()+"/"+fileNameXRSL+"") );
-               message = scanner.useDelimiter("\\A").next();
-                scanner.close(); // Put this call in a finally block
-                System.out.println(message);
-                System.out.println("finish record");
-            } else {
-                message = "no such file";
+//                System.out.println("head /home/"+Login.user.getUserName()+"/"+fileNameXRSL);
+//                String command = ("head /home/"+Login.user.getUserName()+"/"+fileNameXRSL);
+//                SubmitJob submitJob = new SubmitJob();
+//                String result  = submitJob.actionExecute(command);
+                String result= new String(Files.readAllBytes(Paths.get("/home/"+Login.user.getUserName()+"/"+fileNameXRSL)));
 
+                writer.write(result);
+                writer.flush();
+                System.out.println(result);
+            } else {
+                String result = "no such file";
+                writer.write(result);
+                writer.flush();
             }
-        writer.write(message);
-        writer.flush();
+
         }
 
 
@@ -56,31 +63,14 @@ public class SubmitJob {
                     System.out.println("arcsub -c "+cluster+" "+fileNameXRSL);
                     FileCreator fileCreator = new FileCreator();
                     fileCreator.SubmitJobFile(Login.user.getUserName(), cluster, fileNameXRSL);
-        String result;
-       try {
-           String[] command = { "xterm", "./SubmitJobFile"+Login.user.getUserName()+".sh" };
-           Process p =Runtime.getRuntime().exec(command);
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            // read the output from the command
-            while ((result = stdInput.readLine()) != null) {
-                message=result+ "\n";
-            }
-            // read any errors from the attempted command
-           System.out.println("Here is the standard error of the command (if any):\n");
-            while ((result = stdError.readLine()) != null) {
-                message=result+ "\n";
-            }   
-        }
-        catch (IOException e) {
-            message = "exception happened - here's what I know: ";
-            System.out.println(message);
-            e.printStackTrace();
-        }
+        String command = ("./SubmitJobFile"+Login.user.getUserName()+".sh" );
+        SubmitJob submitJob = new SubmitJob();
+        String result = submitJob.actionExecute(command);
+        writer.write(result);
+        writer.flush();
 
         Runtime.getRuntime().exec("rm SubmitJobFile"+Login.user.getUserName()+".sh");
-        writer.write(message);
-        writer.flush();
+
 
     }
 
@@ -101,4 +91,28 @@ public class SubmitJob {
        objectOutput.writeObject(results);
 
    }
+    private String actionExecute(String command) {
+
+        StringBuffer output = new StringBuffer();
+
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec(command);
+            p.waitFor();
+            BufferedReader reader =
+                    new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+            String line = "";
+            while ((line = reader.readLine())!= null) {
+                output.append(line + "\n");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return output.toString();
+
+    }
+
 }

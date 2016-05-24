@@ -51,7 +51,7 @@ public class UserThread  implements Runnable{
                     case "listOfJobs": listOfFiles(); break;
                     case "submitJob": submitJob(); break;
                     case "findXRSLFile": findXRSLFile(); break;
-                    case "ResultOfJob": resultOfJob(); break;
+                    case "ResultOfJob": JobActions.resultOfJob(); break;
                     case "KillJob": killJob(); break;
                     case "StatusOfJob": statusOfJob(); break;
                     case "ListOfJobs": listOfJobs(); break;

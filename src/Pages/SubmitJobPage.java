@@ -7,6 +7,8 @@
 package Pages;
 
 
+import Server.Login;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -109,7 +111,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
             }
         });
 
-        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select your XRSL file", "CeO2.scf.in", "nordu_start.xrsl" }));
+        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select your XRSL file", "CeO2.scf.in", "test.xrsl" }));
         SelectJobFileCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelectJobFileCBActionPerformed(evt);
@@ -236,16 +238,9 @@ public class SubmitJobPage extends javax.swing.JFrame {
             try {
                 String result = reader.readLine();
                 // read the output from the command
-                while (result!= null) {
+
                     textArea.append(result+ "\n");
 
-                }
-                // read any errors from the attempted command
-                System.out.println("Here is the standard error of the command (if any):\n");
-                while (result != null) {
-                    textArea.append(result+ "\n");
-
-                }
                 ResultTextPane.setText(textArea.getText());
             }
             catch (IOException e) {
@@ -265,53 +260,54 @@ public class SubmitJobPage extends javax.swing.JFrame {
     private void ViewJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {
         String fileName;
         String message="text";
-        try{
-            fileName= SelectJobFileCB.getSelectedItem().toString();
+        try {
+            fileName = SelectJobFileCB.getSelectedItem().toString();
             System.out.println(fileName);
 
             if (fileName != null) {
-                writer.write("findXRSLFile\n");
-                writer.write(fileName+"\n");
-                writer.flush();
-                try {
-                    String result = reader.readLine();
-                    // read the output from the command
-                    while (result!= null) {
-                        textArea.append(result+ "\n");
+//                writer.write("findXRSLFile\n");
+//                writer.write(fileName+"\n");
+//                writer.flush();
+//                try {
+//                    String result = reader.readLine();
+//                    System.out.println("get result");
+//                    // read the output from the command
+//
+//                    textArea.append(result+ "\n");
+//                    System.out.println(result);
+//
+//                    // read any errors from the attempted command
+//
+//                    ResultTextPane.setText(textArea.getText());
+//                }
+//                catch (IOException e) {
+//                    System.out.println("exception happened - here's what I know: ");
+//                    e.printStackTrace();
+//                }
 
-                    }
-                    // read any errors from the attempted command
-                    System.out.println("Here is the standard error of the command (if any):\n");
-                    while (result != null) {
-                        textArea.append(result+ "\n");
-
-                    }
-                    ResultTextPane.setText(textArea.getText());
-                }
-                catch (IOException e) {
-                    System.out.println("exception happened - here's what I know: ");
-                    e.printStackTrace();
-                }
-
-
+//
 //            ArrayList<String> listResult = new ArrayList<>();
 //
 //                for (int i=0; i<8; i++) {
 //                    listResult.add(reader.readLine() + "\n");
 //                }
 //                textArea.setText(String.valueOf(listResult));
+//                ResultTextPane.setText(textArea.getText());
+//
+//
+//            }else {
+//                message = "Please, choose file";
+//                textArea.setText(message);
+//            }
+//        }catch (Exception a){
+//            System.out.println(a);
+//        }
 
 
-
-            }else {
-                message = "Please, choose file";
-                textArea.setText(message);
             }
         }catch (Exception a){
             System.out.println(a);
         }
-
-
     }
 
     public static void main(String args[]) {

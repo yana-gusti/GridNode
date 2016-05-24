@@ -20,7 +20,8 @@ public class FileCreator {
 
             output.append("#! /bin/bash");
             output.newLine();
-            output.append("sudo -H -u "+name+" bash -c 'voms-proxy-init -voms "+vo+" -valid 48:00 -pwstdin'");
+//            output.append("sudo -H -u "+name+" bash -c 'voms-proxy-init -voms "+vo+" -valid 48:00 -pwstdin'");
+            output.append("sudo -H -u "+name+" bash -c 'arcproxy -pwstdin'");
             output.close();
             Runtime.getRuntime().exec("chmod +x proxyInit.sh");
             proxyfilename = file.getName();

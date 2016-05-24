@@ -11,53 +11,66 @@ import static Server.UserThread.writer;
  * Created by yana on 1/22/15.
  */
 public class JobActions {
-    public static String jobName;
+
 
     public static void resultOfJob() throws IOException {
+        String jobName;
         jobName = reader.readLine();
-        actionExecute("arccat "+jobName+"");
+        JobActions jobActions = new JobActions();
+        String result = jobActions.actionExecute("arccat "+jobName+"");
+        writer.write(result);
+        writer.flush();
+
     }
     public static void killJob() throws IOException {
+        String jobName;
         jobName = reader.readLine();
-        actionExecute("arckill "+jobName+"");
+        JobActions jobActions = new JobActions();
+        String result = jobActions.actionExecute("arckill "+jobName+"");
+        writer.write(result);
+        writer.flush();
     }
     public static void statusOfJob() throws IOException {
+        String jobName;
         jobName = reader.readLine();
-        actionExecute("arcstat "+jobName+" && arccat "+jobName+"");
+        JobActions jobActions = new JobActions();
+        String result = jobActions.actionExecute("arcstat "+jobName+" && arccat "+jobName+"");
+        writer.write(result);
+        writer.flush();
+
     }
     public static void listOfJobs() throws IOException {
-        jobName = reader.readLine();
-        actionExecute("arcstat -a");
+        JobActions jobActions = new JobActions();
+        String result = jobActions.actionExecute("arcstat -a");
+        System.out.println(result);
+        writer.write(result);
+        writer.flush();
     }
 
-    public static void actionExecute(String command)
-    {
-        String result;
+    private String actionExecute(String command) {
+
+        StringBuffer output = new StringBuffer();
+
+        Process p;
         try {
-            Process p = Runtime.getRuntime().exec(command);
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            // read the output from the command
-            while ((result = stdInput.readLine()) != null) {
-                writer.write(result);
+            p = Runtime.getRuntime().exec(command);
+            p.waitFor();
+            BufferedReader reader =
+                    new BufferedReader(new InputStreamReader(p.getInputStream()));
 
+            String line = "";
+            while ((line = reader.readLine())!= null) {
+                output.append(line + "\n");
             }
-            writer.flush();
-            // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((result = stdError.readLine()) != null) {
-                writer.write(result);
-            }
-            writer.flush();
-        }
-        catch (IOException e) {
-            writer.write("exception happened - here's what I know: ");
-            System.out.println("exception happened - here's what I know: ");
+
+        } catch (Exception e) {
             e.printStackTrace();
-            writer.flush();
         }
+
+        return output.toString();
+
+    }
 
     }
 
 
-}
