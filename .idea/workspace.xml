@@ -7,13 +7,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/FileCreator.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/FileCreator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/JobActions.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/JobActions.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Grid_Node.iml" afterPath="$PROJECT_DIR$/Grid_Node.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/ProfilePage.java" afterPath="$PROJECT_DIR$/src/Pages/ProfilePage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/SubmitJobPage.java" afterPath="$PROJECT_DIR$/src/Pages/SubmitJobPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/FileCreator.java" afterPath="$PROJECT_DIR$/src/Server/FileCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/JobActions.java" afterPath="$PROJECT_DIR$/src/Server/JobActions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/SubmitJob.java" afterPath="$PROJECT_DIR$/src/Server/SubmitJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/UserThread.java" afterPath="$PROJECT_DIR$/src/Server/UserThread.java" />
     </list>
     <ignored path="Grid_Node.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -927,7 +920,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464029165067</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Job Actions">
+      <created>1464113341748</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1464113341748</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1108,6 +1108,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1125,6 +1126,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1244,6 +1246,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1116">
           <caret line="74" column="47" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1360,6 +1363,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="73" column="67" selection-start-line="73" selection-start-column="67" selection-end-line="73" selection-end-column="67" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1389,6 +1393,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
           <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
