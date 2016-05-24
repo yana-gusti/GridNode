@@ -55,7 +55,7 @@ public class UserThread  implements Runnable{
                     case "KillJob": killJob(); break;
                     case "StatusOfJob": statusOfJob(); break;
                     case "ListOfJobs": listOfJobs(); break;
-//                    case "delete_person":   deletePerson(); break;
+                    case "TestJob":   testJob(); break;
 //                    case "delete_payment":  deletePayment(); break;
                     //          case "payments_perName": payments_byName(); break;
 

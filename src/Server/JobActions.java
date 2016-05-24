@@ -30,6 +30,14 @@ public class JobActions {
         writer.write(result);
         writer.flush();
     }
+        public static void testJob() throws IOException {
+        String jobName;
+        jobName = reader.readLine();
+        JobActions jobActions = new JobActions();
+        String result = jobActions.actionExecute("arckill "+jobName+"");
+        writer.write(result);
+        writer.flush();
+    }
     public static void statusOfJob() throws IOException {
         String jobName;
         jobName = reader.readLine();

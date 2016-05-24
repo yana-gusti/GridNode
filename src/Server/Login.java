@@ -37,11 +37,15 @@ public class Login {
                     System.out.println(name+"   "+pass+"   "+vo);
                     Users user = Login(name, pass);
                     FileCreator fileCreator = new FileCreator();
+                    
+                    if (vo==""){
+                       fileCreator.CreateProxyFile(name); 
+                    } else {
+                        fileCreator.CreateVomsProxyFile(vo, name);
+                    }
                     fileCreator.CreateLoginFile(pass);
-                    fileCreator.CreateProxyFile(vo, name);
                     Runtime.getRuntime().exec("sudo ./Login.sh");
-                    Runtime.getRuntime().exec("rm Login.sh");
-                    Runtime.getRuntime().exec("rm proxyInit.sh");
+                   
         if(user!=null) {
             System.out.println("writing to client: "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");
             writer.write("success login\n");
@@ -51,6 +55,8 @@ public class Login {
         }else {
             System.out.println("user=null");
         }
+         Runtime.getRuntime().exec("rm Login.sh");
+         Runtime.getRuntime().exec("rm proxyInit.sh");
     }
     
 

@@ -57,27 +57,28 @@ public class ProfilePage extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        TopPanel = new JPanel();
-        TopLabel = new JLabel();
-        MainPanel = new JPanel();
-        MenuPanel = new JPanel();
-        EditProfileBtn = new JButton();
-        RemoveJobBtn = new JButton();
-        CreateJobBtn = new JButton();
-        LogoutBtn = new JButton();
-        PersonDataPanel = new JPanel();
-        SubmitJobBtn = new JButton();
-        jScrollPane1 = new JScrollPane();
-        ResultTextPane = new JTextPane();
-        StatusBtn = new JButton();
-        JobName = new JTextField();
-        ListOfJob = new JButton();
+        TopPanel = new javax.swing.JPanel();
+        TopLabel = new javax.swing.JLabel();
+        MainPanel = new javax.swing.JPanel();
+        MenuPanel = new javax.swing.JPanel();
+        EditProfileBtn = new javax.swing.JButton();
+        RemoveJobBtn = new javax.swing.JButton();
+        CreateJobBtn = new javax.swing.JButton();
+        LogoutBtn = new javax.swing.JButton();
+        PersonDataPanel = new javax.swing.JPanel();
+        SubmitJobBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ResultTextPane = new javax.swing.JTextPane();
+        StatusBtn = new javax.swing.JButton();
+        JobName = new javax.swing.JTextField();
+        ListOfJob = new javax.swing.JButton();
         textArea = new java.awt.TextArea();
         textArea.setVisible(false);
         textArea.setText("");
-        ResultOfJobBtn = new JButton();
+        ResultOfJobBtn = new javax.swing.JButton();
+        TestJobBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         TopPanel.setBackground(new java.awt.Color(153, 255, 255));
         TopPanel.setForeground(new java.awt.Color(0, 0, 153));
@@ -85,7 +86,7 @@ public class ProfilePage extends JFrame {
         TopPanel.setFont(new java.awt.Font("Verdana", 3, 24)); // NOI18N
 
         TopLabel.setFont(new java.awt.Font("Verdana", 3, 36)); // NOI18N
-        TopLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        TopLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TopLabel.setText("Grid Node");
         TopLabel.setToolTipText("");
 
@@ -96,7 +97,7 @@ public class ProfilePage extends JFrame {
         EditProfileBtn.setBackground(new java.awt.Color(0, 204, 204));
         EditProfileBtn.setText("Edit Profile");
         EditProfileBtn.setActionCommand("Registration");
-        EditProfileBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        EditProfileBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         EditProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditProfileBtnActionPerformed(evt);
@@ -106,21 +107,17 @@ public class ProfilePage extends JFrame {
         RemoveJobBtn.setBackground(new java.awt.Color(0, 204, 204));
         RemoveJobBtn.setText("Remove Job");
         RemoveJobBtn.setActionCommand("Registration");
-        RemoveJobBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        RemoveJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RemoveJobBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    RemoveJobBtnActionPerformed(evt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                RemoveJobBtnActionPerformed(evt);
             }
         });
 
         CreateJobBtn.setBackground(new java.awt.Color(0, 204, 204));
         CreateJobBtn.setText("Create Job");
         CreateJobBtn.setActionCommand("Registration");
-        CreateJobBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CreateJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CreateJobBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CreateJobBtnActionPerformed(evt);
@@ -130,7 +127,7 @@ public class ProfilePage extends JFrame {
         LogoutBtn.setBackground(new java.awt.Color(0, 204, 204));
         LogoutBtn.setText("Logout");
         LogoutBtn.setActionCommand("Registration");
-        LogoutBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        LogoutBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LogoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutBtnActionPerformed(evt);
@@ -139,30 +136,24 @@ public class ProfilePage extends JFrame {
 
         PersonDataPanel.setBackground(new java.awt.Color(153, 255, 255));
 
-        GroupLayout PersonDataPanelLayout = new GroupLayout(PersonDataPanel);
+        javax.swing.GroupLayout PersonDataPanelLayout = new javax.swing.GroupLayout(PersonDataPanel);
         PersonDataPanel.setLayout(PersonDataPanelLayout);
         PersonDataPanelLayout.setHorizontalGroup(
-            PersonDataPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            PersonDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
         PersonDataPanelLayout.setVerticalGroup(
-            PersonDataPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            PersonDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 133, Short.MAX_VALUE)
         );
 
         SubmitJobBtn.setBackground(new java.awt.Color(0, 204, 204));
         SubmitJobBtn.setText("Submit Job");
         SubmitJobBtn.setActionCommand("Registration");
-        SubmitJobBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SubmitJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SubmitJobBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    SubmitJobBtnActionPerformed(evt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                SubmitJobBtnActionPerformed(evt);
             }
         });
 
@@ -171,19 +162,15 @@ public class ProfilePage extends JFrame {
         StatusBtn.setBackground(new java.awt.Color(0, 204, 204));
         StatusBtn.setText("Details of Job");
         StatusBtn.setActionCommand("Registration");
-        StatusBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        StatusBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         StatusBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    StatusBtnActionPerformed(evt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                StatusBtnActionPerformed(evt);
             }
         });
 
         JobName.setForeground(new java.awt.Color(153, 153, 153));
-        JobName.setHorizontalAlignment(JTextField.CENTER);
+        JobName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         JobName.setText("Enter your Job name");
         JobName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -194,139 +181,144 @@ public class ProfilePage extends JFrame {
         ListOfJob.setBackground(new java.awt.Color(0, 204, 204));
         ListOfJob.setText("List of Jobs");
         ListOfJob.setActionCommand("Registration");
-        ListOfJob.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ListOfJob.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ListOfJob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    ListOfJobActionPerformed(evt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                ListOfJobActionPerformed(evt);
             }
         });
 
         ResultOfJobBtn.setBackground(new java.awt.Color(0, 204, 204));
         ResultOfJobBtn.setText("Result of Job");
         ResultOfJobBtn.setActionCommand("Registration");
-        ResultOfJobBtn.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ResultOfJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ResultOfJobBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    ResultOfJobBtnActionPerformed(evt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                ResultOfJobBtnActionPerformed(evt);
             }
         });
 
-        GroupLayout MenuPanelLayout = new GroupLayout(MenuPanel);
+        TestJobBtn.setBackground(new java.awt.Color(0, 204, 204));
+        TestJobBtn.setText("Test job");
+        TestJobBtn.setActionCommand("Registration");
+        TestJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TestJobBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TestJobBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
         MenuPanel.setLayout(MenuPanelLayout);
         MenuPanelLayout.setHorizontalGroup(
-            MenuPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(MenuPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addGroup(MenuPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(MenuPanelLayout.createSequentialGroup()
-                                .addGroup(MenuPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(JobName, GroupLayout.Alignment.LEADING)
-                                    .addComponent(ListOfJob, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PersonDataPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(GroupLayout.Alignment.LEADING, MenuPanelLayout.createSequentialGroup()
-                                        .addComponent(EditProfileBtn, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(JobName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ListOfJob, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(PersonDataPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MenuPanelLayout.createSequentialGroup()
+                                        .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(CreateJobBtn, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(RemoveJobBtn, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(StatusBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(CreateJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(RemoveJobBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(StatusBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(ResultOfJobBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(MenuPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addGroup(GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
-                                .addComponent(SubmitJobBtn, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ResultOfJobBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TestJobBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createSequentialGroup()
+                                .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(LogoutBtn, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 344, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
                     .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addComponent(textArea, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         MenuPanelLayout.setVerticalGroup(
-            MenuPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuPanelLayout.createSequentialGroup()
-                .addGroup(MenuPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(EditProfileBtn, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreateJobBtn, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LogoutBtn, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SubmitJobBtn, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(MenuPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CreateJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(MenuPanelLayout.createSequentialGroup()
-                        .addComponent(PersonDataPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ListOfJob, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PersonDataPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TestJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(ListOfJob, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(JobName, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JobName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(StatusBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ResultOfJobBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(RemoveJobBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textArea, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(StatusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ResultOfJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(RemoveJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
-        GroupLayout MainPanelLayout = new GroupLayout(MainPanel);
+        javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
-            MainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addComponent(MenuPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
-            MainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addComponent(MenuPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 243, Short.MAX_VALUE))
         );
 
-        GroupLayout TopPanelLayout = new GroupLayout(TopPanel);
+        javax.swing.GroupLayout TopPanelLayout = new javax.swing.GroupLayout(TopPanel);
         TopPanel.setLayout(TopPanelLayout);
         TopPanelLayout.setHorizontalGroup(
-            TopPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(TopPanelLayout.createSequentialGroup()
-                .addComponent(TopLabel, GroupLayout.PREFERRED_SIZE, 627, GroupLayout.PREFERRED_SIZE)
+                .addComponent(TopLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         TopPanelLayout.setVerticalGroup(
-            TopPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TopPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TopLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(MainPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(TopLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(336, 336, 336))
         );
 
+        LoginPage.user.getFirst_name();
 
-
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(TopPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(TopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(TopPanel, GroupLayout.PREFERRED_SIZE, 573, GroupLayout.PREFERRED_SIZE)
+                .addComponent(TopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -405,6 +397,31 @@ public class ProfilePage extends JFrame {
 
     }//GEN-LAST:event_ResultOfJobBtnActionPerformed
 
+    private void TestJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestJobBtnActionPerformed
+String command = "TestJob";
+        textArea.setText("");
+
+            System.out.println("writing to server: list of jobs\n");
+            writer.write(command+"\n");
+            writer.flush();
+            try {
+                String result = reader.readLine();
+                System.out.println("get result");
+                // read the output from the command
+
+                    textArea.append(result+ "\n");
+                    System.out.println(result);
+
+                // read any errors from the attempted command
+
+                ResultTextPane.setText(textArea.getText());
+            }
+            catch (IOException e) {
+                System.out.println("exception happened - here's what I know: ");
+                e.printStackTrace();
+            }        // TODO add your handling code here:
+    }//GEN-LAST:event_TestJobBtnActionPerformed
+
     public void jobActions (String command) throws IOException {
         textArea.setText("");
         String jobName= JOptionPane.showInputDialog("Enter file name");
@@ -476,22 +493,23 @@ public static void main(String args[]) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public JButton CreateJobBtn;
-    public JButton EditProfileBtn;
-    public JTextField JobName;
-    public JButton ListOfJob;
-    public JButton LogoutBtn;
-    private JPanel MainPanel;
-    private JPanel MenuPanel;
-    private JPanel PersonDataPanel;
-    public JButton RemoveJobBtn;
-    public JButton ResultOfJobBtn;
-    public JTextPane ResultTextPane;
-    public JButton StatusBtn;
-    public JButton SubmitJobBtn;
-    private JLabel TopLabel;
-    public JPanel TopPanel;
-    private JScrollPane jScrollPane1;
+    public javax.swing.JButton CreateJobBtn;
+    public javax.swing.JButton EditProfileBtn;
+    public javax.swing.JTextField JobName;
+    public javax.swing.JButton ListOfJob;
+    public javax.swing.JButton LogoutBtn;
+    private javax.swing.JPanel MainPanel;
+    private javax.swing.JPanel MenuPanel;
+    private javax.swing.JPanel PersonDataPanel;
+    public javax.swing.JButton RemoveJobBtn;
+    public javax.swing.JButton ResultOfJobBtn;
+    public javax.swing.JTextPane ResultTextPane;
+    public javax.swing.JButton StatusBtn;
+    public javax.swing.JButton SubmitJobBtn;
+    public javax.swing.JButton TestJobBtn;
+    private javax.swing.JLabel TopLabel;
+    public javax.swing.JPanel TopPanel;
+    private javax.swing.JScrollPane jScrollPane1;
     public java.awt.TextArea textArea;
     // End of variables declaration//GEN-END:variables
     

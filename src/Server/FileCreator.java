@@ -11,7 +11,26 @@ import java.io.IOException;
 public class FileCreator {
     String proxyfilename = null;
     String loginfilename = null;
-    public void CreateProxyFile(String vo, String name){
+    public void CreateVomsProxyFile(String vo, String name){
+
+
+        try {
+            File file = new File("proxyInit.sh");
+            BufferedWriter output = new BufferedWriter(new FileWriter(file));
+
+            output.append("#! /bin/bash");
+            output.newLine();
+            output.append("sudo -H -u "+name+" bash -c 'voms-proxy-init -voms "+vo+" -valid 48:00 -pwstdin'");
+//            output.append("sudo -H -u "+name+" bash -c 'arcproxy -pwstdin'");
+            output.close();
+            Runtime.getRuntime().exec("chmod +x proxyInit.sh");
+            proxyfilename = file.getName();
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        }
+    }
+    
+        public void CreateProxyFile(String name){
 
 
         try {

@@ -163,7 +163,7 @@
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="307" max="32767" attributes="0"/>
-                              <Component id="email" min="-2" pref="161" max="-2" attributes="0"/>
+                              <Component id="username" min="-2" pref="161" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -185,7 +185,7 @@
                               <Component id="vo" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="voLabel" min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="32" max="32767" attributes="0"/>
+                          <EmptySpace pref="35" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="RegistrBtn" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="LoginBtn" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
@@ -195,7 +195,7 @@
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              <Component id="email" min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="username" min="-2" pref="37" max="-2" attributes="0"/>
                               <EmptySpace pref="185" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -205,7 +205,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="emailLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Username"/>
+                    <Property name="text" type="java.lang.String" value="Username*"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="pass">
@@ -218,7 +218,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="passLabel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Password"/>
+                    <Property name="text" type="java.lang.String" value="Password*"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="RegistrBtn">
@@ -241,9 +241,9 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="email">
+                <Component class="javax.swing.JTextField" name="username">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
