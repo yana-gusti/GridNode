@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Server;
+package services;
 
 
 import java.io.*;
@@ -81,6 +81,7 @@ public class SaveFile {
         message="File transfer success\n";
           
         System.out.println(message);
+
           
         writer.write(message);
         writer.flush();

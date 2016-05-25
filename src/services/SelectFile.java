@@ -29,13 +29,11 @@ public class SelectFile extends JFileChooser{
 
    
 
-    public static void SelectFile(Socket s, PrintWriter writer, BufferedReader reader, File file,  JLabel errorlabel) throws IOException, ClassNotFoundException {
+    public static String SelectFile(Socket s, PrintWriter writer, BufferedReader reader, File file) throws IOException, ClassNotFoundException {
 
         
             
-                String command = "saveFile\n";
-                writer.write(command);
-                writer.flush();
+
         System.out.println("Send command");
 
         ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
@@ -50,7 +48,7 @@ public class SelectFile extends JFileChooser{
             oos.writeObject(bytesRead);  
             oos.writeObject(Arrays.copyOf(buffer, buffer.length));  
         }  
-          errorlabel.setText(reader.readLine());
+          return reader.readLine();
        
         } 
     

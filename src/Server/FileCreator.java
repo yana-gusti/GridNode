@@ -39,7 +39,7 @@ public class FileCreator {
 
             output.append("#! /bin/bash");
             output.newLine();
-            output.append("sudo -H -u yana bash -c 'cd /home/"+name+"/.globus' -p $(echo 1 | openssl passwd -1 -stdin)");
+            output.append("sudo -H -u yana bash -c 'cd /home/"+name+"/.globus' ");
             output.newLine();
             output.append("sudo -H -u "+name+" bash -c 'arcproxy -p key=file:/home/yana/Desktop/GridNode/pass.txt'");
             output.close();
@@ -73,12 +73,12 @@ public class FileCreator {
             output.append("#! /bin/bash"); 
             output.newLine();
 
-            output.append("sudo -S useradd -m -s /bin/bash -p $"
+            output.append("echo 1  | sudo -S useradd -m -s /bin/bash -p $"
                     + "(echo 1 | openssl passwd -1 -stdin) "+name+"");
             output.newLine();
-            output.append("sudo usermod -aG sudo,adm "+name+"");
+            output.append("echo 1  | sudo usermod -aG sudo,adm "+name+"");
             output.newLine();
-            output.append("sudo -H -u yana bash -c 'chmod +xrw /home/yana/Desktop/GridNode/userkey.pem'");
+            output.append("echo 1  | sudo -H -u yana bash -c 'chmod +xrw /home/yana/Desktop/GridNode/userkey.pem'");
             output.newLine();
             output.append("sudo -H -u "+name+" bash -c 'mkdir /home/"+name+"/.globus'");
             output.newLine();

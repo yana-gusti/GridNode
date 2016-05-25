@@ -43,7 +43,7 @@ public class CreateJobPage extends JFrame {
     public CreateJobPage() {
 
         initComponents();
-        initServerConnection();
+
     }
     private void initServerConnection(){
         try {
@@ -634,7 +634,7 @@ public class CreateJobPage extends JFrame {
     private void CreateJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_CreateJobBtnActionPerformed
 
 
-
+        initServerConnection();
         fileName = JOptionPane.showInputDialog("Enter file name");
         String resultXRSL = Result.getText();
 	 if (fileName != null && resultXRSL!= null) {
@@ -648,7 +648,10 @@ public class CreateJobPage extends JFrame {
          errorLabel.setText(reader.readLine());
         submitJobPage = new SubmitJobPage();
         submitJobPage.setVisible(true);
-        ProfilePage.createJobPage.setVisible(false);}}
+        ProfilePage.createJobPage.setVisible(false);}
+        writer.close();
+        reader.close();
+    }
 
 
     private void ClearFieldsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearFieldsBtnActionPerformed
@@ -667,12 +670,13 @@ public class CreateJobPage extends JFrame {
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
 
-        LoginPage.profilePage.setVisible(true);
+        ProfilePage page = new ProfilePage();
+        page.setVisible(true);
         ProfilePage.createJobPage.setVisible(false);
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     private void CreateBashScriptBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_CreateBashScriptBtnActionPerformed
-
+        initServerConnection();
         fileName = JOptionPane.showInputDialog("Enter file name");
         String resultSH = Result.getText();
 	 if (fileName != null && resultSH!= null) {
@@ -685,6 +689,8 @@ public class CreateJobPage extends JFrame {
          writer.write(resultSH+"\n");
          writer.flush();
          errorLabel.setText(reader.readLine());
+         writer.close();
+         reader.close();
         }
     }//GEN-LAST:event_CreateBashScriptBtnActionPerformed
 
@@ -724,6 +730,7 @@ public class CreateJobPage extends JFrame {
     }//GEN-LAST:event_SelectProgCBActionPerformed
 
     private void SelectInFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInFileActionPerformed
+        initServerConnection();
         JFileChooser fileChooser = new JFileChooser();
          int returnVal;
         returnVal = fileChooser.showOpenDialog(this);
@@ -732,12 +739,18 @@ public class CreateJobPage extends JFrame {
             inputFileLb.setText(InputFile.getName());
             SelectInputFileLb.setText(inputFileLb.getText());
             try {
-                SelectFile.SelectFile(s, writer, reader, InputFile, errorLabel);
+                errorLabel.setText(SelectFile.SelectFile(s, writer, reader, InputFile));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        writer.close();
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_SelectInFileActionPerformed
 
@@ -884,7 +897,7 @@ public class CreateJobPage extends JFrame {
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     private void SelectInputFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtnActionPerformed
-
+        initServerConnection();
         JFileChooser fileChooser = new JFileChooser();
          int returnVal;
         returnVal = fileChooser.showOpenDialog(this);
@@ -893,20 +906,24 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb.setText(InputFile.getName());
 
             try {
-                SelectFile.SelectFile(s, writer, reader,InputFile, errorLabel);
+                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,InputFile));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-
-
+        writer.close();
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_SelectInputFileBtnActionPerformed
 
     private void SelectInputFileBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn2ActionPerformed
-      JFileChooser fileChooser = new JFileChooser();
+        initServerConnection();
+        JFileChooser fileChooser = new JFileChooser();
          int returnVal;
         returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -914,18 +931,24 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb2.setText(InputFile.getName());
 
             try {
-                SelectFile.SelectFile(s, writer, reader,InputFile, errorLabel);
+                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,InputFile));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        writer.close();
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_SelectInputFileBtn2ActionPerformed
 
     private void SelectInputFileBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn3ActionPerformed
-       JFileChooser fileChooser = new JFileChooser();
+        initServerConnection();
+        JFileChooser fileChooser = new JFileChooser();
          int returnVal;
         returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -933,16 +956,23 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb3.setText(InputFile.getName());
 
             try {
-                SelectFile.SelectFile(s, writer, reader, InputFile, errorLabel);
+                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,InputFile));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        writer.close();
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_SelectInputFileBtn3ActionPerformed
 
     private void SelectInputFileBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn4ActionPerformed
+        initServerConnection();
         JFileChooser fileChooser = new JFileChooser();
          int returnVal;
         returnVal = fileChooser.showOpenDialog(this);
@@ -951,12 +981,18 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb4.setText(InputFile.getName());
 
             try {
-                SelectFile.SelectFile(s, writer, reader,InputFile, errorLabel);
+                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,InputFile));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        writer.close();
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_SelectInputFileBtn4ActionPerformed
 

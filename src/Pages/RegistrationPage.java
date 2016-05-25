@@ -334,8 +334,10 @@ public static ProfilePage profilePage;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             userKeyFile = fileChooser.getSelectedFile();
             userKey.setText(userKeyFile.getName());
-
-                SelectFile.SelectFile(s, writer, reader, userKeyFile, errorLabel);
+            String command = "saveFile\n";
+            writer.write(command);
+            writer.flush();
+               errorLabel.setText( SelectFile.SelectFile(s, writer, reader, userKeyFile));
 
 
         }
@@ -349,8 +351,11 @@ public static ProfilePage profilePage;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             userCertFile = fileChooser.getSelectedFile();
             userCert.setText(userCertFile.getName());
+            String command = "saveFile\n";
+            writer.write(command);
+            writer.flush();
             try {
-                SelectFile.SelectFile(s, writer, reader,userCertFile, errorLabel);
+                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,userCertFile));
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

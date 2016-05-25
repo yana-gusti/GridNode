@@ -61,8 +61,8 @@ public class Login {
                     FileCreator fileCreator = new FileCreator();
                     fileCreator.CreateVomsProxyFile(vo, name);
                     fileCreator.CreatePassFile(pass);
-        String[] command = { "xterm", "cd /home/yana/Desktop/GridNode/", "./proxyInit.sh" };
-        Runtime.getRuntime().exec(command);
+//        String[] command = { "xterm", "cd /home/yana/Desktop/GridNode/", "./proxyInit.sh" };
+        Runtime.getRuntime().exec("echo 1 | sudo -S -k bash /home/yana/Desktop/GridNode/proxyInit.sh");
 //                    Runtime.getRuntime().exec("sudo ./Login.sh");
                    
         if(user!=null) {

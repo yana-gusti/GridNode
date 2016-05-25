@@ -7,6 +7,7 @@
 package Pages;
 
 import grid_node.Main;
+import services.SaveFile;
 
 import javax.swing.*;
 import java.io.*;
@@ -35,7 +36,7 @@ public class ProfilePage extends JFrame {
     public ProfilePage() {
 
         initComponents();
-        initServerConnection();
+
     }
     private void initServerConnection(){
         try {
@@ -385,7 +386,7 @@ public class ProfilePage extends JFrame {
     }//GEN-LAST:event_StatusBtnActionPerformed
 
     private void ListOfJobActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_ListOfJobActionPerformed
-
+        initServerConnection();
         String command = "ListOfJobs";
         textArea.setText("");
 
@@ -393,15 +394,13 @@ public class ProfilePage extends JFrame {
             writer.write(command+"\n");
             writer.flush();
             try {
-                String result = reader.readLine();
-                System.out.println("get result");
-                // read the output from the command
-
-                    textArea.append(result+ "\n");
-                    System.out.println(result);
-
+                String line = "";
+                while ((line = reader.readLine())!= null) {
+                    textArea.append(line + "\n");
+                    System.out.println(line);
+                }
                 // read any errors from the attempted command
-
+                reader.close();
                 ResultTextPane.setText(textArea.getText());
             }
             catch (IOException e) {
@@ -417,28 +416,28 @@ public class ProfilePage extends JFrame {
 
     private void ResultOfJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_ResultOfJobBtnActionPerformed
         jobActions("ResultOfJob");
+        SaveFile.saveFile();
 
     }//GEN-LAST:event_ResultOfJobBtnActionPerformed
 
     private void TestJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestJobBtnActionPerformed
-String command = "TestJob";
+        initServerConnection();
+        String command = "TestJob";
         textArea.setText("");
 
-            System.out.println("writing to server: list of jobs\n");
+            System.out.println("writing to server: test of jobs\n");
             writer.write(command+"\n");
             writer.flush();
-            try {
-                String result = reader.readLine();
-                System.out.println("get result");
-                // read the output from the command
-
-                    textArea.append(result+ "\n");
-                    System.out.println(result);
-
-                // read any errors from the attempted command
-
-                ResultTextPane.setText(textArea.getText());
+        try {
+            String line = "";
+            while ((line = reader.readLine())!= null) {
+                textArea.append(line + "\n");
+                System.out.println(line);
             }
+            // read any errors from the attempted command
+            reader.close();
+            ResultTextPane.setText(textArea.getText());
+        }
             catch (IOException e) {
                 System.out.println("exception happened - here's what I know: ");
                 e.printStackTrace();
@@ -446,28 +445,25 @@ String command = "TestJob";
     }//GEN-LAST:event_TestJobBtnActionPerformed
 
     public void jobActions (String command) throws IOException {
+        initServerConnection();
         textArea.setText("");
         String jobName= JOptionPane.showInputDialog("Enter file name");
         if (jobName != null ) {
 
             JobName.setText(jobName);
-            System.out.println("writing to server: "+jobName +"\n");
+            System.out.println("writing to server: "+command +"\n");
             writer.write(command+"\n");
             writer.write(jobName+"\n");
             writer.flush();
             try {
-                String result = reader.readLine();
-                // read the output from the command
-                while (result!= null) {
-                    textArea.append(result+ "\n");
+                String line = "";
+                while ((line = reader.readLine())!= null) {
 
+                    textArea.append(line + "\n");
+                    System.out.println(line);
                 }
                 // read any errors from the attempted command
-                System.out.println("Here is the standard error of the command (if any):\n");
-                while (result != null) {
-                    textArea.append(result+ "\n");
-
-                }
+                reader.close();
                 ResultTextPane.setText(textArea.getText());
             }
             catch (IOException e) {

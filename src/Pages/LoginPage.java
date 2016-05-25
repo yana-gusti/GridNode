@@ -41,7 +41,7 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
-        initServerConnection();
+
     }
     private void initServerConnection(){
         try {
@@ -263,7 +263,7 @@ public class LoginPage extends javax.swing.JFrame {
 
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException, InterruptedException {//GEN-FIRST:event_LoginBtnActionPerformed
-
+        initServerConnection();
         String _username = username.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();
@@ -309,7 +309,6 @@ public class LoginPage extends javax.swing.JFrame {
 
 
             }
-
 
     }//GEN-LAST:event_LoginBtnActionPerformed
 

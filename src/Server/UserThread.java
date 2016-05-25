@@ -15,7 +15,7 @@ import static Server.CreateNewJob.*;
 import static Server.JobActions.*;
 import static Server.Login.*;
 import static Server.Registration.RegistrationExecute;
-import static Server.SaveFile.saveFile;
+import static services.SaveFile.saveFile;
 import static Server.SubmitJob.*;
 
 /**
@@ -45,18 +45,18 @@ public class UserThread  implements Runnable{
                 switch(function){
                     case "login": LoginExecute(); break;
                     case "register": RegistrationExecute(); break;
-                    case "saveFile": saveFile(); break;
+                    case "saveFile": saveFile();  break;
                     case "createSHFile": CreateNewSHExecute(); break;
                     case "createXRSLFile": CreateNewXRSLExecute(); break;
                     case "listOfJobs": listOfFiles(); break;
-                    case "submitJob": submitJob(); break;
+                    case "submitJob": submitJob();break;
                     case "findXRSLFile": findXRSLFile(); break;
                     case "ResultOfJob": JobActions.resultOfJob(); break;
-                    case "KillJob": killJob(); break;
-                    case "StatusOfJob": statusOfJob(); break;
-                    case "ListOfJobs": listOfJobs(); break;
+                    case "KillJob": killJob();break;
+                    case "StatusOfJob": statusOfJob();break;
+                    case "ListOfJobs": listOfJobs();  break;
                     case "TestJob":   testJob(); break;
-                    case "loginWithOutVO":  LoginExecuteWithoutVO(); break;
+                    case "loginWithOutVO":  LoginExecuteWithoutVO();  break;
                     //          case "payments_perName": payments_byName(); break;
 
                     // Za drugite funkcii si dobavq6 case-ove + metodi dolu

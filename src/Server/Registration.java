@@ -47,14 +47,13 @@ public class Registration {
                     FileCreator fileCreator = new FileCreator();
                     fileCreator.CreateRegistrationFile(username, userCertName, userKeyName);
                     System.out.println("create file ./Register"+username+".sh");
-                    String[] command = { "xterm", "/home/yana/Desktop/GridNode/Register"+username+".sh" };
-                    Runtime.getRuntime().exec(command);
+//                    String[] command = { "xterm", "/home/yana/Desktop/GridNode/Register"+username+".sh" };
+                    Runtime.getRuntime().exec("./Register"+username+".sh");
 
                     fileCreator.CreatePassFile(pass);
                     fileCreator.CreateProxyFile(username);
-                    Runtime.getRuntime().exec("./proxyInit.sh");
-//                    Runtime.getRuntime().exec("rm pass.txt");
-//                    Runtime.getRuntime().exec("rm proxyInit.sh");
+                    Runtime.getRuntime().exec("echo 1 | sudo -S -k bash /home/yana/Desktop/GridNode/proxyInit.sh");
+
             if(user!=null) {
                 System.out.println("writing to client: "+message+" "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");
                 writer.write(message);
@@ -64,12 +63,11 @@ public class Registration {
             }else {
                 System.out.println("user=null");
             }
-        //                    Runtime.getRuntime().exec("rm Register"+username+".sh");
+        //            Runtime.getRuntime().exec("rm Register"+username+".sh");
 //                    Runtime.getRuntime().exec("rm "+userCertName+"");
 //                    Runtime.getRuntime().exec("rm "+userKeyName+"");
-        //                    Runtime.getRuntime().exec("rm Login.sh");
+//                    Runtime.getRuntime().exec("rm pass.txt");
 //                    Runtime.getRuntime().exec("rm proxyInit.sh");
-                
     }
     
 
