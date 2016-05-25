@@ -31,10 +31,9 @@ public class JobActions {
         writer.flush();
     }
         public static void testJob() throws IOException {
-        String jobName;
-        jobName = reader.readLine();
+
         JobActions jobActions = new JobActions();
-        String result = jobActions.actionExecute("arckill "+jobName+"");
+        String result = jobActions.actionExecute("arctest -J 1 -c arc-ce.grid.upjs.sk");
         writer.write(result);
         writer.flush();
     }

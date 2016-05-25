@@ -97,11 +97,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         emailLabel.setText("Username*");
 
-        pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
-            }
-        });
+
 
         passLabel.setText("Password*");
 
@@ -115,18 +111,21 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
 
         LoginBtn.setBackground(new java.awt.Color(0, 204, 204));
         LoginBtn.setText("Login");
         LoginBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LoginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginBtnActionPerformed(evt);
+                try {
+                    LoginBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -268,17 +267,18 @@ public class LoginPage extends javax.swing.JFrame {
         String _username = username.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();
-        if (_username != null && _pass != null) {
-            System.out.println("writing to server: "+_username +"\n"+_pass +"\n"+_vo +"\n");
-            writer.write("login\n");
-            writer.write(_username+"\n");
-            writer.write(_pass+"\n");
-            writer.write(_vo+"\n");
-            writer.flush();
+        if (_username.isEmpty() || _pass.isEmpty()) {
+            errorLabel.setText("error");
+
+
+            }else {
+            if (_vo.isEmpty()){
+                System.out.println("writing to server: "+_username +"\n"+_pass +"\n");
+                writer.write("loginWithOutVO\n");
+                writer.write(_username+"\n");
+                writer.write(_pass+"\n");
+                writer.flush();
                 errorLabel.setText(reader.readLine());
-
-
-
                 if (errorLabel.getText().equals("success login")) {
                     profilePage = new ProfilePage();
                     profilePage.setVisible(true);
@@ -287,9 +287,25 @@ public class LoginPage extends javax.swing.JFrame {
                 } else {
                     errorLabel.setText("error");
                 }
-
             }else {
-                errorLabel.setText("error");
+
+                System.out.println("writing to server: " + _username + "\n" + _pass + "\n");
+                writer.write("login\n");
+                writer.write(_username + "\n");
+                writer.write(_pass + "\n");
+                writer.write(_vo + "\n");
+                writer.flush();
+                errorLabel.setText(reader.readLine());
+                if (errorLabel.getText().equals("success login")) {
+                    profilePage = new ProfilePage();
+                    profilePage.setVisible(true);
+                    Main.loginPage.setVisible(false);
+                } else {
+                    errorLabel.setText("error");
+                }
+
+            }
+
 
 
             }

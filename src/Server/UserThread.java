@@ -56,7 +56,7 @@ public class UserThread  implements Runnable{
                     case "StatusOfJob": statusOfJob(); break;
                     case "ListOfJobs": listOfJobs(); break;
                     case "TestJob":   testJob(); break;
-//                    case "delete_payment":  deletePayment(); break;
+                    case "loginWithOutVO":  LoginExecuteWithoutVO(); break;
                     //          case "payments_perName": payments_byName(); break;
 
                     // Za drugite funkcii si dobavq6 case-ove + metodi dolu

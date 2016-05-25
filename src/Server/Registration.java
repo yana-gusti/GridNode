@@ -11,10 +11,7 @@ import services.UserServices;
 import services.Users;
 
 import java.io.*;
-import java.net.Socket;
-import java.util.ArrayList;
 
-import static Server.Registration.message;
 import static Server.UserThread.reader;
 import static Server.UserThread.writer;
 
@@ -53,10 +50,10 @@ public class Registration {
                     String[] command = { "xterm", "/home/yana/Desktop/GridNode/Register"+username+".sh" };
                     Runtime.getRuntime().exec(command);
 
-                    fileCreator.CreateLoginFile(pass);
-                    fileCreator.CreateProxyFile(vo, username);
-                    Runtime.getRuntime().exec("./Login.sh");
-//                    Runtime.getRuntime().exec("rm Login.sh");
+                    fileCreator.CreatePassFile(pass);
+                    fileCreator.CreateProxyFile(username);
+                    Runtime.getRuntime().exec("./proxyInit.sh");
+//                    Runtime.getRuntime().exec("rm pass.txt");
 //                    Runtime.getRuntime().exec("rm proxyInit.sh");
             if(user!=null) {
                 System.out.println("writing to client: "+message+" "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");

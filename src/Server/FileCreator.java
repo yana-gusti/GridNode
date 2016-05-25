@@ -20,8 +20,8 @@ public class FileCreator {
 
             output.append("#! /bin/bash");
             output.newLine();
-            output.append("sudo -H -u "+name+" bash -c 'voms-proxy-init -voms "+vo+" -valid 48:00 -pwstdin'");
-//            output.append("sudo -H -u "+name+" bash -c 'arcproxy -pwstdin'");
+            output.append("sudo -H -u "+name+" bash -c 'arcproxy -S "+vo+" -p key=file:/home/yana/Desktop/GridNode/pass.txt'");
+//            output.append("sudo -H -u "+name+" bash -c 'arcproxy'");
             output.close();
             Runtime.getRuntime().exec("chmod +x proxyInit.sh");
             proxyfilename = file.getName();
@@ -39,8 +39,9 @@ public class FileCreator {
 
             output.append("#! /bin/bash");
             output.newLine();
-//            output.append("sudo -H -u "+name+" bash -c 'voms-proxy-init -voms "+vo+" -valid 48:00 -pwstdin'");
-            output.append("sudo -H -u "+name+" bash -c 'arcproxy -pwstdin'");
+            output.append("sudo -H -u yana bash -c 'cd /home/"+name+"/.globus' -p $(echo 1 | openssl passwd -1 -stdin)");
+            output.newLine();
+            output.append("sudo -H -u "+name+" bash -c 'arcproxy -p key=file:/home/yana/Desktop/GridNode/pass.txt'");
             output.close();
             Runtime.getRuntime().exec("chmod +x proxyInit.sh");
             proxyfilename = file.getName();
@@ -49,27 +50,18 @@ public class FileCreator {
         }
     }
 
-    public void CreateLoginFile(String pass){
+    public void CreatePassFile(String pass){
         try {
-            File file1 = new File("Login.sh");
+            File file1 = new File("pass.txt");
             BufferedWriter output = new BufferedWriter(new FileWriter(file1));
-
-            output.append("#! /bin/bash");
+            output.append(pass);
             output.newLine();
-            output.append("cd /home/yana/Desktop/GridNode");
-            output.newLine();
-            output.append("./proxyInit.sh<<< \"" + pass + "\"");
-            output.newLine();
-            output.append("sleep 2");
-            Runtime.getRuntime().exec("chmod +x Login.sh");
-            System.out.println("Files were created");
-
             output.close();
+            Runtime.getRuntime().exec("chmod +x pass.txt");
+            System.out.println("Files were created");
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-
-
     }
     
     public void CreateRegistrationFile( String name, 
@@ -80,12 +72,13 @@ public class FileCreator {
 
             output.append("#! /bin/bash"); 
             output.newLine();
-            output.append("echo 1  | sudo -H -u yana bash -c 'chmod +xrw /home/yana/Desktop/GridNode/userkey.pem'");
-            output.newLine();
-            output.append("echo 1  | sudo -S useradd -m -s /bin/bash -p $"
+
+            output.append("sudo -S useradd -m -s /bin/bash -p $"
                     + "(echo 1 | openssl passwd -1 -stdin) "+name+"");
             output.newLine();
-            output.append("echo 1  | sudo usermod -aG sudo,adm "+name+"");
+            output.append("sudo usermod -aG sudo,adm "+name+"");
+            output.newLine();
+            output.append("sudo -H -u yana bash -c 'chmod +xrw /home/yana/Desktop/GridNode/userkey.pem'");
             output.newLine();
             output.append("sudo -H -u "+name+" bash -c 'mkdir /home/"+name+"/.globus'");
             output.newLine();
@@ -102,10 +95,11 @@ public class FileCreator {
                     + "/home/"+name+"/.globus/"+userCernName+"'");
             output.newLine();
             output.append("sleep 2");
+            output.close();
             Runtime.getRuntime().exec("chmod +x Register"+name+".sh");
             System.out.println("Files were created");
 
-            output.close();
+
         } catch ( IOException e ) {
             e.printStackTrace();
         }

@@ -330,7 +330,7 @@ public class ProfilePage extends JFrame {
                 .addGap(336, 336, 336))
         );
 
-        LoginPage.user.getFirst_name();
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

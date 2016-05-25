@@ -10,7 +10,6 @@ package Server;
 import services.DBConnection;
 import services.UserServices;
 import services.Users;
-import Server.UserThread.*;
 
 
 import java.io.*;
@@ -28,6 +27,29 @@ public class Login {
     public static String name;
     public static String pass;
     public static String vo;
+
+    public static void LoginExecuteWithoutVO() throws IOException {
+
+        name = reader.readLine();
+        pass = reader.readLine();
+        System.out.println(name+"   "+pass+"   ");
+        Users user = Login(name, pass);
+        FileCreator fileCreator = new FileCreator();
+        fileCreator.CreateProxyFile(name);
+        fileCreator.CreatePassFile(pass);
+        Runtime.getRuntime().exec("sudo ./Login.sh");
+        if(user!=null) {
+            System.out.println("writing to client: "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");
+            writer.write("success login\n");
+            writer.write(user.getFirst_name()+"\n");
+            writer.write(user.getLast_name()+"\n");
+            writer.flush();
+        }else {
+            System.out.println("user=null");
+        }
+//         Runtime.getRuntime().exec("rm Login.sh");
+//         Runtime.getRuntime().exec("rm proxyInit.sh");
+    }
     
     public static void LoginExecute() throws IOException {
 
@@ -37,14 +59,11 @@ public class Login {
                     System.out.println(name+"   "+pass+"   "+vo);
                     Users user = Login(name, pass);
                     FileCreator fileCreator = new FileCreator();
-                    
-                    if (vo==""){
-                       fileCreator.CreateProxyFile(name); 
-                    } else {
-                        fileCreator.CreateVomsProxyFile(vo, name);
-                    }
-                    fileCreator.CreateLoginFile(pass);
-                    Runtime.getRuntime().exec("sudo ./Login.sh");
+                    fileCreator.CreateVomsProxyFile(vo, name);
+                    fileCreator.CreatePassFile(pass);
+        String[] command = { "xterm", "cd /home/yana/Desktop/GridNode/", "./proxyInit.sh" };
+        Runtime.getRuntime().exec(command);
+//                    Runtime.getRuntime().exec("sudo ./Login.sh");
                    
         if(user!=null) {
             System.out.println("writing to client: "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");
@@ -55,8 +74,8 @@ public class Login {
         }else {
             System.out.println("user=null");
         }
-         Runtime.getRuntime().exec("rm Login.sh");
-         Runtime.getRuntime().exec("rm proxyInit.sh");
+//         Runtime.getRuntime().exec("rm pass.txt");
+//         Runtime.getRuntime().exec("rm proxyInit.sh");
     }
     
 

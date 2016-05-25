@@ -1,7 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f2434f25-6275-4c11-b14f-ccb46d669fa2" name="Default" comment="" />
+    <list default="true" id="f2434f25-6275-4c11-b14f-ccb46d669fa2" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Ce.pbe-mt_fhi.UPF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/O.pbe-mt_fhi.UPF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/run.xrsl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.sh" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$1.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$2.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$3.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$4.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$1.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$10.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$2.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$3.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$4.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$5.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$6.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$7.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$8.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$9.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/FileCreator.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/FileCreator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/JobActions.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/JobActions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/Login.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/Login.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/Registration.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/Registration.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/LoginPage.java" afterPath="$PROJECT_DIR$/src/Pages/LoginPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/ProfilePage.java" afterPath="$PROJECT_DIR$/src/Pages/ProfilePage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/FileCreator.java" afterPath="$PROJECT_DIR$/src/Server/FileCreator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/JobActions.java" afterPath="$PROJECT_DIR$/src/Server/JobActions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/Login.java" afterPath="$PROJECT_DIR$/src/Server/Login.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/Registration.java" afterPath="$PROJECT_DIR$/src/Server/Registration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/UserThread.java" afterPath="$PROJECT_DIR$/src/Server/UserThread.java" />
+    </list>
     <ignored path="Grid_Node.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -23,69 +57,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProfilePage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Pages/ProfilePage.java">
+      <file leaf-file-name="Registration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Server/Registration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="415" column="5" selection-start-line="415" selection-start-column="5" selection-end-line="415" selection-end-column="5" />
-              <folding>
-                <element signature="e#1566#1655#0" expanded="true" />
-                <element signature="method#initComponents#0;class#ProfilePage#0" expanded="false" />
-                <element signature="method#EditProfileBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
-                <element signature="method#RemoveJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
-                <element signature="method#CreateJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
-                <element signature="method#LogoutBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
-                <element signature="method#SubmitJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="76">
+              <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubmitJobPage.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java">
+      <file leaf-file-name="FileCreator.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Server/FileCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="256" column="0" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
-              <folding>
-                <element signature="e#1607#1696#0" expanded="true" />
-                <element signature="e#14550#14637#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Server/UserThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="52" column="51" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubmitJob.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Server/SubmitJob.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1768">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JobActions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Server/JobActions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="154">
+              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,21 +110,21 @@
         <option value="$PROJECT_DIR$/src/services/SelectFile.java" />
         <option value="/usr/lib/jvm/default-java/jre/lib/rt.jar!/java/lang/Thread.class" />
         <option value="$PROJECT_DIR$/src/Server/ServerMain.java" />
-        <option value="$PROJECT_DIR$/src/Server/Login.java" />
-        <option value="$PROJECT_DIR$/src/Pages/LoginPage.java" />
         <option value="$PROJECT_DIR$/src/Pages/RegistrationPage.java" />
         <option value="$PROJECT_DIR$/src/Server/SaveFile.java" />
         <option value="$PROJECT_DIR$/src/Server/CreateNewJob.java" />
         <option value="$PROJECT_DIR$/src/Server/Result.java" />
         <option value="$PROJECT_DIR$/src/Pages/CreateJobPage.java" />
-        <option value="$PROJECT_DIR$/src/Server/Registration.java" />
-        <option value="$PROJECT_DIR$/src/Server/FileCreator.java" />
         <option value="$PROJECT_DIR$/src/Examples/ExecuteShellComand.java" />
-        <option value="$PROJECT_DIR$/src/Server/UserThread.java" />
-        <option value="$PROJECT_DIR$/src/Server/JobActions.java" />
-        <option value="$PROJECT_DIR$/src/Pages/ProfilePage.java" />
         <option value="$PROJECT_DIR$/src/Server/SubmitJob.java" />
         <option value="$PROJECT_DIR$/src/Pages/SubmitJobPage.java" />
+        <option value="$PROJECT_DIR$/src/Server/JobActions.java" />
+        <option value="$PROJECT_DIR$/src/Pages/ProfilePage.java" />
+        <option value="$PROJECT_DIR$/src/Pages/LoginPage.java" />
+        <option value="$PROJECT_DIR$/src/Server/UserThread.java" />
+        <option value="$PROJECT_DIR$/src/Server/Registration.java" />
+        <option value="$PROJECT_DIR$/src/Server/Login.java" />
+        <option value="$PROJECT_DIR$/src/Server/FileCreator.java" />
       </list>
     </option>
   </component>
@@ -155,9 +142,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1301" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -187,8 +174,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -656,6 +643,28 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -762,12 +771,13 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.Main (1)" />
-      <item index="1" class="java.lang.String" itemvalue="Application.ServerMain" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Connect" />
-      <item index="3" class="java.lang.String" itemvalue="Application.ProfilePage" />
-      <item index="4" class="java.lang.String" itemvalue="Application.ExecuteShellComand" />
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Maven.Tomcat" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Main (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Application.ServerMain" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Connect" />
+      <item index="4" class="java.lang.String" itemvalue="Application.ProfilePage" />
+      <item index="5" class="java.lang.String" itemvalue="Application.ExecuteShellComand" />
     </list>
     <recent_temporary>
       <list size="5">
@@ -892,36 +902,36 @@
     <option name="totallyTimeSpent" value="9138000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32258064" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908365" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29032257" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19440243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1936255" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24976076" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3983871" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908365" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3983871" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32258064" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29032257" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32637855" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -957,11 +967,35 @@
           <properties />
           <option name="timeStamp" value="70" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Pages/LoginPage.java</url>
+          <line>266</line>
+          <properties />
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Pages/LoginPage.java</url>
+          <line>267</line>
+          <properties />
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Pages/LoginPage.java</url>
+          <line>268</line>
+          <properties />
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Pages/LoginPage.java</url>
+          <line>269</line>
+          <properties />
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="77" />
+      <option name="time" value="86" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -985,9 +1019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1006,8 +1037,6 @@
         <state relative-caret-position="2250">
           <caret line="456" column="29" selection-start-line="456" selection-start-column="29" selection-end-line="456" selection-end-column="29" />
           <folding>
-            <element signature="e#1566#1655#0" expanded="true" />
-            <element signature="method#initComponents#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#EditProfileBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#RemoveJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#CreateJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
@@ -1032,9 +1061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1210,8 +1236,6 @@
         <state relative-caret-position="2106">
           <caret line="143" column="20" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="40" />
           <folding>
-            <element signature="e#1566#1655#0" expanded="true" />
-            <element signature="method#initComponents#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#EditProfileBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#RemoveJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#CreateJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
@@ -1299,13 +1323,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/Registration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="73" column="67" selection-start-line="73" selection-start-column="67" selection-end-line="73" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/SaveFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
@@ -1320,46 +1337,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/FileCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="23" column="64" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pages/LoginPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="35" selection-end-column="37" />
-          <folding>
-            <element signature="e#1711#1800#0" expanded="true" />
-            <element signature="method#initComponents#0;class#LoginPage#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Examples/ExecuteShellComand.java" />
-    <entry file="file://$PROJECT_DIR$/src/Server/JobActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/SubmitJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1768">
+        <state relative-caret-position="2052">
           <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1367,23 +1348,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/UserThread.java">
+    <entry file="file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="52" column="51" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
+        <state relative-caret-position="1710">
+          <caret line="256" column="0" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1607#1696#0" expanded="true" />
+            <element signature="e#14550#14637#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/JobActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Pages/ProfilePage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="415" column="5" selection-start-line="415" selection-start-column="5" selection-end-line="415" selection-end-column="5" />
+        <state relative-caret-position="5580">
+          <caret line="332" column="0" selection-start-line="332" selection-start-column="0" selection-end-line="332" selection-end-column="0" />
           <folding>
-            <element signature="e#1566#1655#0" expanded="true" />
-            <element signature="method#initComponents#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#EditProfileBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#RemoveJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#CreateJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
@@ -1393,14 +1380,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java">
+    <entry file="file://$PROJECT_DIR$/src/Server/UserThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="256" column="0" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+        <state relative-caret-position="792">
+          <caret line="58" column="68" selection-start-line="58" selection-start-column="68" selection-end-line="58" selection-end-column="68" />
           <folding>
-            <element signature="e#1607#1696#0" expanded="true" />
-            <element signature="e#14550#14637#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pages/LoginPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="276" column="30" selection-start-line="276" selection-start-column="30" selection-end-line="276" selection-end-column="44" />
+          <folding>
+            <element signature="e#1711#1800#0" expanded="true" />
+            <element signature="e#15821#15908#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="76" column="49" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Registration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/FileCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
