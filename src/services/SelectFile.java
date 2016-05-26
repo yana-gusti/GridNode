@@ -20,19 +20,14 @@ import static grid_node.Main.port;
  * @author yana
  */
 public class SelectFile extends JFileChooser{
-    public static final int BUFFER_SIZE = 100;
+    public int BUFFER_SIZE = 10000;
 
-
-    public static Socket s;
-    public static BufferedReader reader;
-    public static PrintWriter writer;
 
    
 
-    public static String SelectFile(Socket s, PrintWriter writer, BufferedReader reader, File file) throws IOException, ClassNotFoundException {
+    public  String SelectFile(Socket s, BufferedReader reader, File file) throws IOException, ClassNotFoundException {
 
-        
-            
+
 
         System.out.println("Send command");
 

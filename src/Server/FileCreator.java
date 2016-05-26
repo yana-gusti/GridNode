@@ -23,7 +23,7 @@ public class FileCreator {
             output.append("sudo -H -u "+name+" bash -c 'arcproxy -S "+vo+" -p key=file:/home/yana/Desktop/GridNode/pass.txt'");
 //            output.append("sudo -H -u "+name+" bash -c 'arcproxy'");
             output.close();
-            Runtime.getRuntime().exec("chmod +x proxyInit.sh");
+            Runtime.getRuntime().exec("chmod +xrw /home/yana/Desktop/GridNode/proxyInit.sh");
             proxyfilename = file.getName();
         } catch ( IOException e ) {
             e.printStackTrace();
@@ -43,7 +43,7 @@ public class FileCreator {
             output.newLine();
             output.append("sudo -H -u "+name+" bash -c 'arcproxy -p key=file:/home/yana/Desktop/GridNode/pass.txt'");
             output.close();
-            Runtime.getRuntime().exec("chmod +x proxyInit.sh");
+            Runtime.getRuntime().exec("chmod +xrw /home/yana/Desktop/GridNode/proxyInit.sh");
             proxyfilename = file.getName();
         } catch ( IOException e ) {
             e.printStackTrace();
@@ -57,7 +57,7 @@ public class FileCreator {
             output.append(pass);
             output.newLine();
             output.close();
-            Runtime.getRuntime().exec("chmod +x pass.txt");
+            Runtime.getRuntime().exec("chmod +xrw /home/yana/Desktop/GridNode/pass.txt");
             System.out.println("Files were created");
         } catch ( IOException e ) {
             e.printStackTrace();
@@ -96,7 +96,7 @@ public class FileCreator {
             output.newLine();
             output.append("sleep 2");
             output.close();
-            Runtime.getRuntime().exec("chmod +x Register"+name+".sh");
+            Runtime.getRuntime().exec("chmod +xrw /home/yana/Desktop/GridNode/Register"+name+".sh");
             System.out.println("Files were created");
 
 
@@ -122,7 +122,7 @@ public class FileCreator {
                     + "/home/yana/Desktop/GridNode/"+fileName+" /home/"+userName+"'");
             output.newLine();
             output.append("sleep 2");
-            Runtime.getRuntime().exec("chmod +x Move"+userName+".sh");
+            Runtime.getRuntime().exec("chmod +xrw /home/yana/Desktop/GridNode/Move"+userName+".sh");
             System.out.println("Files were moved");
 
             output.close();
@@ -143,7 +143,7 @@ public class FileCreator {
             output.append("echo 1  | sudo -H -u "+userName+" bash -c 'arcsub -c "+cluster+" "+fileNameXRSL+"'");
             output.newLine();
             output.append("sleep 2");
-            Runtime.getRuntime().exec("chmod +x SubmitJobFile"+userName+".sh");
+            Runtime.getRuntime().exec("chmod +xrw /home/yana/Desktop/GridNode/SubmitJobFile"+userName+".sh");
             System.out.println("SubmitJobFile was created");
 
             output.close();

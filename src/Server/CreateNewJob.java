@@ -7,24 +7,19 @@
 package Server;
 
 import java.io.*;
-import java.net.Socket;
-import java.util.ArrayList;
-
-import static Server.UserThread.reader;
-import static Server.UserThread.writer;
 
 /**
  *
  * @author yana
  */
 public class CreateNewJob {
-    public static String fileNameSH;
-    public static String resulSH;
-    public static String fileNameXRSL;
-    public static String resulXRSL;
-    public static String message;
+    public String fileNameSH;
+    public String resulSH;
+    public  String fileNameXRSL;
+    public String resulXRSL;
+    public String message;
     
-    public static FileWriter CreateNewSH (String fileName, String result ){
+    public FileWriter CreateNewSH (String fileName, String result ){
         FileWriter outFile = null;
         try {
 //            
@@ -46,7 +41,7 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static void CreateNewSHExecute() throws IOException {
+    public void CreateNewSHExecute(BufferedReader reader, PrintWriter writer) throws IOException {
 
                     fileNameSH = reader.readLine()+".sh";
                     resulSH = reader.readLine();
@@ -58,7 +53,7 @@ public class CreateNewJob {
         String[] command1 = { "xterm", "/home/yana/Desktop/GridNode/Move"+userName+".sh" };
         Runtime.getRuntime().exec(command1);
         Runtime.getRuntime().exec("rm Move"+userName+".sh");
-        writer.write(message);
+        writer.write("success\n");
         writer.flush();
     }
      public static FileWriter CreateNewXRSL (String fileName, String result ){
@@ -71,7 +66,7 @@ public class CreateNewJob {
 		}
 	try {
             outFile.write(result);
-            message ="success";
+
 		} catch (IOException e1) {
 		e1.printStackTrace();
 				}
@@ -83,7 +78,7 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public static void CreateNewXRSLExecute() throws IOException{
+    public void CreateNewXRSLExecute(BufferedReader reader, PrintWriter writer) throws IOException{
 
                     fileNameXRSL = reader.readLine()+".xrsl";
                     resulXRSL = reader.readLine();

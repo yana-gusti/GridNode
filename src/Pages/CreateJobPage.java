@@ -739,7 +739,8 @@ public class CreateJobPage extends JFrame {
             inputFileLb.setText(InputFile.getName());
             SelectInputFileLb.setText(inputFileLb.getText());
             try {
-                errorLabel.setText(SelectFile.SelectFile(s, writer, reader, InputFile));
+                SelectFile selectFile = new SelectFile();
+                errorLabel.setText(selectFile.SelectFile(s, reader,InputFile));;
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -906,7 +907,8 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb.setText(InputFile.getName());
 
             try {
-                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,InputFile));
+                SelectFile selectFile = new SelectFile();
+                errorLabel.setText(selectFile.SelectFile(s, reader,InputFile));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -931,7 +933,8 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb2.setText(InputFile.getName());
 
             try {
-                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,InputFile));
+                SelectFile selectFile = new SelectFile();
+                errorLabel.setText(selectFile.SelectFile(s, reader,InputFile));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -956,7 +959,8 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb3.setText(InputFile.getName());
 
             try {
-                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,InputFile));
+                SelectFile selectFile = new SelectFile();
+                errorLabel.setText(selectFile.SelectFile(s, reader,InputFile));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -981,7 +985,8 @@ public class CreateJobPage extends JFrame {
             SelectInputFileLb4.setText(InputFile.getName());
 
             try {
-                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,InputFile));
+                SelectFile selectFile = new SelectFile();
+                errorLabel.setText(selectFile.SelectFile(s,  reader,InputFile));
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {

@@ -69,6 +69,9 @@ public class SubmitJobPage extends javax.swing.JFrame {
         ViewJobBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ResultTextPane = new javax.swing.JTextPane();
+        textArea = new java.awt.TextArea();
+        textArea.setVisible(false);
+        textArea.setText("");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +114,9 @@ public class SubmitJobPage extends javax.swing.JFrame {
             }
         });
 
-        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select your XRSL file", "CeO2.scf.in", "test.xrsl" }));
+        ArrayList<String> listOfFiles = getListOfFiles();
+
+        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(listOfFiles.toArray()));
         SelectJobFileCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelectJobFileCBActionPerformed(evt);
@@ -150,6 +155,8 @@ public class SubmitJobPage extends javax.swing.JFrame {
                                         .addComponent(ViewJobBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                                 .addGap(53, 53, 53))
         );
         MainPanelLayout.setVerticalGroup(
@@ -170,6 +177,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
                                                 .addComponent(SubmitJobBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(53, 53, 53)
                                                 .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -225,6 +233,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformed
+        initServerConnection();
         textArea.setText("");
 
         String fileName= SelectJobFileCB.getSelectedItem().toString();
@@ -236,11 +245,13 @@ public class SubmitJobPage extends javax.swing.JFrame {
             writer.write(fileName+"\n");
             writer.flush();
             try {
-                String result = reader.readLine();
-                // read the output from the command
-
-                    textArea.append(result+ "\n");
-
+                String line = "";
+                while ((line = reader.readLine())!= null) {
+                    textArea.append(line + "\n");
+                    System.out.println(line);
+                }
+                // read any errors from the attempted command
+                reader.close();
                 ResultTextPane.setText(textArea.getText());
             }
             catch (IOException e) {
@@ -258,50 +269,30 @@ public class SubmitJobPage extends javax.swing.JFrame {
 
 
     private void ViewJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {
+        initServerConnection();
         String fileName;
-        String message="text";
         try {
             fileName = SelectJobFileCB.getSelectedItem().toString();
             System.out.println(fileName);
 
             if (fileName != null) {
-//                writer.write("findXRSLFile\n");
-//                writer.write(fileName+"\n");
-//                writer.flush();
-//                try {
-//                    String result = reader.readLine();
-//                    System.out.println("get result");
-//                    // read the output from the command
-//
-//                    textArea.append(result+ "\n");
-//                    System.out.println(result);
-//
-//                    // read any errors from the attempted command
-//
-//                    ResultTextPane.setText(textArea.getText());
-//                }
-//                catch (IOException e) {
-//                    System.out.println("exception happened - here's what I know: ");
-//                    e.printStackTrace();
-//                }
-
-//
-//            ArrayList<String> listResult = new ArrayList<>();
-//
-//                for (int i=0; i<8; i++) {
-//                    listResult.add(reader.readLine() + "\n");
-//                }
-//                textArea.setText(String.valueOf(listResult));
-//                ResultTextPane.setText(textArea.getText());
-//
-//
-//            }else {
-//                message = "Please, choose file";
-//                textArea.setText(message);
-//            }
-//        }catch (Exception a){
-//            System.out.println(a);
-//        }
+                writer.write("findXRSLFile\n");
+                writer.write(fileName+"\n");
+                writer.flush();
+                try {
+                    String line = "";
+                    while ((line = reader.readLine())!= null) {
+                        textArea.append(line + "\n");
+                        System.out.println(line);
+                    }
+                    // read any errors from the attempted command
+                    reader.close();
+                    ResultTextPane.setText(textArea.getText());
+                }
+                catch (IOException e) {
+                    System.out.println("exception happened - here's what I know: ");
+                    e.printStackTrace();
+                }
 
 
             }
@@ -365,9 +356,30 @@ public class SubmitJobPage extends javax.swing.JFrame {
     public java.awt.TextArea textArea;
     /**
      *
-     * @param p
+     * @param
      * @return
      */
+
+    public ArrayList<String> getListOfFiles(){
+        writer.write("listOfJobs\n");
+        writer.flush();
+        ArrayList<String> titleList = new ArrayList<String>();
+        try {
+            ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream()); //Error Line!
+            try {
+                Object object = objectInput.readObject();
+                titleList =  (ArrayList<String>) object;
+                System.out.println(titleList.get(0));
+            } catch (ClassNotFoundException e) {
+                System.out.println("The title list has not come from the server");
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            System.out.println("The socket for reading the object has problem");
+            e.printStackTrace();
+        }
+        return titleList;
+    }
 
 }
 

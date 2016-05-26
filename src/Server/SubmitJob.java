@@ -12,11 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-import static Server.UserThread.reader;
-import static Server.UserThread.socket;
-import static Server.UserThread.writer;
 
 /**
  *
@@ -24,12 +19,11 @@ import static Server.UserThread.writer;
  */
 public class SubmitJob {
 
-    public static String fileNameXRSL;
-    public static String message;
-    public static String textArea;
-    public static String cluster;
+    public String fileNameXRSL;
+    public String message;
+    public String cluster;
 
-    public static void findXRSLFile() throws IOException {
+    public void findXRSLFile(BufferedReader reader, PrintWriter writer) throws IOException {
 
         System.out.println("start");
 
@@ -45,11 +39,13 @@ public class SubmitJob {
 
                 writer.write(result);
                 writer.flush();
+                writer.close();
                 System.out.println(result);
             } else {
                 String result = "no such file";
                 writer.write(result);
                 writer.flush();
+                writer.close();
             }
 
         }
@@ -57,7 +53,7 @@ public class SubmitJob {
 
 
     
-    public static void submitJob() throws IOException {
+    public void submitJob(BufferedReader reader, PrintWriter writer) throws IOException {
                     cluster = reader.readLine();
                     fileNameXRSL=reader.readLine();
                     System.out.println("arcsub -c "+cluster+" "+fileNameXRSL);
@@ -74,7 +70,7 @@ public class SubmitJob {
 
     }
 
-   public static void listOfFiles() throws IOException {
+   public void listOfFiles(Socket socket) throws IOException {
        List<String> results = new ArrayList<>();
 
 
@@ -89,6 +85,7 @@ public class SubmitJob {
 
        ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
        objectOutput.writeObject(results);
+       System.out.print("send list");
 
    }
     private String actionExecute(String command) {
@@ -106,7 +103,8 @@ public class SubmitJob {
             while ((line = reader.readLine())!= null) {
                 output.append(line + "\n");
             }
-
+            reader.close();
+            System.out.println("finish record");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -114,5 +112,4 @@ public class SubmitJob {
         return output.toString();
 
     }
-
 }

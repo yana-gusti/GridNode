@@ -5,6 +5,7 @@
  */
 
 package Server;
+import services.SaveFile;
 
 import java.io.*;
 import java.net.Socket;
@@ -13,9 +14,6 @@ import java.util.logging.Logger;
 
 import static Server.CreateNewJob.*;
 import static Server.JobActions.*;
-import static Server.Login.*;
-import static Server.Registration.RegistrationExecute;
-import static services.SaveFile.saveFile;
 import static Server.SubmitJob.*;
 
 /**
@@ -23,9 +21,9 @@ import static Server.SubmitJob.*;
  * @author yana
  */
 public class UserThread  implements Runnable{
-    public static BufferedReader reader;
-    public static PrintWriter writer;
-    public static Socket socket;
+    public  BufferedReader reader;
+    public  PrintWriter writer;
+    public  Socket socket;
 
     public UserThread(Socket mSocket) throws IOException{
         this.socket = mSocket;
@@ -43,20 +41,20 @@ public class UserThread  implements Runnable{
                 String function = reader.readLine();
                 System.out.println("Funcion is "+function);
                 switch(function){
-                    case "login": LoginExecute(); break;
-                    case "register": RegistrationExecute(); break;
-                    case "saveFile": saveFile();  break;
-                    case "createSHFile": CreateNewSHExecute(); break;
-                    case "createXRSLFile": CreateNewXRSLExecute(); break;
-                    case "listOfJobs": listOfFiles(); break;
-                    case "submitJob": submitJob();break;
-                    case "findXRSLFile": findXRSLFile(); break;
-                    case "ResultOfJob": JobActions.resultOfJob(); break;
-                    case "KillJob": killJob();break;
-                    case "StatusOfJob": statusOfJob();break;
-                    case "ListOfJobs": listOfJobs();  break;
-                    case "TestJob":   testJob(); break;
-                    case "loginWithOutVO":  LoginExecuteWithoutVO();  break;
+                    case "login": Login login = new Login(); login.LoginExecute(reader, writer); break;
+                    case "register": Registration registration = new Registration(); registration.RegistrationExecute(reader, writer); break;
+                    case "saveFile": SaveFile saveFile = new SaveFile(); saveFile.saveFile(socket, writer);  break;
+                    case "createSHFile": CreateNewJob createNewJob = new CreateNewJob(); createNewJob.CreateNewSHExecute(reader, writer); break;
+                    case "createXRSLFile": CreateNewJob createNewJob1 = new CreateNewJob(); createNewJob1.CreateNewXRSLExecute(reader, writer); break;
+                    case "listOfJobs": SubmitJob submitJob = new SubmitJob(); submitJob.listOfFiles(socket); break;
+                    case "submitJob": SubmitJob submitJob1 = new SubmitJob(); submitJob1.submitJob(reader, writer);break;
+                    case "findXRSLFile": SubmitJob submitJob2 = new SubmitJob(); submitJob2.findXRSLFile(reader, writer); break;
+                    case "ResultOfJob": JobActions jobActions = new JobActions(); jobActions.resultOfJob(socket, reader, writer); break;
+                    case "KillJob": JobActions jobActions1 = new JobActions(); jobActions1.killJob(reader, writer);break;
+                    case "StatusOfJob": JobActions jobActions2 = new JobActions(); jobActions2.statusOfJob(reader, writer);break;
+                    case "ListOfJobs": JobActions jobActions3 = new JobActions(); jobActions3.listOfJobs(writer);  break;
+                    case "TestJob":  JobActions jobActions4 = new JobActions(); jobActions4.testJob(reader, writer); break;
+                    case "loginWithOutVO":  Login loginVO = new Login(); loginVO.LoginExecuteWithoutVO(reader, writer);  break;
                     //          case "payments_perName": payments_byName(); break;
 
                     // Za drugite funkcii si dobavq6 case-ove + metodi dolu

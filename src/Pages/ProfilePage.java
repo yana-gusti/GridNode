@@ -15,7 +15,6 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static Server.UserThread.writer;
 
 /**
  *
@@ -25,9 +24,11 @@ public class ProfilePage extends JFrame {
     public static EditProfilePage editProfilePage;
     public static CreateJobPage createJobPage;
     public static SubmitJobPage submitJobPage;
-    public static Socket s;
-    public static BufferedReader reader;
-    public static PrintWriter writer;
+    public Socket s;
+    public BufferedReader reader;
+    public PrintWriter writer;
+    public int BUFFER_SIZE = 10000;
+    static String message;
 
 
     /**
@@ -415,8 +416,98 @@ public class ProfilePage extends JFrame {
     }//GEN-LAST:event_JobNameMouseClicked
 
     private void ResultOfJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_ResultOfJobBtnActionPerformed
-        jobActions("ResultOfJob");
-        SaveFile.saveFile();
+        initServerConnection();
+        textArea.setText("");
+        String command = "ResultOfJob";
+        String jobName= JOptionPane.showInputDialog("Enter file name");
+        if (jobName != null ) {
+
+            JobName.setText(jobName);
+            System.out.println("writing to server: "+command +"\n");
+            writer.write(command+"\n");
+            writer.write(jobName+"\n");
+            writer.flush();
+            String fromServer = reader.readLine();
+            if (fromServer.contains("save file")){
+
+                System.out.print("start");
+                ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
+                FileOutputStream fos = null;
+                byte[] buffer;
+
+                // 1. Read file name.
+                Object o = null;
+                try {
+                    o = ois.readObject();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+                if (o instanceof String) {
+                    fos = new FileOutputStream(o.toString());
+                    System.out.println(fos);
+
+                } else {
+                    message = "Something is wrong\n";
+                }
+
+                // 2. Read file to the end.
+                Integer bytesRead = 0;
+
+                do {
+                    try {
+                        o = ois.readObject();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (!(o instanceof Integer)) {
+                        message = "Something is wrong\n";
+                    }
+
+                    bytesRead = (Integer) o;
+
+                    try {
+                        o = ois.readObject();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (!(o instanceof byte[])) {
+                        message = "Something is wrong\n";
+                    }
+
+                    buffer = (byte[]) o;
+
+                    // 3. Write data to output file.
+                    fos.write(buffer, 0, bytesRead);
+
+
+                } while (bytesRead == BUFFER_SIZE);
+                message = "File transfer success\n";
+
+                System.out.println(message);
+                try {
+                    String line = "";
+                    while ((line = reader.readLine())!= null) {
+                        textArea.append(line + "\n");
+                        System.out.println(line);
+                    }
+                    // read any errors from the attempted command
+                    reader.close();
+                    ResultTextPane.setText(textArea.getText());
+                }
+                catch (IOException e) {
+                    System.out.println("exception happened - here's what I know: ");
+                    e.printStackTrace();
+                }
+
+            }
+        }else {
+            JobName.setText("Please, enter job name");
+        }
+
 
     }//GEN-LAST:event_ResultOfJobBtnActionPerformed
 

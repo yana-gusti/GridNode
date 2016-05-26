@@ -278,14 +278,23 @@ public class LoginPage extends javax.swing.JFrame {
                 writer.write(_username+"\n");
                 writer.write(_pass+"\n");
                 writer.flush();
-                errorLabel.setText(reader.readLine());
-                if (errorLabel.getText().equals("success login")) {
-                    profilePage = new ProfilePage();
-                    profilePage.setVisible(true);
-                    Main.loginPage.setVisible(false);
-
-                } else {
-                    errorLabel.setText("error");
+                String function = reader.readLine();
+                System.out.println("Funcion is "+function);
+                switch(function){
+                    case "success login": profilePage = new ProfilePage();
+                        profilePage.setVisible(true);
+                        Main.loginPage.setVisible(false); break;
+                    case "no such user": errorLabel.setText("error"); break;
+//                errorLabel.setText(reader.readLine());
+//                if (errorLabel.getText().equals("success login")) {
+//                    profilePage = new ProfilePage();
+//                    profilePage.setVisible(true);
+//                    Main.loginPage.setVisible(false);
+//
+//                } else {
+//                    errorLabel.setText("error");
+//                }
+                    default : break;
                 }
             }else {
 

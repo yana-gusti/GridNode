@@ -337,7 +337,8 @@ public static ProfilePage profilePage;
             String command = "saveFile\n";
             writer.write(command);
             writer.flush();
-               errorLabel.setText( SelectFile.SelectFile(s, writer, reader, userKeyFile));
+            SelectFile selectFile = new SelectFile();
+            errorLabel.setText(selectFile.SelectFile(s, reader,userKeyFile));
 
 
         }
@@ -355,7 +356,8 @@ public static ProfilePage profilePage;
             writer.write(command);
             writer.flush();
             try {
-                errorLabel.setText(SelectFile.SelectFile(s, writer, reader,userCertFile));
+                SelectFile selectFile = new SelectFile();
+                errorLabel.setText(selectFile.SelectFile(s, reader,userCertFile));
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

@@ -12,8 +12,6 @@ import services.Users;
 
 import java.io.*;
 
-import static Server.UserThread.reader;
-import static Server.UserThread.writer;
 
 /**
  *
@@ -21,17 +19,17 @@ import static Server.UserThread.writer;
  */
 public class Registration {
     
-    public static Users newUser=null;
-    public static String message = null;
-    public static String firstName;
-    public static String lastName;
-    public static String vo;
-    public static String username;
-    public static String pass;
-    public static String userCertName;
-    public static String userKeyName;
+    public Users newUser=null;
+    public String message = null;
+    public String firstName;
+    public String lastName;
+    public String vo;
+    public  String username;
+    public String pass;
+    public String userCertName;
+    public String userKeyName;
     
-    public static void RegistrationExecute() throws IOException{
+    public void RegistrationExecute(BufferedReader reader, PrintWriter writer) throws IOException{
 
         firstName = reader.readLine();
         lastName = reader.readLine();
@@ -72,7 +70,7 @@ public class Registration {
     
 
     
-    public static Users Registration ( String _firstName,String _lastName, String vo,
+    public  Users Registration ( String _firstName,String _lastName, String vo,
             String username, String _pass, String _passConf){
 
         for (Integer i = 0; i < UserServices.getAll().size(); i++) {
