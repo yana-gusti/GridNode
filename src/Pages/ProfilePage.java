@@ -503,10 +503,16 @@ public class ProfilePage extends JFrame {
                     e.printStackTrace();
                 }
 
+
+            }else {
+
+                    ResultTextPane.setText(fromServer);
+
             }
         }else {
             JobName.setText("Please, enter job name");
         }
+
 
 
     }//GEN-LAST:event_ResultOfJobBtnActionPerformed

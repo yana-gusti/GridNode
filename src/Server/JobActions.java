@@ -5,6 +5,8 @@ import services.SelectFile;
 import java.io.*;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -23,11 +25,14 @@ public class JobActions {
         if (result.contains("Results stored at: ")){
             writer.write("save file\n");
             writer.flush();
-            String folderName = result.substring(result.lastIndexOf("Results stored at: ") + 1);
+            Pattern p = Pattern.compile("Results stored at: (.*)");
+            Matcher m = p.matcher(result);
+            m.find();
+            String folderName = m.group(1);
             System.out.print(folderName);
 
             Runtime.getRuntime().exec("zip -r "+folderName+"{.zip,}");
-            File file = new File("/home/yana/"+folderName+".zip");
+            File file = new File("/home/yana/Desktop/GridNode/"+folderName+".zip");
             System.out.println("Send command");
 
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
@@ -40,12 +45,14 @@ public class JobActions {
                 oos.writeObject(bytesRead);
                 oos.writeObject(Arrays.copyOf(buffer, buffer.length));
             }
+            writer.write(result+"\n");
+            writer.flush();
         }else{
-            System.out.print("there are no results");
+            System.out.print("No jobs\n");
+            writer.write(result+"\n");
+            writer.flush();
         }
-        writer.write(result+"\n");
-        writer.flush();
-        writer.close();
+
 
 
     }
@@ -66,7 +73,6 @@ public class JobActions {
         writer.write(result+"\n");
         writer.flush();
             writer.close();
-
         }
     public void statusOfJob(BufferedReader reader, PrintWriter writer) throws IOException {
         String jobName;
@@ -97,7 +103,7 @@ public class JobActions {
             BufferedReader reader =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-            String line = "";
+            String line;
             while ((line = reader.readLine())!= null) {
                 output.append(line + "\n");
             }
