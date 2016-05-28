@@ -6,13 +6,8 @@
 
 package Pages;
 
-import grid_node.Main;
-import services.SelectFile;
-import services.Users;
+import Server.ServerMain;
 
-import javax.swing.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
@@ -20,8 +15,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static grid_node.Main.address;
-import static grid_node.Main.port;
+import static Pages.LoginPage.registrationPage;
+import static grid_node.Main.loginPage;
 
 /**
  *
@@ -30,11 +25,11 @@ import static grid_node.Main.port;
 public class RegistrationPage extends javax.swing.JFrame {
 public File userCertFile;
 public File userKeyFile;
-public static ProfilePage profilePage;
+    public enum Action {YES, NO}
 
     public static Socket s;
-    public static BufferedReader reader;
-    public static PrintWriter writer;
+    public static DataInputStream reader;
+    public static DataOutputStream writer;
     /**
      * Creates new form RegistrationPage
      */
@@ -46,12 +41,14 @@ public static ProfilePage profilePage;
 }
     private void initServerConnection(){
         try {
-            s = new Socket("localhost",7009);
-            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            s = new Socket(ServerMain.HOSTNAME, ServerMain.PORT);
+            writer = new DataOutputStream(s.getOutputStream()) ;
+            reader = new DataInputStream(s.getInputStream()) ;
+            writer.writeUTF(ServerMain.Action.CONNECT.name());
             System.out.println("Connected");
+            System.out.println(reader.readUTF());
         } catch (IOException ex) {
-            Logger.getLogger(RegistrationPage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -328,43 +325,12 @@ public static ProfilePage profilePage;
 
     private void userKeyBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_userKeyBtnActionPerformed
         errorLabel.setText("");
-       JFileChooser fileChooser = new JFileChooser();
-         int returnVal;
-        returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            userKeyFile = fileChooser.getSelectedFile();
-            userKey.setText(userKeyFile.getName());
-            String command = "saveFile\n";
-            writer.write(command);
-            writer.flush();
-            SelectFile selectFile = new SelectFile();
-            errorLabel.setText(selectFile.SelectFile(s, reader,userKeyFile));
-
-
-        }
+        new CreateJobPage().SelectInputFile();
     }//GEN-LAST:event_userKeyBtnActionPerformed
 
     private void userCertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userCertBtnActionPerformed
         errorLabel.setText("");
-        JFileChooser fileChooser = new JFileChooser();
-         int returnVal;
-        returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            userCertFile = fileChooser.getSelectedFile();
-            userCert.setText(userCertFile.getName());
-            String command = "saveFile\n";
-            writer.write(command);
-            writer.flush();
-            try {
-                SelectFile selectFile = new SelectFile();
-                errorLabel.setText(selectFile.SelectFile(s, reader,userCertFile));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        }
+        new CreateJobPage().SelectInputFile();
     }//GEN-LAST:event_userCertBtnActionPerformed
 
     private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_RegistrationBtnActionPerformed
@@ -377,44 +343,53 @@ public static ProfilePage profilePage;
 	    String _passConf =  passConf.getText();
         String _userCert = userCertFile.getName();
         String _userKey = userKeyFile.getName();
+        Action act;
 
 	if (_firstName != null && _lastName != null
 	&& _vo != null && _username != null && _pass != null && _passConf != null
                 && _userCert != null && _userKey != null) {
-
+        if (_pass.equals(_passConf)) {
         System.out.println("writing to server: "+_username +"\n"+_pass +"\n"+_vo +"\n");
-        writer.write("register\n");
-        writer.write(_firstName+"\n");
-        writer.write(_lastName+"\n");
-        writer.write(_vo+"\n");
-        writer.write(_username+"\n");
-        writer.write(_pass+"\n");
-        writer.write(_userCert+"\n");
-        writer.write(_userKey+"\n");
+        writer.writeUTF(ServerMain.Action.REGISTER.name());
+        writer.writeUTF(_firstName);
+        writer.writeUTF(_lastName);
+        writer.writeUTF(_vo);
+        writer.writeUTF(_username);
+        writer.writeUTF(_pass);
+        writer.writeUTF(_userCert);
+        writer.writeUTF(_userKey);
         writer.flush();
-        errorLabel.setText(reader.readLine());
+            act = Action.valueOf(reader.readUTF());
+        switch (act) {
+            case YES:
+                registrationPage.setVisible(false);
+                loginPage.setVisible(true);
+                writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+                System.out.println("Log out");
+                writer.close();
+                s.close();
+                break;
+            case NO:
+                errorLabel.setText("such user is registered");
+                writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+                System.out.println("Log out");
+                writer.close();
+                s.close();
+                break;
 
-        if (errorLabel.getText().equals("success registration")) {
-            profilePage = new ProfilePage();
-            profilePage.setVisible(true);
-            LoginPage.registrationPage.setVisible(false);
-
-        } else {
-            errorLabel.setText("error");
         }
-
+        }else {
+                errorLabel.setText("Password confirmation failed!");
+            }
     }else {
-        errorLabel.setText("error");
-
-
+        errorLabel.setText("Please, fill all fields");
     }
     }//GEN-LAST:event_RegistrationBtnActionPerformed
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) throws SocketException {//GEN-FIRST:event_CancelBtnActionPerformed
-        
-        LoginPage loginPage = new LoginPage();
+
         loginPage.setVisible(true);
-        LoginPage.registrationPage.setVisible(false);
+        registrationPage.setVisible(false);
     }//GEN-LAST:event_CancelBtnActionPerformed
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */

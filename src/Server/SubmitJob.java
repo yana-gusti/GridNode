@@ -23,11 +23,11 @@ public class SubmitJob {
     public String message;
     public String cluster;
 
-    public void findXRSLFile(BufferedReader reader, PrintWriter writer) throws IOException {
+    public void findXRSLFile(DataInputStream reader, DataOutputStream writer) throws IOException {
 
         System.out.println("start");
 
-            fileNameXRSL = reader.readLine();
+            fileNameXRSL = reader.readUTF();
             System.out.println(fileNameXRSL);
             if (fileNameXRSL != null) {
 
@@ -37,13 +37,13 @@ public class SubmitJob {
 //                String result  = submitJob.actionExecute(command);
                 String result= new String(Files.readAllBytes(Paths.get("/home/"+Login.user.getUserName()+"/"+fileNameXRSL)));
 
-                writer.write(result);
+                writer.writeUTF(result);
                 writer.flush();
                 writer.close();
                 System.out.println(result);
             } else {
                 String result = "no such file";
-                writer.write(result);
+                writer.writeUTF(result);
                 writer.flush();
                 writer.close();
             }
@@ -53,16 +53,16 @@ public class SubmitJob {
 
 
     
-    public void submitJob(BufferedReader reader, PrintWriter writer) throws IOException {
-                    cluster = reader.readLine();
-                    fileNameXRSL=reader.readLine();
+    public void submitJob(DataInputStream reader, DataOutputStream writer) throws IOException {
+                    cluster = reader.readUTF();
+                    fileNameXRSL=reader.readUTF();
                     System.out.println("arcsub -c "+cluster+" "+fileNameXRSL);
                     FileCreator fileCreator = new FileCreator();
                     fileCreator.SubmitJobFile(Login.user.getUserName(), cluster, fileNameXRSL);
         String command = ("./SubmitJobFile"+Login.user.getUserName()+".sh" );
         SubmitJob submitJob = new SubmitJob();
         String result = submitJob.actionExecute(command);
-        writer.write(result);
+        writer.writeUTF(result);
         writer.flush();
 
         Runtime.getRuntime().exec("rm SubmitJobFile"+Login.user.getUserName()+".sh");

@@ -1,121 +1,37 @@
 package Server;
 
-import services.SelectFile;
+import services.ActionExecute;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 /**
  * Created by yana on 1/22/15.
  */
-public class JobActions {
+public class JobActions implements Serializable {
 
-
-
-
-    public void resultOfJob(Socket socket,BufferedReader reader, PrintWriter writer) throws IOException {
+    public void killJob(DataInputStream reader, Socket socket) throws IOException {
         String jobName;
-        jobName = reader.readLine();
-        JobActions jobActions = new JobActions();
-        String result = jobActions.actionExecute("arcget "+jobName+"");
-        if (result.contains("Results stored at: ")){
-            writer.write("save file\n");
-            writer.flush();
-            Pattern p = Pattern.compile("Results stored at: (.*)");
-            Matcher m = p.matcher(result);
-            m.find();
-            String folderName = m.group(1);
-            System.out.print(folderName);
-
-            Runtime.getRuntime().exec("zip -r "+folderName+"{.zip,}");
-            File file = new File("/home/yana/Desktop/GridNode/"+folderName+".zip");
-            System.out.println("Send command");
-
-            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            oos.writeObject(file.getName());
-            int BUFFER_SIZE = 10000;
-            FileInputStream fis = new FileInputStream(file);
-            byte [] buffer = new byte[BUFFER_SIZE];
-            Integer bytesRead = 0;
-            while ((bytesRead = fis.read(buffer)) > 0) {
-                oos.writeObject(bytesRead);
-                oos.writeObject(Arrays.copyOf(buffer, buffer.length));
-            }
-            writer.write(result+"\n");
-            writer.flush();
-        }else{
-            System.out.print("No jobs\n");
-            writer.write(result+"\n");
-            writer.flush();
-        }
-
-
+        jobName = reader.readUTF();
+        new ActionExecute("arckill "+jobName+"", socket);
 
     }
-    public void killJob(BufferedReader reader, PrintWriter writer) throws IOException {
+    public void testJob(Socket socket) throws IOException {
+
+        new ActionExecute("arctest -J 1 -c arc-ce.grid.upjs.sk", socket);
+        }
+    public void statusOfJob(DataInputStream reader,  Socket socket) throws IOException {
         String jobName;
-        jobName = reader.readLine();
-        JobActions jobActions = new JobActions();
-        String result = jobActions.actionExecute("arckill "+jobName+"");
-        writer.write(result+"\n");
-        writer.flush();
-        writer.close();
-
+        jobName = reader.readUTF();
+        System.out.print("get "+jobName);
+        new ActionExecute("arccat "+jobName+"", socket);
     }
-        public void testJob(BufferedReader reader, PrintWriter writer) throws IOException {
-
-        JobActions jobActions = new JobActions();
-        String result = jobActions.actionExecute("arctest -J 1 -c arc-ce.grid.upjs.sk");
-        writer.write(result+"\n");
-        writer.flush();
-            writer.close();
-        }
-    public void statusOfJob(BufferedReader reader, PrintWriter writer) throws IOException {
-        String jobName;
-        jobName = reader.readLine();
-        JobActions jobActions = new JobActions();
-        String result = jobActions.actionExecute("arccat "+jobName+"");
-        writer.write(result+"\n");
-        writer.flush();
-        writer.close();
-
-    }
-    public void listOfJobs(PrintWriter writer) throws IOException {
-        JobActions jobActions = new JobActions();
-        String result = jobActions.actionExecute("arcstat -a");
-        writer.write(result+"\n");
-        writer.flush();
-        writer.close();
+    public void listOfJobs(Socket socket) throws IOException {
+         new ActionExecute("arcstat -a", socket);
     }
 
-    public String actionExecute(String command) {
 
-        StringBuffer output = new StringBuffer();
-
-        Process p;
-        try {
-            p = Runtime.getRuntime().exec(command);
-            p.waitFor();
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-            String line;
-            while ((line = reader.readLine())!= null) {
-                output.append(line + "\n");
-            }
-            reader.close();
-            System.out.println("finish record");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return output.toString();
-
-    }
 
     }
 

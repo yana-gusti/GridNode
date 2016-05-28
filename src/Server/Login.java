@@ -7,12 +7,15 @@
 package Server;
 
 
+import Pages.LoginPage;
+import services.ActionExecute;
 import services.DBConnection;
 import services.UserServices;
 import services.Users;
 
 
 import java.io.*;
+import java.net.Socket;
 
 /**
  *
@@ -25,10 +28,10 @@ public class Login {
     public  String pass;
     public  String vo;
 
-    public void LoginExecuteWithoutVO(BufferedReader reader, PrintWriter writer) throws IOException {
+    public void LoginExecuteWithoutVO(DataInputStream reader, DataOutputStream writer, Socket socket) throws IOException {
 
-        name = reader.readLine();
-        pass = reader.readLine();
+        name = reader.readUTF();
+        pass = reader.readUTF();
         System.out.println(name+"   "+pass+"   ");
         Users user = Login(name, pass);
 
@@ -37,53 +40,39 @@ public class Login {
             fileCreator.CreateProxyFile(name);
             fileCreator.CreatePassFile(pass);
             String command = "./proxyInit.sh";
-            JobActions jobActions = new JobActions();
-            String result = jobActions.actionExecute(command);
-            System.out.println(result);
-            System.out.println("writing to client: "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");
-            writer.write("success login\n");
-//            writer.write(user.getFirst_name()+"\n");
-//            writer.write(user.getLast_name()+"\n");
-            writer.flush();
+            writer.writeUTF(LoginPage.Action.YES.name());
+            new ActionExecute(command, socket);
+            Runtime.getRuntime().exec("rm pass.txt");
+            Runtime.getRuntime().exec("rm proxyInit.sh");
         }else {
-            writer.write("no such user\n");
+            writer.writeUTF(LoginPage.Action.NO.name());
             System.out.println("user=null");
-            writer.flush();
         }
-//         Runtime.getRuntime().exec("rm pass.txt");
-//         Runtime.getRuntime().exec("rm proxyInit.sh");
+
     }
     
-    public void LoginExecute(BufferedReader reader, PrintWriter writer) throws IOException {
+    public void LoginExecute(DataInputStream reader, DataOutputStream writer, Socket socket) throws IOException {
 
-        name = reader.readLine();
-        pass = reader.readLine();
-        vo = reader.readLine();
-                    System.out.println(name+"   "+pass+"   "+vo);
-                    Users user = Login(name, pass);
+        name = reader.readUTF();
+        pass = reader.readUTF();
+        vo = reader.readUTF();
+        System.out.println(name+"   "+pass+"   "+vo);
+        Users user = Login(name, pass);
 
-//                    Runtime.getRuntime().exec("sudo ./Login.sh");
-                   
         if(user!=null) {
             FileCreator fileCreator = new FileCreator();
             fileCreator.CreateVomsProxyFile(vo, name);
             fileCreator.CreatePassFile(pass);
-            String command = "echo 1 | sudo -S -k bash /home/yana/Desktop/GridNode/proxyInit.sh";
-            JobActions jobActions = new JobActions();
-            String result = jobActions.actionExecute(command);
-            System.out.println(result);
-            System.out.println("writing to client: "+user.getFirst_name() +"\n"+user.getLast_name() +"\n");
-            writer.write("success login\n");
-//            writer.write(user.getFirst_name()+"\n");
-//            writer.write(user.getLast_name()+"\n");
-            writer.flush();
+            writer.writeUTF(LoginPage.Action.YES.name());
+            String command = "./proxyInit.sh";
+            new ActionExecute(command, socket);
+            Runtime.getRuntime().exec("rm pass.txt");
+            Runtime.getRuntime().exec("rm proxyInit.sh");
         }else {
-            writer.write("no such user\n");
-            writer.flush();
+            writer.writeUTF(LoginPage.Action.NO.name());
             System.out.println("user=null");
         }
-         Runtime.getRuntime().exec("rm pass.txt");
-         Runtime.getRuntime().exec("rm proxyInit.sh");
+
     }
     
 

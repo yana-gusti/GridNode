@@ -19,17 +19,13 @@ import static grid_node.Main.port;
  *
  * @author yana
  */
-public class SelectFile extends JFileChooser{
+public class UploadFile extends JFileChooser{
     public int BUFFER_SIZE = 10000;
 
 
    
 
-    public  String SelectFile(Socket s, BufferedReader reader, File file) throws IOException, ClassNotFoundException {
-
-
-
-        System.out.println("Send command");
+    public  String UploadFile(Socket s, DataInputStream reader, File file) throws IOException, ClassNotFoundException {
 
         ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
 
@@ -43,7 +39,7 @@ public class SelectFile extends JFileChooser{
             oos.writeObject(bytesRead);  
             oos.writeObject(Arrays.copyOf(buffer, buffer.length));  
         }  
-          return reader.readLine();
+          return reader.readUTF();
        
         } 
     

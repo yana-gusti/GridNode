@@ -16,17 +16,53 @@ import java.net.ServerSocket;
  *
  * @author yana
  */
-public class ServerMain {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        // TODO code application logic here
-        ServerSocket serverSocket = new ServerSocket(7009);
+public class ServerMain implements Runnable{
+    public final static int PORT = 7009 ;
+    public final static String HOSTNAME = "localhost" ;
+    public enum Action {CONNECT, LOGIN, LOGINWITHVO, REGISTER, UPLOADFILE, DOWNLOADFILE, SHFILE, XRSLFILE, ALLFILES, SUBMITJOB,
+        FINDXRSLFILE, JOBRESULT, ALLJOBS, TESTJOB, JOBDETAILS, KILLJOB, DISCONNECT}
+    ServerSocket serverSocket;
 
-        while(true){
-            System.out.println("Stani be :D");
-            Socket socket = serverSocket.accept();
-            Thread tr = new Thread(new UserThread(socket));
-            tr.start();
+    public ServerMain()
+    {
+
+        System.out.println("Start Server...");
+        try
+        {
+            serverSocket = new ServerSocket(PORT) ;
+            new Thread(this).start();
+            //javax.swing.SwingUtilities.invokeLater(new Runnable() { public void run() {   createAndShowGUI();}    }   );
         }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        new ServerMain();
+    }
+    @Override
+    public void run()
+    {
+        System.out.println("server runs");
+
+        while(true)
+        {
+            try {
+
+                Socket socket = serverSocket.accept();
+                UserThread thread= new UserThread(socket);
+                thread.start();
+
+            }
+            catch (IOException e)
+            {
+                System.out.println("Error with  socket");
+                e.printStackTrace();
+            }
+        }
+
     }
 }
     

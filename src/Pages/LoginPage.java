@@ -7,7 +7,9 @@
 package Pages;
 
 
+import Server.ServerMain;
 import grid_node.Main;
+import services.CommandExecute;
 import services.Users;
 
 import javax.swing.*;
@@ -20,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static grid_node.Main.address;
+import static grid_node.Main.loginPage;
 import static grid_node.Main.port;
 
 
@@ -32,8 +35,9 @@ public class LoginPage extends javax.swing.JFrame {
     public static ProfilePage profilePage;
     public static RegistrationPage registrationPage;
     public static Socket s;
-    public static BufferedReader reader;
-    public static PrintWriter writer;
+    public static DataInputStream reader;
+    public static DataOutputStream writer;
+    public enum Action {YES, NO}
 
 
     /**
@@ -45,10 +49,12 @@ public class LoginPage extends javax.swing.JFrame {
     }
     private void initServerConnection(){
         try {
-            s = new Socket("localhost",7009);
-            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            s = new Socket(ServerMain.HOSTNAME, ServerMain.PORT);
+            writer = new DataOutputStream(s.getOutputStream()) ;
+            reader = new DataInputStream(s.getInputStream()) ;
+            writer.writeUTF(ServerMain.Action.CONNECT.name());
             System.out.println("Connected");
+            System.out.println(reader.readUTF());
         } catch (IOException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -257,7 +263,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         registrationPage=new RegistrationPage();
         registrationPage.setVisible(true);
-        Main.loginPage.setVisible(false);
+        loginPage.setVisible(false);
     }//GEN-LAST:event_RegistrBtnActionPerformed
 
 
@@ -267,59 +273,69 @@ public class LoginPage extends javax.swing.JFrame {
         String _username = username.getText();
         String _pass = pass.getText();
         String _vo = vo.getText();
+        Action act;
         if (_username.isEmpty() || _pass.isEmpty()) {
-            errorLabel.setText("error");
-
-
+            errorLabel.setText("Please, fill required fields");
             }else {
-            if (_vo.isEmpty()){
-                System.out.println("writing to server: "+_username +"\n"+_pass +"\n");
-                writer.write("loginWithOutVO\n");
-                writer.write(_username+"\n");
-                writer.write(_pass+"\n");
-                writer.flush();
-                String function = reader.readLine();
-                System.out.println("Funcion is "+function);
-                switch(function){
-                    case "success login": profilePage = new ProfilePage();
+            if (_vo.isEmpty()) {
+                System.out.println("writing to server: " + _username + "\n" + _pass + "\n");
+                writer.writeUTF(ServerMain.Action.LOGIN.name());
+                writer.writeUTF(_username);
+                writer.writeUTF(_pass);
+                act = Action.valueOf(reader.readUTF());
+                switch (act) {
+                    case YES:
+                        profilePage = new ProfilePage();
                         profilePage.setVisible(true);
-                        Main.loginPage.setVisible(false); break;
-                    case "no such user": errorLabel.setText("error"); break;
-//                errorLabel.setText(reader.readLine());
-//                if (errorLabel.getText().equals("success login")) {
-//                    profilePage = new ProfilePage();
-//                    profilePage.setVisible(true);
-//                    Main.loginPage.setVisible(false);
-//
-//                } else {
-//                    errorLabel.setText("error");
-//                }
-                    default : break;
+                        loginPage.setVisible(false);
+                        CommandExecute commandExecute = new CommandExecute();
+                        commandExecute.jobActionsWithoutJobName(s, profilePage.textArea, profilePage.ResultTextPane);
+                        writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+                        System.out.println("Log out");
+                        writer.close();
+                        s.close();
+                        break;
+                    case NO:
+                        errorLabel.setText("error");
+                        writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+                        System.out.println("Log out");
+                        writer.close();
+                        s.close();
+                        break;
                 }
-            }else {
+            } else {
 
                 System.out.println("writing to server: " + _username + "\n" + _pass + "\n");
-                writer.write("login\n");
-                writer.write(_username + "\n");
-                writer.write(_pass + "\n");
-                writer.write(_vo + "\n");
+                writer.writeUTF(ServerMain.Action.LOGINWITHVO.name());
+                writer.writeUTF(_username);
+                writer.writeUTF(_pass);
+                writer.writeUTF(_vo);
                 writer.flush();
-                errorLabel.setText(reader.readLine());
-                if (errorLabel.getText().equals("success login")) {
-                    profilePage = new ProfilePage();
-                    profilePage.setVisible(true);
-                    Main.loginPage.setVisible(false);
-                } else {
-                    errorLabel.setText("error");
+                String function = reader.readUTF();
+                System.out.println("Funcion is " + function);
+                switch (function) {
+                    case "success login":
+                        profilePage = new ProfilePage();
+                        profilePage.setVisible(true);
+                        loginPage.setVisible(false);
+                        CommandExecute commandExecute = new CommandExecute();
+                        commandExecute.jobActionsWithoutJobName(s, profilePage.textArea, profilePage.ResultTextPane);
+                        writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+                        System.out.println("Log out");
+                        writer.close();
+                        s.close();
+                        break;
+                    case "no such user":
+                        errorLabel.setText("error");
+                        writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+                        System.out.println("Log out");
+                        writer.close();
+                        s.close();
+                        break;
                 }
-
             }
-
-
-
-            }
-
-    }//GEN-LAST:event_LoginBtnActionPerformed
+        }
+    }
 
 
 public static void main(String args[]) {

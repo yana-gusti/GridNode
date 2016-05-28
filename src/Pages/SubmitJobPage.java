@@ -8,6 +8,8 @@ package Pages;
 
 
 import Server.Login;
+import Server.ServerMain;
+import services.CommandExecute;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +21,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static Pages.CreateJobPage.submitJobPage;
+import static Pages.LoginPage.profilePage;
+
 /**
  *
  * @author Дом
@@ -28,8 +33,8 @@ public class SubmitJobPage extends javax.swing.JFrame {
     public Reader reader_ = null;
 
     public static Socket s;
-    public static BufferedReader reader;
-    public static PrintWriter writer;
+    public static DataInputStream reader;
+    public static DataOutputStream writer;
 
     /**
      * Creates new form SubmitJobPage
@@ -40,10 +45,12 @@ public class SubmitJobPage extends javax.swing.JFrame {
     }
     private void initServerConnection(){
         try {
-            s = new Socket("localhost",7009);
-            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            s = new Socket(ServerMain.HOSTNAME, ServerMain.PORT);
+            writer = new DataOutputStream(s.getOutputStream()) ;
+            reader = new DataInputStream(s.getInputStream()) ;
+            writer.writeUTF(ServerMain.Action.CONNECT.name());
             System.out.println("Connected");
+            System.out.println(reader.readUTF());
         } catch (IOException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,14 +122,12 @@ public class SubmitJobPage extends javax.swing.JFrame {
         });
 
         ArrayList<String> listOfFiles = getListOfFiles();
+        if(listOfFiles.isEmpty()){
+            SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(new String []{"No .xrsl files"}));
+        }else {
 
-        SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(listOfFiles.toArray()));
-        SelectJobFileCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelectJobFileCBActionPerformed(evt);
-            }
-        });
-
+            SelectJobFileCB.setModel(new javax.swing.DefaultComboBoxModel(listOfFiles.toArray()));
+        }
         ViewJobBtn.setBackground(new java.awt.Color(0, 204, 204));
         ViewJobBtn.setText("Open .xrsl file");
         ViewJobBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -212,93 +217,61 @@ public class SubmitJobPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SelectJobFileCBActionPerformed(ActionEvent evt) {
-
-    }
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
-
-        ProfilePage profilePage = new ProfilePage();
         profilePage.setVisible(true);
-        if(CreateJobPage.submitJobPage.isActive()){
-            CreateJobPage.submitJobPage.setVisible(false);
-        }else if (ProfilePage.submitJobPage.isActive()){
-            ProfilePage.submitJobPage.setVisible(false);
-        }else {
-            System.out.print("error");
-        }
-
-
-
+        submitJobPage.setVisible(false);
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformed
         initServerConnection();
-        textArea.setText("");
-
         String fileName= SelectJobFileCB.getSelectedItem().toString();
         String clusterName = cluster.getText();
-
-        if (fileName != null) {
-            writer.write("submitJob\n");
-            writer.write(clusterName+"\n");
-            writer.write(fileName+"\n");
-            writer.flush();
-            try {
-                String line = "";
-                while ((line = reader.readLine())!= null) {
-                    textArea.append(line + "\n");
-                    System.out.println(line);
+        if (fileName.contains("No .xrsl files")) {
+            ResultTextPane.setText("Please, create job");
+        }else{
+            if (clusterName != null) {
+                 CommandExecute commandExecute = new CommandExecute();
+                try {
+                    writer.writeUTF(ServerMain.Action.SUBMITJOB.name());
+                    writer.writeUTF(clusterName+"\n");
+                    writer.writeUTF(fileName+"\n");
+                    commandExecute.jobActionsWithoutJobName(s, textArea, ResultTextPane);
+                    writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+                    System.out.println("Log out");
+                    writer.close();
+                    s.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                // read any errors from the attempted command
-                reader.close();
-                ResultTextPane.setText(textArea.getText());
+            }else {
+                ResultTextPane.setText("Please, type cluster address");
             }
-            catch (IOException e) {
-                System.out.println("exception happened - here's what I know: ");
-                e.printStackTrace();
-            }
-        }  else{
-            textArea.setText("Job not found");
         }
-
-
-
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 
 
 
     private void ViewJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {
         initServerConnection();
-        String fileName;
-        try {
-            fileName = SelectJobFileCB.getSelectedItem().toString();
-            System.out.println(fileName);
-
-            if (fileName != null) {
-                writer.write("findXRSLFile\n");
-                writer.write(fileName+"\n");
-                writer.flush();
+        String fileName= SelectJobFileCB.getSelectedItem().toString();
+            if (fileName.contains("No .xrsl files")) {
+                ResultTextPane.setText("Please, create job");
+            }else{
+                CommandExecute commandExecute = new CommandExecute();
                 try {
-                    String line = "";
-                    while ((line = reader.readLine())!= null) {
-                        textArea.append(line + "\n");
-                        System.out.println(line);
-                    }
-                    // read any errors from the attempted command
-                    reader.close();
-                    ResultTextPane.setText(textArea.getText());
-                }
-                catch (IOException e) {
-                    System.out.println("exception happened - here's what I know: ");
+                    writer.writeUTF(ServerMain.Action.FINDXRSLFILE.name());
+                    writer.writeUTF(fileName+"\n");
+                    commandExecute.jobActionsWithoutJobName(s, textArea, ResultTextPane);
+                    writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+                    System.out.println("Log out");
+                    writer.close();
+                    s.close();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
-        }catch (Exception a){
-            System.out.println(a);
-        }
+
     }
 
     public static void main(String args[]) {
@@ -361,8 +334,11 @@ public class SubmitJobPage extends javax.swing.JFrame {
      */
 
     public ArrayList<String> getListOfFiles(){
-        writer.write("listOfJobs\n");
-        writer.flush();
+        try {
+            writer.writeUTF(ServerMain.Action.FINDXRSLFILE.name());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ArrayList<String> titleList = new ArrayList<String>();
         try {
             ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream()); //Error Line!
@@ -370,6 +346,10 @@ public class SubmitJobPage extends javax.swing.JFrame {
                 Object object = objectInput.readObject();
                 titleList =  (ArrayList<String>) object;
                 System.out.println(titleList.get(0));
+                writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+                System.out.println("Log out");
+                writer.close();
+                s.close();
             } catch (ClassNotFoundException e) {
                 System.out.println("The title list has not come from the server");
                 e.printStackTrace();

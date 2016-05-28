@@ -6,29 +6,32 @@
 
 package Pages;
 
-import grid_node.Main;
-import services.SaveFile;
+import Server.ServerMain;
+import services.CommandExecute;
+import services.ResultOfJob;
 
 import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static Pages.CreateJobPage.submitJobPage;
+import static Pages.LoginPage.profilePage;
 
 
 /**
  *
  * @author Дом
  */
-public class ProfilePage extends JFrame {
+public class ProfilePage extends JFrame implements Serializable{
     public static EditProfilePage editProfilePage;
     public static CreateJobPage createJobPage;
-    public static SubmitJobPage submitJobPage;
     public Socket s;
-    public BufferedReader reader;
-    public PrintWriter writer;
-    public int BUFFER_SIZE = 10000;
-    static String message;
+    public DataInputStream reader;
+    public DataOutputStream writer;
+    ArrayList<String> outputList;
 
 
     /**
@@ -41,10 +44,12 @@ public class ProfilePage extends JFrame {
     }
     private void initServerConnection(){
         try {
-            s = new Socket("localhost",7009);
-            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            s = new Socket(ServerMain.HOSTNAME, ServerMain.PORT);
+            writer = new DataOutputStream(s.getOutputStream()) ;
+            reader = new DataInputStream(s.getInputStream()) ;
+            writer.writeUTF(ServerMain.Action.CONNECT.name());
             System.out.println("Connected");
+            System.out.println(reader.readUTF());
         } catch (IOException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -353,61 +358,66 @@ public class ProfilePage extends JFrame {
     private void EditProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileBtnActionPerformed
         editProfilePage=new EditProfilePage();
         editProfilePage.setVisible(true);
-        LoginPage.profilePage.setVisible(false);
+        profilePage.setVisible(false);
     }//GEN-LAST:event_EditProfileBtnActionPerformed
 
     private void RemoveJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_RemoveJobBtnActionPerformed
-        jobActions("KillJob");
+        initServerConnection();
+        CommandExecute commandExecute = new CommandExecute();
+        try {
+            writer.writeUTF(ServerMain.Action.KILLJOB.name());
+            commandExecute.jobActionsWithJobName(writer, s, textArea, ResultTextPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_RemoveJobBtnActionPerformed
 
     private void CreateJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateJobBtnActionPerformed
         createJobPage=new CreateJobPage();
         createJobPage.setVisible(true);
-        LoginPage.profilePage.setVisible(false);
+        profilePage.setVisible(false);
     }//GEN-LAST:event_CreateJobBtnActionPerformed
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
 
         LoginPage loginPage = new LoginPage();
         loginPage.setVisible(true);
-        LoginPage.profilePage.setVisible(false);
+        profilePage.setVisible(false);
 
 
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
     private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformed
-        submitJobPage=new SubmitJobPage();
+        CreateJobPage createJobPage = new CreateJobPage();
         submitJobPage.setVisible(true);
-        LoginPage.profilePage.setVisible(false);
+        profilePage.setVisible(false);
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 
     private void StatusBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_StatusBtnActionPerformed
-        jobActions("StatusOfJob");
+        initServerConnection();
+        CommandExecute commandExecute = new CommandExecute();
+        try {
+            writer.writeUTF(ServerMain.Action.JOBDETAILS.name());
+            commandExecute.jobActionsWithJobName(writer, s, textArea, ResultTextPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }//GEN-LAST:event_StatusBtnActionPerformed
 
     private void ListOfJobActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_ListOfJobActionPerformed
         initServerConnection();
-        String command = "ListOfJobs";
-        textArea.setText("");
-
-            System.out.println("writing to server: list of jobs\n");
-            writer.write(command+"\n");
-            writer.flush();
-            try {
-                String line = "";
-                while ((line = reader.readLine())!= null) {
-                    textArea.append(line + "\n");
-                    System.out.println(line);
-                }
-                // read any errors from the attempted command
-                reader.close();
-                ResultTextPane.setText(textArea.getText());
-            }
-            catch (IOException e) {
-                System.out.println("exception happened - here's what I know: ");
-                e.printStackTrace();
-            }
+        CommandExecute commandExecute = new CommandExecute();
+        try {
+            writer.writeUTF(ServerMain.Action.ALLJOBS.name());
+            commandExecute.jobActionsWithoutJobName(s, textArea, ResultTextPane);
+            writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+            System.out.println("Log out");
+            writer.close();
+            s.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }//GEN-LAST:event_ListOfJobActionPerformed
 
@@ -418,96 +428,14 @@ public class ProfilePage extends JFrame {
     private void ResultOfJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_ResultOfJobBtnActionPerformed
         initServerConnection();
         textArea.setText("");
-        String command = "ResultOfJob";
         String jobName= JOptionPane.showInputDialog("Enter file name");
         if (jobName != null ) {
-
-            JobName.setText(jobName);
-            System.out.println("writing to server: "+command +"\n");
-            writer.write(command+"\n");
-            writer.write(jobName+"\n");
-            writer.flush();
-            String fromServer = reader.readLine();
-            if (fromServer.contains("save file")){
-
-                System.out.print("start");
-                ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
-                FileOutputStream fos = null;
-                byte[] buffer;
-
-                // 1. Read file name.
-                Object o = null;
-                try {
-                    o = ois.readObject();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-
-                if (o instanceof String) {
-                    fos = new FileOutputStream(o.toString());
-                    System.out.println(fos);
-
-                } else {
-                    message = "Something is wrong\n";
-                }
-
-                // 2. Read file to the end.
-                Integer bytesRead = 0;
-
-                do {
-                    try {
-                        o = ois.readObject();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-
-                    if (!(o instanceof Integer)) {
-                        message = "Something is wrong\n";
-                    }
-
-                    bytesRead = (Integer) o;
-
-                    try {
-                        o = ois.readObject();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-
-                    if (!(o instanceof byte[])) {
-                        message = "Something is wrong\n";
-                    }
-
-                    buffer = (byte[]) o;
-
-                    // 3. Write data to output file.
-                    fos.write(buffer, 0, bytesRead);
-
-
-                } while (bytesRead == BUFFER_SIZE);
-                message = "File transfer success\n";
-
-                System.out.println(message);
-                try {
-                    String line = "";
-                    while ((line = reader.readLine())!= null) {
-                        textArea.append(line + "\n");
-                        System.out.println(line);
-                    }
-                    // read any errors from the attempted command
-                    reader.close();
-                    ResultTextPane.setText(textArea.getText());
-                }
-                catch (IOException e) {
-                    System.out.println("exception happened - here's what I know: ");
-                    e.printStackTrace();
-                }
-
-
-            }else {
-
-                    ResultTextPane.setText(fromServer);
-
+            writer.writeUTF(ServerMain.Action.JOBRESULT.name());
+            writer.writeUTF(jobName);
+            try {
+                new ResultOfJob().getResultOfJob(s, writer, textArea, ResultTextPane);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }else {
             JobName.setText("Please, enter job name");
@@ -519,59 +447,20 @@ public class ProfilePage extends JFrame {
 
     private void TestJobBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestJobBtnActionPerformed
         initServerConnection();
-        String command = "TestJob";
-        textArea.setText("");
-
-            System.out.println("writing to server: test of jobs\n");
-            writer.write(command+"\n");
-            writer.flush();
+        CommandExecute commandExecute = new CommandExecute();
         try {
-            String line = "";
-            while ((line = reader.readLine())!= null) {
-                textArea.append(line + "\n");
-                System.out.println(line);
-            }
-            // read any errors from the attempted command
-            reader.close();
-            ResultTextPane.setText(textArea.getText());
+            writer.writeUTF(ServerMain.Action.TESTJOB.name());
+            commandExecute.jobActionsWithoutJobName(s, textArea, ResultTextPane);
+            writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
+            System.out.println("Log out");
+            writer.close();
+            s.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-            catch (IOException e) {
-                System.out.println("exception happened - here's what I know: ");
-                e.printStackTrace();
-            }        // TODO add your handling code here:
     }//GEN-LAST:event_TestJobBtnActionPerformed
 
-    public void jobActions (String command) throws IOException {
-        initServerConnection();
-        textArea.setText("");
-        String jobName= JOptionPane.showInputDialog("Enter file name");
-        if (jobName != null ) {
 
-            JobName.setText(jobName);
-            System.out.println("writing to server: "+command +"\n");
-            writer.write(command+"\n");
-            writer.write(jobName+"\n");
-            writer.flush();
-            try {
-                String line = "";
-                while ((line = reader.readLine())!= null) {
-
-                    textArea.append(line + "\n");
-                    System.out.println(line);
-                }
-                // read any errors from the attempted command
-                reader.close();
-                ResultTextPane.setText(textArea.getText());
-            }
-            catch (IOException e) {
-                System.out.println("exception happened - here's what I know: ");
-                e.printStackTrace();
-            }
-        }else {
-            JobName.setText("Please, enter job name");
-        }
-
-    }
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

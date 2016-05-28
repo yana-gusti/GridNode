@@ -7,18 +7,15 @@
 package Pages;
 
 
-import services.SelectFile;
+import Server.ServerMain;
+import services.UploadFile;
 
 import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static grid_node.Main.address;
-import static grid_node.Main.port;
 
 /**
  *
@@ -31,8 +28,8 @@ public class CreateJobPage extends JFrame {
     public static SubmitJobPage submitJobPage;
 
     public static Socket s;
-    public static BufferedReader reader;
-    public static PrintWriter writer;
+    public static DataInputStream reader;
+    public static DataOutputStream writer;
 
 
 
@@ -43,14 +40,22 @@ public class CreateJobPage extends JFrame {
     public CreateJobPage() {
 
         initComponents();
-
+        try {
+            submitJobPage = new SubmitJobPage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     private void initServerConnection(){
         try {
-            s = new Socket("localhost",7009);
-            writer = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            s = new Socket(ServerMain.HOSTNAME, ServerMain.PORT);
+            writer = new DataOutputStream(s.getOutputStream()) ;
+            reader = new DataInputStream(s.getInputStream()) ;
+            writer.writeUTF(ServerMain.Action.CONNECT.name());
             System.out.println("Connected");
+            System.out.println(reader.readUTF());
         } catch (IOException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -640,17 +645,19 @@ public class CreateJobPage extends JFrame {
 	 if (fileName != null && resultXRSL!= null) {
 
          System.out.println("writing to server: "+fileName +"\n");
-         writer.write("createXRSLFile\n");
-         writer.write(fileName+"\n");
-         writer.write(resultXRSL+"\n");
+         writer.writeUTF(ServerMain.Action.XRSLFILE.name());
+         writer.writeUTF(fileName);
+         writer.writeUTF(resultXRSL);
          writer.flush();
-
-         errorLabel.setText(reader.readLine());
-        submitJobPage = new SubmitJobPage();
+         errorLabel.setText(reader.readUTF());
         submitJobPage.setVisible(true);
         ProfilePage.createJobPage.setVisible(false);}
+        writer.writeUTF(ServerMain.Action.DISCONNECT.name()); // send action
+        System.out.println("Log out");
         writer.close();
         reader.close();
+        s.close();
+
     }
 
 
@@ -684,13 +691,16 @@ public class CreateJobPage extends JFrame {
 
 
          System.out.println("writing to server: "+fileName +"\n");
-         writer.write("createSHFile\n");
-         writer.write(fileName+"\n");
-         writer.write(resultSH+"\n");
+         writer.writeUTF(ServerMain.Action.SHFILE.name());
+         writer.writeUTF(fileName);
+         writer.writeUTF(resultSH);
          writer.flush();
-         errorLabel.setText(reader.readLine());
+         errorLabel.setText(reader.readUTF());
+         writer.writeUTF(ServerMain.Action.DISCONNECT.name()); // send action
+         System.out.println("Log out");
          writer.close();
          reader.close();
+         s.close();
         }
     }//GEN-LAST:event_CreateBashScriptBtnActionPerformed
 
@@ -730,29 +740,8 @@ public class CreateJobPage extends JFrame {
     }//GEN-LAST:event_SelectProgCBActionPerformed
 
     private void SelectInFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInFileActionPerformed
-        initServerConnection();
-        JFileChooser fileChooser = new JFileChooser();
-         int returnVal;
-        returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            InputFile = fileChooser.getSelectedFile();
-            inputFileLb.setText(InputFile.getName());
-            SelectInputFileLb.setText(inputFileLb.getText());
-            try {
-                SelectFile selectFile = new SelectFile();
-                errorLabel.setText(selectFile.SelectFile(s, reader,InputFile));;
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        writer.close();
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SelectInputFile();
+
     }//GEN-LAST:event_SelectInFileActionPerformed
 
     private void SelectResolCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectResolCBActionPerformed
@@ -898,109 +887,46 @@ public class CreateJobPage extends JFrame {
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     private void SelectInputFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtnActionPerformed
-        initServerConnection();
-        JFileChooser fileChooser = new JFileChooser();
-         int returnVal;
-        returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            InputFile = fileChooser.getSelectedFile();
-            SelectInputFileLb.setText(InputFile.getName());
-
-            try {
-                SelectFile selectFile = new SelectFile();
-                errorLabel.setText(selectFile.SelectFile(s, reader,InputFile));
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        writer.close();
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SelectInputFile();
     }//GEN-LAST:event_SelectInputFileBtnActionPerformed
 
     private void SelectInputFileBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn2ActionPerformed
-        initServerConnection();
-        JFileChooser fileChooser = new JFileChooser();
-         int returnVal;
-        returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            InputFile = fileChooser.getSelectedFile();
-            SelectInputFileLb2.setText(InputFile.getName());
-
-            try {
-                SelectFile selectFile = new SelectFile();
-                errorLabel.setText(selectFile.SelectFile(s, reader,InputFile));
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        writer.close();
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SelectInputFile();
     }//GEN-LAST:event_SelectInputFileBtn2ActionPerformed
 
     private void SelectInputFileBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn3ActionPerformed
-        initServerConnection();
-        JFileChooser fileChooser = new JFileChooser();
-         int returnVal;
-        returnVal = fileChooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            InputFile = fileChooser.getSelectedFile();
-            SelectInputFileLb3.setText(InputFile.getName());
-
-            try {
-                SelectFile selectFile = new SelectFile();
-                errorLabel.setText(selectFile.SelectFile(s, reader,InputFile));
-            } catch (IOException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        writer.close();
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SelectInputFile();
     }//GEN-LAST:event_SelectInputFileBtn3ActionPerformed
 
     private void SelectInputFileBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn4ActionPerformed
+        SelectInputFile();
+    }//GEN-LAST:event_SelectInputFileBtn4ActionPerformed
+    public void SelectInputFile(){
         initServerConnection();
         JFileChooser fileChooser = new JFileChooser();
-         int returnVal;
+        int returnVal;
         returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             InputFile = fileChooser.getSelectedFile();
-            SelectInputFileLb4.setText(InputFile.getName());
-
+            inputFileLb.setText(InputFile.getName());
+            SelectInputFileLb.setText(inputFileLb.getText());
             try {
-                SelectFile selectFile = new SelectFile();
-                errorLabel.setText(selectFile.SelectFile(s,  reader,InputFile));
+                writer.writeUTF(ServerMain.Action.UPLOADFILE.name());
+                UploadFile uploadFile = new UploadFile();
+                errorLabel.setText(uploadFile.UploadFile(s, reader,InputFile));
+                writer.writeUTF(ServerMain.Action.DISCONNECT.name()); // send action
+                System.out.println("Log out");
+                writer.close();
+                reader.close();
+                s.close();
             } catch (IOException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CreateJobPage.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        writer.close();
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_SelectInputFileBtn4ActionPerformed
 
+    }
     /**
      * @param args the command line arguments
      */

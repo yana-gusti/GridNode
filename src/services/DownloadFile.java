@@ -14,10 +14,10 @@ import java.net.Socket;
  *
  * @author yana
  */
-public class SaveFile {
+public class DownloadFile {
     public int BUFFER_SIZE = 10000;
     static String message;
-  public void saveFile(Socket socket, PrintWriter writer) throws IOException {
+  public void DownloadFile(Socket socket, DataOutputStream writer) throws IOException {
 
           System.out.print("start");
           ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
@@ -79,8 +79,7 @@ public class SaveFile {
           System.out.println(message);
 
 
-          writer.write(message);
-          writer.flush();
+          writer.writeUTF(message);
 
     }  
   

@@ -41,10 +41,10 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public void CreateNewSHExecute(BufferedReader reader, PrintWriter writer) throws IOException {
+    public void CreateNewSHExecute(DataInputStream reader, DataOutputStream writer) throws IOException {
 
-                    fileNameSH = reader.readLine()+".sh";
-                    resulSH = reader.readLine();
+                    fileNameSH = reader.readUTF()+".sh";
+                    resulSH = reader.readUTF();
                     FileWriter SHFile = CreateNewSH(fileNameSH, resulSH);
         String userName = Login.user.getUserName();
         FileCreator fileCreator=new FileCreator();
@@ -53,7 +53,7 @@ public class CreateNewJob {
         String[] command1 = { "xterm", "/home/yana/Desktop/GridNode/Move"+userName+".sh" };
         Runtime.getRuntime().exec(command1);
         Runtime.getRuntime().exec("rm Move"+userName+".sh");
-        writer.write("success\n");
+        writer.writeUTF("success\n");
         writer.flush();
     }
      public static FileWriter CreateNewXRSL (String fileName, String result ){
@@ -78,11 +78,11 @@ public class CreateNewJob {
         return outFile;
     }
     
-    public void CreateNewXRSLExecute(BufferedReader reader, PrintWriter writer) throws IOException{
+    public void CreateNewXRSLExecute(DataInputStream reader, DataOutputStream writer) throws IOException{
 
-                    fileNameXRSL = reader.readLine()+".xrsl";
-                    resulXRSL = reader.readLine();
-                    FileWriter XRSLFile = CreateNewXRSL(fileNameXRSL, resulXRSL);
+                    fileNameXRSL = reader.readUTF()+".xrsl";
+                    resulXRSL = reader.readUTF();
+                    CreateNewXRSL(fileNameXRSL, resulXRSL);
                     String userName = Login.user.getUserName();
 
                     FileCreator fileCreator=new FileCreator();
@@ -92,8 +92,8 @@ public class CreateNewJob {
                     String[] command = { "xterm", "/home/yana/Desktop/GridNode/Move"+userName+".sh" };
                     Runtime.getRuntime().exec(command);
                     Runtime.getRuntime().exec("rm Move"+userName+".sh");
-        writer.write(message);
-        writer.flush();
+                    writer.writeUTF(message);
+                    writer.flush();
     }
     
 
