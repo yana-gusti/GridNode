@@ -7,6 +7,7 @@
 package Pages;
 
 import Server.ServerMain;
+import Server.SubmitJob;
 import services.CommandExecute;
 import services.ResultOfJob;
 
@@ -387,9 +388,9 @@ public class ProfilePage extends JFrame implements Serializable{
 
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
-    private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformed
-        CreateJobPage createJobPage = new CreateJobPage();
-        submitJobPage.setVisible(true);
+    private void SubmitJobBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_SubmitJobBtnActionPerformedSu;
+        SubmitJobPage submitJob = new SubmitJobPage();
+        submitJob.setVisible(true);
         profilePage.setVisible(false);
     }//GEN-LAST:event_SubmitJobBtnActionPerformed
 

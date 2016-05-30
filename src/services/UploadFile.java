@@ -9,11 +9,7 @@ package services;
 import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Arrays;
-
-import static grid_node.Main.address;
-import static grid_node.Main.port;
 
 /**
  *

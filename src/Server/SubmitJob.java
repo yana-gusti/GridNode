@@ -6,6 +6,8 @@
 
 package Server;
 
+import services.ActionExecute;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
@@ -20,32 +22,24 @@ import java.util.List;
 public class SubmitJob {
 
     public String fileNameXRSL;
-    public String message;
     public String cluster;
 
-    public void findXRSLFile(DataInputStream reader, DataOutputStream writer) throws IOException {
+    public void findXRSLFile(DataInputStream reader, DataOutputStream writer, Socket socket) throws IOException {
 
         System.out.println("start");
+        ArrayList<String> list = new ArrayList<>();
 
             fileNameXRSL = reader.readUTF();
             System.out.println(fileNameXRSL);
             if (fileNameXRSL != null) {
-
-//                System.out.println("head /home/"+Login.user.getUserName()+"/"+fileNameXRSL);
-//                String command = ("head /home/"+Login.user.getUserName()+"/"+fileNameXRSL);
-//                SubmitJob submitJob = new SubmitJob();
-//                String result  = submitJob.actionExecute(command);
                 String result= new String(Files.readAllBytes(Paths.get("/home/"+Login.user.getUserName()+"/"+fileNameXRSL)));
-
-                writer.writeUTF(result);
-                writer.flush();
-                writer.close();
-                System.out.println(result);
+                list.add(result);
+                ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+                objectOutput.writeObject(list);
+                System.out.println("finish record");
             } else {
                 String result = "no such file";
                 writer.writeUTF(result);
-                writer.flush();
-                writer.close();
             }
 
         }
@@ -53,17 +47,12 @@ public class SubmitJob {
 
 
     
-    public void submitJob(DataInputStream reader, DataOutputStream writer) throws IOException {
+    public void submitJob(DataInputStream reader, Socket socket) throws IOException {
                     cluster = reader.readUTF();
                     fileNameXRSL=reader.readUTF();
                     System.out.println("arcsub -c "+cluster+" "+fileNameXRSL);
-                    FileCreator fileCreator = new FileCreator();
-                    fileCreator.SubmitJobFile(Login.user.getUserName(), cluster, fileNameXRSL);
-        String command = ("./SubmitJobFile"+Login.user.getUserName()+".sh" );
-        SubmitJob submitJob = new SubmitJob();
-        String result = submitJob.actionExecute(command);
-        writer.writeUTF(result);
-        writer.flush();
+        String command = ("arcsub -c "+cluster+" "+fileNameXRSL );
+        new ActionExecute(command, socket);
 
         Runtime.getRuntime().exec("rm SubmitJobFile"+Login.user.getUserName()+".sh");
 
@@ -88,28 +77,5 @@ public class SubmitJob {
        System.out.print("send list");
 
    }
-    private String actionExecute(String command) {
 
-        StringBuffer output = new StringBuffer();
-
-        Process p;
-        try {
-            p = Runtime.getRuntime().exec(command);
-            p.waitFor();
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-            String line = "";
-            while ((line = reader.readLine())!= null) {
-                output.append(line + "\n");
-            }
-            reader.close();
-            System.out.println("finish record");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return output.toString();
-
-    }
 }

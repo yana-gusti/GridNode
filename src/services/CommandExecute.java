@@ -52,7 +52,7 @@ public class CommandExecute implements Serializable {
     }
 
     public void jobActionsWithoutJobName (Socket s, TextArea textArea, JTextPane ResultTextPane) throws IOException {
-        textArea.setText("");
+        ResultTextPane.setText("");
             ArrayList<String> outputList;
             try {
                 ObjectInputStream objectInput = new ObjectInputStream(s.getInputStream()); //Error Line!

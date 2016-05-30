@@ -132,22 +132,7 @@ public class FileCreator {
 
     }
 
-        public static void SubmitJobFile(String userName, String cluster, String fileNameXRSL) throws IOException {
-            File file1 = new File("SubmitJobFile"+userName+".sh");
-            BufferedWriter output = new BufferedWriter(new FileWriter(file1));
 
-            output.append("#! /bin/bash");
-            output.newLine();
-            output.append("echo 1  | sudo -H -u "+userName+" bash -c 'cd /home/"+userName+"'");
-            output.newLine();
-            output.append("echo 1  | sudo -H -u "+userName+" bash -c 'arcsub -c "+cluster+" "+fileNameXRSL+"'");
-            output.newLine();
-            output.append("sleep 2");
-            Runtime.getRuntime().exec("chmod +xrw /home/yana/Desktop/GridNode/SubmitJobFile"+userName+".sh");
-            System.out.println("SubmitJobFile was created");
-
-            output.close();
-        }
 
 
 

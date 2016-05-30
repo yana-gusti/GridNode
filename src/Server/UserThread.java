@@ -65,10 +65,10 @@ public class UserThread  extends Thread implements Serializable{
                         new SubmitJob().listOfFiles(socket);
                         break;
                     case SUBMITJOB:
-                        new SubmitJob().submitJob(reader, writer);
+                        new SubmitJob().submitJob(reader, socket);
                         break;
                     case FINDXRSLFILE:
-                        new SubmitJob().findXRSLFile(reader, writer);
+                        new SubmitJob().findXRSLFile(reader, writer, socket);
                         break;
                     case JOBRESULT:
                         new ResultOfJob().MakeResultOfJob(socket, reader, writer);

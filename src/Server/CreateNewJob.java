@@ -92,8 +92,7 @@ public class CreateNewJob {
                     String[] command = { "xterm", "/home/yana/Desktop/GridNode/Move"+userName+".sh" };
                     Runtime.getRuntime().exec(command);
                     Runtime.getRuntime().exec("rm Move"+userName+".sh");
-                    writer.writeUTF(message);
-                    writer.flush();
+                    writer.writeUTF("success");
     }
     
 

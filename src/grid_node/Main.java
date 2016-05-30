@@ -19,15 +19,11 @@ import java.util.logging.Logger;
  */
 public class Main {
     public static LoginPage loginPage;
-    public static String address;
-    public static int port;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        address = "localhost";
-        port = 7009;
 
          loginPage = new LoginPage();
          loginPage.setVisible(true);

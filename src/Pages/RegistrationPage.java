@@ -325,12 +325,12 @@ public File userKeyFile;
 
     private void userKeyBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_userKeyBtnActionPerformed
         errorLabel.setText("");
-        new CreateJobPage().SelectInputFile();
+        new CreateJobPage().SelectInputFile(errorLabel, userKey);
     }//GEN-LAST:event_userKeyBtnActionPerformed
 
     private void userCertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userCertBtnActionPerformed
         errorLabel.setText("");
-        new CreateJobPage().SelectInputFile();
+        new CreateJobPage().SelectInputFile(errorLabel, userCert);
     }//GEN-LAST:event_userCertBtnActionPerformed
 
     private void RegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException, ClassNotFoundException {//GEN-FIRST:event_RegistrationBtnActionPerformed

@@ -40,13 +40,7 @@ public class CreateJobPage extends JFrame {
     public CreateJobPage() {
 
         initComponents();
-        try {
-            submitJobPage = new SubmitJobPage();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
     }
     private void initServerConnection(){
         try {
@@ -740,7 +734,7 @@ public class CreateJobPage extends JFrame {
     }//GEN-LAST:event_SelectProgCBActionPerformed
 
     private void SelectInFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInFileActionPerformed
-        SelectInputFile();
+        SelectInputFile(errorLabel, inputFileLb);
 
     }//GEN-LAST:event_SelectInFileActionPerformed
 
@@ -887,21 +881,21 @@ public class CreateJobPage extends JFrame {
     }//GEN-LAST:event_SaveBtnActionPerformed
 
     private void SelectInputFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtnActionPerformed
-        SelectInputFile();
+        SelectInputFile(errorLabel, inputFileLb);
     }//GEN-LAST:event_SelectInputFileBtnActionPerformed
 
     private void SelectInputFileBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn2ActionPerformed
-        SelectInputFile();
+        SelectInputFile(errorLabel, inputFileLb);
     }//GEN-LAST:event_SelectInputFileBtn2ActionPerformed
 
     private void SelectInputFileBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn3ActionPerformed
-        SelectInputFile();
+        SelectInputFile(errorLabel, inputFileLb);
     }//GEN-LAST:event_SelectInputFileBtn3ActionPerformed
 
     private void SelectInputFileBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectInputFileBtn4ActionPerformed
-        SelectInputFile();
+        SelectInputFile(errorLabel, inputFileLb);
     }//GEN-LAST:event_SelectInputFileBtn4ActionPerformed
-    public void SelectInputFile(){
+    public void SelectInputFile(JLabel errorLabel, JLabel inputFileLb){
         initServerConnection();
         JFileChooser fileChooser = new JFileChooser();
         int returnVal;

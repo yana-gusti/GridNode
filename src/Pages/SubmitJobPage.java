@@ -261,7 +261,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
                 CommandExecute commandExecute = new CommandExecute();
                 try {
                     writer.writeUTF(ServerMain.Action.FINDXRSLFILE.name());
-                    writer.writeUTF(fileName+"\n");
+                    writer.writeUTF(fileName);
                     commandExecute.jobActionsWithoutJobName(s, textArea, ResultTextPane);
                     writer.writeUTF(ServerMain.Action.DISCONNECT.name()); ; // send action
                     System.out.println("Log out");
@@ -335,7 +335,7 @@ public class SubmitJobPage extends javax.swing.JFrame {
 
     public ArrayList<String> getListOfFiles(){
         try {
-            writer.writeUTF(ServerMain.Action.FINDXRSLFILE.name());
+            writer.writeUTF(ServerMain.Action.ALLFILES.name());
         } catch (IOException e) {
             e.printStackTrace();
         }

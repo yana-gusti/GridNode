@@ -8,22 +8,14 @@ package Pages;
 
 
 import Server.ServerMain;
-import grid_node.Main;
 import services.CommandExecute;
 import services.Users;
-
-import javax.swing.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static grid_node.Main.address;
 import static grid_node.Main.loginPage;
-import static grid_node.Main.port;
 
 
 /**

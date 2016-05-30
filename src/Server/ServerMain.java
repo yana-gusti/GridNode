@@ -20,7 +20,7 @@ import java.util.Enumeration;
  */
 public class ServerMain implements Runnable{
     public final static int PORT = 7009 ;
-    public static String HOSTNAME ;
+    public static String HOSTNAME = "192.168.2.130";
     public enum Action {CONNECT, LOGIN, LOGINWITHVO, REGISTER, UPLOADFILE, DOWNLOADFILE, SHFILE, XRSLFILE, ALLFILES, SUBMITJOB,
         FINDXRSLFILE, JOBRESULT, ALLJOBS, TESTJOB, JOBDETAILS, KILLJOB, DISCONNECT}
     ServerSocket serverSocket;
@@ -29,8 +29,8 @@ public class ServerMain implements Runnable{
     public ServerMain() throws IOException {
 
         System.out.println("Start Server...");
-        NetIdentity netIdentity = new NetIdentity();
-        HOSTNAME = netIdentity.getIp();
+//        NetIdentity netIdentity = new NetIdentity();
+//        HOSTNAME = netIdentity.getIp();
         System.out.println("Current IP address : " + HOSTNAME);
         serverSocket = new ServerSocket(PORT) ;
             new Thread(this).start();
