@@ -1,89 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f2434f25-6275-4c11-b14f-ccb46d669fa2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/services/ActionExecute.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/services/CommandExecute.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/services/ResultOfJob.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/services/ZipHelper.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.arc/client.conf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.cache/dconf/user" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.dbus/session-bus/7f661c6715b22b99b08625e2525e86a0-0" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Basenames" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Conflictname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Dirnames" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Group" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Installtid" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Obsoletename" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Packages" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Providename" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Requirename" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Sha1header" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Sigmd5" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/Triggername" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/__db.001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/__db.002" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/__db.003" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.rpmdb/__db.004" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/.virtinst/virt-install.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/apt-get" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/grid-security" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/root_Vasyl/update" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/services/SaveFile.java" afterPath="$PROJECT_DIR$/src/services/DownloadFile.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/services/SelectFile.java" afterPath="$PROJECT_DIR$/src/services/UploadFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$1.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$10.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$11.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$2.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$3.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$4.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$5.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$6.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$7.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$8.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$9.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage$9.class" />
+    <list default="true" id="f2434f25-6275-4c11-b14f-ccb46d669fa2" name="Default" comment="get result">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/CreateJobPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$1.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$2.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$3.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$4.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/LoginPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$1.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$10.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$2.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$3.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$4.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$5.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$6.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$7.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$8.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$9.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage$9.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/ProfilePage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$1.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$2.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$3.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$4.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$5.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Pages/RegistrationPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/JobActions.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/JobActions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/Login.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/Login.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/Registration.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/Registration.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Grid_Node/Server/ServerMain.class" afterPath="$PROJECT_DIR$/out/production/Grid_Node/Server/ServerMain.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/CreateJobPage.java" afterPath="$PROJECT_DIR$/src/Pages/CreateJobPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/LoginPage.java" afterPath="$PROJECT_DIR$/src/Pages/LoginPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/ProfilePage.java" afterPath="$PROJECT_DIR$/src/Pages/ProfilePage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/RegistrationPage.java" afterPath="$PROJECT_DIR$/src/Pages/RegistrationPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pages/SubmitJobPage.java" afterPath="$PROJECT_DIR$/src/Pages/SubmitJobPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/CreateNewJob.java" afterPath="$PROJECT_DIR$/src/Server/CreateNewJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/JobActions.java" afterPath="$PROJECT_DIR$/src/Server/JobActions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/Login.java" afterPath="$PROJECT_DIR$/src/Server/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/Registration.java" afterPath="$PROJECT_DIR$/src/Server/Registration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/Result.java" afterPath="$PROJECT_DIR$/src/Server/Result.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/ServerMain.java" afterPath="$PROJECT_DIR$/src/Server/ServerMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/SubmitJob.java" afterPath="$PROJECT_DIR$/src/Server/SubmitJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server/UserThread.java" afterPath="$PROJECT_DIR$/src/Server/UserThread.java" />
     </list>
     <ignored path="Grid_Node.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -112,10 +37,26 @@
             <state relative-caret-position="1980">
               <caret line="435" column="0" selection-start-line="435" selection-start-column="0" selection-end-line="435" selection-end-column="0" />
               <folding>
+                <element signature="e#0#26836#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#1769#1858#0" expanded="false" />
+                <element signature="e#3977#3978#0" expanded="false" />
+                <element signature="e#4043#4044#0" expanded="false" />
+                <element signature="e#5131#5132#0" expanded="false" />
+                <element signature="e#5195#5196#0" expanded="false" />
+                <element signature="e#5624#5625#0" expanded="false" />
+                <element signature="e#5685#5686#0" expanded="false" />
+                <element signature="e#8073#8074#0" expanded="false" />
+                <element signature="e#8129#8130#0" expanded="false" />
+                <element signature="e#9842#9843#0" expanded="false" />
+                <element signature="e#9904#9905#0" expanded="false" />
                 <element signature="method#EditProfileBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
                 <element signature="method#CreateJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
                 <element signature="method#LogoutBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
                 <element signature="method#JobNameMouseClicked#0;class#ProfilePage#0" expanded="false" />
+                <element signature="e#24464#24551#0" expanded="false" />
+                <element signature="e#25765#25766#0" expanded="false" />
+                <element signature="e#25831#25832#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -124,23 +65,54 @@
       <file leaf-file-name="SubmitJobPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5436">
+            <state relative-caret-position="5292">
               <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
               <folding>
-                <element signature="e#1858#1947#0" expanded="true" />
+                <element signature="e#0#17770#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#3642#3824#0" expanded="false" />
+                <element signature="e#3823#3824#0" expanded="false" />
+                <element signature="e#4096#4502#0" expanded="false" />
+                <element signature="e#4501#4502#0" expanded="false" />
+                <element signature="e#5099#5503#0" expanded="false" />
+                <element signature="e#5502#5503#0" expanded="false" />
+                <element signature="e#14272#14359#0" expanded="false" />
+                <element signature="e#15565#15912#0" expanded="false" />
+                <element signature="e#15911#15912#0" expanded="false" />
+                <element signature="e#16885#16893#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserThread.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Server/UserThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="828">
+              <caret line="52" column="72" selection-start-line="52" selection-start-column="72" selection-end-line="52" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Server/ServerMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="43" column="3" selection-start-line="43" selection-start-column="3" selection-end-line="45" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/grid_node/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -155,24 +127,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandExecute.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/CommandExecute.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="828">
-              <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ActionExecute.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/ActionExecute.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="414">
               <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -182,9 +142,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1368">
               <caret line="76" column="62" selection-start-line="76" selection-start-column="62" selection-end-line="76" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -194,7 +152,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
               <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-              <folding />
+              <folding>
+                <element signature="e#0#1165#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -204,7 +165,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
               <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-              <folding />
+              <folding>
+                <element signature="e#0#2067#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -264,16 +228,16 @@
         <option value="$PROJECT_DIR$/src/Examples/ZipHelper.java" />
         <option value="$PROJECT_DIR$/src/Examples/ServeurPresence/ZipExample.java" />
         <option value="$PROJECT_DIR$/src/services/ZipHelper.java" />
-        <option value="$PROJECT_DIR$/src/Server/ServerMain.java" />
         <option value="$PROJECT_DIR$/src/services/UploadFile.java" />
         <option value="$PROJECT_DIR$/src/services/DownloadFile.java" />
-        <option value="$PROJECT_DIR$/src/Server/UserThread.java" />
         <option value="$PROJECT_DIR$/src/services/CommandExecute.java" />
         <option value="$PROJECT_DIR$/src/Pages/LoginPage.java" />
         <option value="$PROJECT_DIR$/src/Pages/ProfilePage.java" />
         <option value="$PROJECT_DIR$/src/Pages/SubmitJobPage.java" />
         <option value="$PROJECT_DIR$/src/services/ActionExecute.java" />
         <option value="$PROJECT_DIR$/src/services/ResultOfJob.java" />
+        <option value="$PROJECT_DIR$/src/Server/UserThread.java" />
+        <option value="$PROJECT_DIR$/src/Server/ServerMain.java" />
       </list>
     </option>
   </component>
@@ -323,6 +287,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -409,6 +376,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="META-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Grid_Node" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GridNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="grid_node" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -447,9 +432,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -463,7 +445,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -486,7 +468,7 @@
       <recent name="$PROJECT_DIR$/libs" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ProfilePage">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration default="false" name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -896,10 +878,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.ProfilePage" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Main (1)" />
         <item index="1" class="java.lang.String" itemvalue="Application.ServerMain" />
-        <item index="2" class="java.lang.String" itemvalue="Application.ZipExample" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Main (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ProfilePage" />
+        <item index="3" class="java.lang.String" itemvalue="Application.ZipExample" />
         <item index="4" class="java.lang.String" itemvalue="Application.Client" />
       </list>
     </recent_temporary>
@@ -1038,7 +1020,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464373004512</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="get result">
+      <created>1464469184337</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1464469184337</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1050,18 +1039,21 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32253087" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29012346" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.187251" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24976076" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1936255" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3983871" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1070,11 +1062,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3983871" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32258064" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29032257" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32580644" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1103,7 +1092,8 @@
     <MESSAGE value="Jo Actions refator" />
     <MESSAGE value="GetResult" />
     <MESSAGE value="job actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="job actions" />
+    <MESSAGE value="get result" />
+    <option name="LAST_COMMIT_MESSAGE" value="get result" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1468,7 +1458,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
           <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#1165#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1494,7 +1487,18 @@
         <state relative-caret-position="1530">
           <caret line="101" column="87" selection-start-line="101" selection-start-column="87" selection-end-line="101" selection-end-column="87" />
           <folding>
-            <element signature="e#1858#1947#0" expanded="true" />
+            <element signature="e#0#17770#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3642#3824#0" expanded="false" />
+            <element signature="e#3823#3824#0" expanded="false" />
+            <element signature="e#4096#4502#0" expanded="false" />
+            <element signature="e#4501#4502#0" expanded="false" />
+            <element signature="e#5099#5503#0" expanded="false" />
+            <element signature="e#5502#5503#0" expanded="false" />
+            <element signature="e#14272#14359#0" expanded="false" />
+            <element signature="e#15565#15912#0" expanded="false" />
+            <element signature="e#15911#15912#0" expanded="false" />
+            <element signature="e#16885#16893#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1533,10 +1537,26 @@
         <state relative-caret-position="2106">
           <caret line="143" column="20" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="40" />
           <folding>
+            <element signature="e#0#26836#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1769#1858#0" expanded="false" />
+            <element signature="e#3977#3978#0" expanded="false" />
+            <element signature="e#4043#4044#0" expanded="false" />
+            <element signature="e#5131#5132#0" expanded="false" />
+            <element signature="e#5195#5196#0" expanded="false" />
+            <element signature="e#5624#5625#0" expanded="false" />
+            <element signature="e#5685#5686#0" expanded="false" />
+            <element signature="e#8073#8074#0" expanded="false" />
+            <element signature="e#8129#8130#0" expanded="false" />
+            <element signature="e#9842#9843#0" expanded="false" />
+            <element signature="e#9904#9905#0" expanded="false" />
             <element signature="method#EditProfileBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#CreateJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#LogoutBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#JobNameMouseClicked#0;class#ProfilePage#0" expanded="false" />
+            <element signature="e#24464#24551#0" expanded="false" />
+            <element signature="e#25765#25766#0" expanded="false" />
+            <element signature="e#25831#25832#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1566,13 +1586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/grid_node/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="29" column="15" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -1637,6 +1650,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-188">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1666,7 +1680,7 @@
         <state relative-caret-position="283">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#killJob#0;class#JobActions#0" expanded="false" />
             <element signature="method#testJob#0;class#JobActions#0" expanded="false" />
             <element signature="method#statusOfJob#0;class#JobActions#0" expanded="false" />
@@ -1717,18 +1731,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/ServerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="21" column="88" selection-start-line="21" selection-start-column="88" selection-end-line="21" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Pages/RegistrationPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="332" column="35" selection-start-line="332" selection-start-column="35" selection-end-line="332" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1736,6 +1743,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="903" column="16" selection-start-line="903" selection-start-column="16" selection-end-line="903" selection-end-column="16" />
+          <folding>
+            <element signature="docComment;method#initComponents#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="method#OpenJobBtnActionPerformed#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="method#ClearFieldsBtnActionPerformed#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="method#CancelBtnActionPerformed#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="method#SelectProgCBActionPerformed#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="method#SelectResolCBActionPerformed#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="method#SaveEnvBtnActionPerformed#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="method#SelectSHCBActionPerformed#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="method#SaveBtnActionPerformed#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="docComment;method#main#0;class#CreateJobPage#0" expanded="false" />
+            <element signature="method#main#0;class#CreateJobPage#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1759,9 +1779,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1770,7 +1788,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding />
+          <folding>
+            <element signature="e#0#2067#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1778,7 +1799,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#0#1165#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1787,10 +1811,26 @@
         <state relative-caret-position="1980">
           <caret line="435" column="0" selection-start-line="435" selection-start-column="0" selection-end-line="435" selection-end-column="0" />
           <folding>
+            <element signature="e#0#26836#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1769#1858#0" expanded="false" />
+            <element signature="e#3977#3978#0" expanded="false" />
+            <element signature="e#4043#4044#0" expanded="false" />
+            <element signature="e#5131#5132#0" expanded="false" />
+            <element signature="e#5195#5196#0" expanded="false" />
+            <element signature="e#5624#5625#0" expanded="false" />
+            <element signature="e#5685#5686#0" expanded="false" />
+            <element signature="e#8073#8074#0" expanded="false" />
+            <element signature="e#8129#8130#0" expanded="false" />
+            <element signature="e#9842#9843#0" expanded="false" />
+            <element signature="e#9904#9905#0" expanded="false" />
             <element signature="method#EditProfileBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#CreateJobBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#LogoutBtnActionPerformed#0;class#ProfilePage#0" expanded="false" />
             <element signature="method#JobNameMouseClicked#0;class#ProfilePage#0" expanded="false" />
+            <element signature="e#24464#24551#0" expanded="false" />
+            <element signature="e#25765#25766#0" expanded="false" />
+            <element signature="e#25831#25832#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1799,29 +1839,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1368">
           <caret line="76" column="62" selection-start-line="76" selection-start-column="62" selection-end-line="76" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Pages/SubmitJobPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5436">
+        <state relative-caret-position="5292">
           <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
           <folding>
-            <element signature="e#1858#1947#0" expanded="true" />
+            <element signature="e#0#17770#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3642#3824#0" expanded="false" />
+            <element signature="e#3823#3824#0" expanded="false" />
+            <element signature="e#4096#4502#0" expanded="false" />
+            <element signature="e#4501#4502#0" expanded="false" />
+            <element signature="e#5099#5503#0" expanded="false" />
+            <element signature="e#5502#5503#0" expanded="false" />
+            <element signature="e#14272#14359#0" expanded="false" />
+            <element signature="e#15565#15912#0" expanded="false" />
+            <element signature="e#15911#15912#0" expanded="false" />
+            <element signature="e#16885#16893#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/UserThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="828">
+          <caret line="52" column="72" selection-start-line="52" selection-start-column="72" selection-end-line="52" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="43" column="3" selection-start-line="43" selection-start-column="3" selection-end-line="45" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/grid_node/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1831,10 +1896,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>Grid_Node:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

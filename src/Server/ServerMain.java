@@ -6,6 +6,7 @@
 
 package Server;
 
+import java.net.InetAddress;
 import java.net.Socket;
 
 
@@ -18,7 +19,7 @@ import java.net.ServerSocket;
  */
 public class ServerMain implements Runnable{
     public final static int PORT = 7009 ;
-    public final static String HOSTNAME = "localhost" ;
+    public static String HOSTNAME ;
     public enum Action {CONNECT, LOGIN, LOGINWITHVO, REGISTER, UPLOADFILE, DOWNLOADFILE, SHFILE, XRSLFILE, ALLFILES, SUBMITJOB,
         FINDXRSLFILE, JOBRESULT, ALLJOBS, TESTJOB, JOBDETAILS, KILLJOB, DISCONNECT}
     ServerSocket serverSocket;
@@ -29,6 +30,7 @@ public class ServerMain implements Runnable{
         System.out.println("Start Server...");
         try
         {
+            HOSTNAME = String.valueOf(InetAddress.getLocalHost());
             serverSocket = new ServerSocket(PORT) ;
             new Thread(this).start();
             //javax.swing.SwingUtilities.invokeLater(new Runnable() { public void run() {   createAndShowGUI();}    }   );
@@ -39,9 +41,9 @@ public class ServerMain implements Runnable{
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        new ServerMain();
-    }
+//    public static void main(String[] args) throws IOException, InterruptedException {
+//        new ServerMain();
+//    }
     @Override
     public void run()
     {
