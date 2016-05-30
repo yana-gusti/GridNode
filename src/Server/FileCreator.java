@@ -149,11 +149,7 @@ public class FileCreator {
             output.close();
         }
 
-        public static void main (String arg[]) throws IOException {
 
-
-
-        }
 
 
 }
